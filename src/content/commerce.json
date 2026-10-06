@@ -14,6 +14,14 @@
     "warrantySpecLabel": "Warranty",
     "warrantySpecValue": "{years} years on the mattress"
   },
+  "whatsapp": {
+    "$comment": "Direct WhatsApp to Johannes (owner request, 6 Oct 2026). Number lives in business.json → whatsapp.",
+    "contactPrompt": "Prefer WhatsApp?",
+    "contactLink": "Message Johannes on {number}",
+    "productLink": "WhatsApp Johannes",
+    "footerLink": "WhatsApp {number}",
+    "prefill": "Hi Johannes, I’ve got a question about the Big Jo’s Bed."
+  },
   "hero": {
     "priceFact": "{price} with base",
     "priceFactSr": "Mattress and matching base:",

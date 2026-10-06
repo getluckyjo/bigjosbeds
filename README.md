@@ -86,12 +86,12 @@ Set `COMMERCE_MODE` in the environment.
 
 ## Icons
 
-19 line icons drawn for this brand, following the kit's rule of one 1.5–2 px stroke family:
+20 line icons drawn for this brand, following the kit's rule of one 1.5–2 px stroke family:
 - **Style:** 24 × 24 grid, 1.75 stroke, round ends, no fills. They take the text colour, and Clay is used for accents.
 - **Product facts:** size, layers (firm), depth, cape-town (Table Mountain).
 - **Shopping:** price, delivery, secure, payment, check, returns (the 100-day trial), warranty.
 - **Status:** done, pending, alert, info.
-- **Navigation:** ask, menu, arrow-right, arrow-down.
+- **Navigation:** ask, chat (WhatsApp, drawn generically rather than as the WhatsApp logo), menu, arrow-right, arrow-down.
 
 They replace two-line "label + detail" copy: hero facts, specs, delivery and payment notes, error and status messages. The deck's detail text stays in the page for screen readers.
 
@@ -107,10 +107,11 @@ They replace two-line "label + detail" copy: hero facts, specs, delivery and pay
 5. **Domain:** connect it in Vercel and set `PUBLIC_SITE_URL`.
 6. **Business details (ECTA section 43)** in `src/config/business.json`: legal name, registration number, physical address, email and phone.
 7. **Policies** as Markdown in `src/content/policies/`, each starting with `---\ntitle: …\n---`:
-   - `terms-of-sale.md`
+   - `terms-of-sale.md`: **drafted** in `src/content/policies/drafts/`. Fill in its `[TO CONFIRM: …]` gaps (legal details, VAT, delivery-day needs, cancelling before delivery, refund timing and method, warranty cover), then move it up a folder
    - `delivery-and-returns.md`: **published** (owner approved, 6 Oct 2026). It covers delivery and the 100-day trial: the trial starts on delivery, collection is free and the refund is full. Still to add: how soon refunds are paid, and whether an order can be cancelled before delivery
    - `warranty.md`: what the 20-year mattress warranty covers and how to claim, based on PBS’s written terms. Say whether the base is covered (the PBS quote only lists the warranty on the mattress)
-   - `privacy.md`, a POPIA notice
+   - `privacy.md`: **drafted** POPIA notice in `src/content/policies/drafts/`, written from the site's real data flows (checkout, enquiries, PayFast, Supabase, Vercel, Resend, WhatsApp). Gaps: legal details, Information Officer, the bed maker's name, provider data agreements, retention periods.
+   - The build refuses any published policy that still contains `TO CONFIRM`
 8. **Decisions:**
    - Confirm the delivery postal-code ranges against PBS's 55 km zone.
    - Confirm the final product name.
