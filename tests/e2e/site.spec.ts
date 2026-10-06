@@ -154,6 +154,12 @@ test('our story tells the founder story with a readable length comparison', asyn
   const photo = page.getByRole('img', { name: /Johannes “Big Jo” le Roux/ });
   await expect(photo).toBeVisible();
   expect(await photo.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
+  // The same portrait sits in the home page's founder section.
+  await page.goto('/');
+  const homePhoto = page.locator('.bj-home-story').getByRole('img', { name: /Johannes “Big Jo” le Roux/ });
+  await homePhoto.scrollIntoViewIfNeeded();
+  await expect(homePhoto).toBeVisible();
+  await page.goto('/our-story');
   const chart = page.getByRole('figure', { name: 'Why 210 cm?' });
   const rows = chart.getByRole('listitem');
   await expect(rows).toHaveCount(3);
@@ -184,7 +190,9 @@ test('WhatsApp links go straight to Johannes with a prefilled message', async ({
   const wa = /^https:\/\/wa\.me\/27609615091\?text=Hi%20Johannes/;
   await page.goto('/contact');
   await expect(page.getByRole('link', { name: 'Message Johannes on +27 60 961 5091' })).toHaveAttribute('href', wa);
-  await expect(page.locator('footer').getByRole('link', { name: 'WhatsApp +27 60 961 5091' })).toHaveAttribute('href', wa);
+  // The WhatsApp number is also the business phone, so the footer shows it once as a call link.
+  await expect(page.locator('footer').getByRole('link', { name: 'WhatsApp us' })).toHaveAttribute('href', wa);
+  await expect(page.locator('footer').getByRole('link', { name: '+27 60 961 5091' })).toHaveAttribute('href', 'tel:+27609615091');
   await page.goto('/beds/big-jos-bed');
   await expect(page.getByRole('link', { name: 'WhatsApp Johannes' })).toHaveAttribute('href', wa);
 });
