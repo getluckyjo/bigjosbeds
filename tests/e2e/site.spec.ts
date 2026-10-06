@@ -212,3 +212,15 @@ test('WhatsApp links go straight to Johannes with a prefilled message', async ({
   await page.goto('/beds/big-jos-bed');
   await expect(page.getByRole('link', { name: 'WhatsApp Johannes' })).toHaveAttribute('href', wa);
 });
+
+test('home leads with the vinyl-nook room photo, uncropped at the sides on desktop', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
+  const hero = page.locator('.bj-home-hero__figure img');
+  await expect(hero).toHaveAttribute('alt', /record player/);
+  expect(await hero.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
+  // 2.2:1 box over a 2:1 photo: only top and bottom are trimmed.
+  const box = await hero.boundingBox();
+  expect(box!.width / box!.height).toBeCloseTo(2.2, 1);
+  await expect(page.getByRole('heading', { level: 1 })).toBeInViewport();
+});

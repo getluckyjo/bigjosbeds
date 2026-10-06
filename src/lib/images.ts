@@ -2,6 +2,7 @@ import bedFlax from '../assets/images/bed-flax.png';
 import bedCharcoal from '../assets/images/bed-charcoal.png';
 import detailFlax from '../assets/images/detail-flax.png';
 import detailCharcoal from '../assets/images/detail-charcoal.png';
+import heroVinylNook from '../assets/images/hero-vinyl-nook.png';
 
 /** Concept renders (see src/data/catalogue.json imageStatus). Keyed by catalogue image names. */
 export const images = {
@@ -9,6 +10,7 @@ export const images = {
   'bed-charcoal': bedCharcoal,
   'detail-flax': detailFlax,
   'detail-charcoal': detailCharcoal,
+  'hero-vinyl-nook': heroVinylNook,
 } as const;
 
 export type ImageName = keyof typeof images;

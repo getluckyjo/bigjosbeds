@@ -269,3 +269,42 @@ fieldset.bj-fieldset legend.bj-h3 { font: 400 var(--bj-type-h3)/1.04 var(--bj-fo
 /* Direct WhatsApp line on the contact page. */
 .bj-whatsapp-line { align-items: flex-start; }
 .bj-whatsapp-line .bj-icon { width: 22px; height: 22px; color: var(--bj-clay); flex: none; margin-top: .15em; }
+
+/* Home hero: headline and intro, then buttons and facts, with the panoramic room photo full width
+   underneath. The photo is 2:1 with the record player at the far left and the label at the far
+   right, so it is only trimmed top and bottom on wide screens (2.2:1) and lightly at the sides on
+   small ones (16:9). */
+.bj-home-hero { display: grid; gap: 24px 48px; padding-block: clamp(32px, 5vw, 64px); grid-template-areas: "intro" "figure" "actions"; }
+.bj-home-hero__intro { grid-area: intro; }
+.bj-home-hero__actions { grid-area: actions; }
+.bj-home-hero__figure { grid-area: figure; margin: 0; display: grid; gap: 12px; }
+.bj-home-hero__figure img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: 40% 50%; border-radius: var(--bj-radius-card); background: var(--bj-paper); }
+@media (min-width: 900px) {
+  .bj-home-hero { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); grid-template-areas: "intro actions" "figure figure"; align-items: end; row-gap: 40px; }
+  .bj-home-hero__figure img { aspect-ratio: 2.2; object-position: 50% 50%; }
+}
+
+/* Home FAQs and "Will it fit your room?", condensed into one section: the questions on the right,
+   and the room-fit card fills the space under the heading on the left. */
+.bj-home-faq { display: grid; gap: 32px; grid-template-areas: "title" "list" "fit"; }
+.bj-home-faq__title { grid-area: title; }
+.bj-home-faq__list { grid-area: list; }
+.bj-home-faq__fit { grid-area: fit; align-self: start; padding: clamp(24px, 3vw, 32px); background: var(--bj-paper); border: 1px solid var(--bj-line); border-radius: var(--bj-radius-card); }
+.bj-home-faq__fit h3 { font: 400 clamp(1.5rem, 2.4vw, 2rem)/1.15 var(--bj-font-display); }
+@media (min-width: 768px) {
+  .bj-home-faq { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "title list" "fit list"; column-gap: 48px; align-content: start; }
+}
+
+/* Product page: the photos stay in view beside the (longer) buying column on wide screens, and
+   the key specs sit in a compact two-column grid of tiles (label above value) instead of five
+   full-width rows. */
+@media (min-width: 768px) {
+  .bj-product-gallery { position: sticky; top: 24px; align-self: start; }
+}
+.bj-specs--tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--bj-line); border: 1px solid var(--bj-line); border-radius: var(--bj-radius-card); overflow: hidden; }
+.bj-specs.bj-specs--tiles > div { display: block; padding: 12px 14px; border: 0; background: var(--bj-bone); }
+.bj-specs--tiles dt { gap: 8px; font-size: .8125rem; }
+.bj-specs--tiles dt .bj-icon { width: 18px; height: 18px; }
+.bj-specs--tiles dd { margin: 2px 0 0 26px; font-size: .9375rem; }
+/* An odd last tile spans both columns so the grid has no hole. */
+.bj-specs--tiles > div:last-child:nth-child(odd) { grid-column: 1 / -1; }
