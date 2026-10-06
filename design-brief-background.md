@@ -29,7 +29,7 @@ Big Jo's Beds is a new Cape Town brand making premium beds for big and tall men.
   - Saatva HD is a luxury heavy-duty mattress with natural latex.
 
 ## Positioning and tone
-- **Price:** premium, above Sloom and Mr Mattress. The exact price is still being set.
+- **Price:** R24,999 for the mattress and base set at launch (mattress alone R19,999), with no fake "was" prices. That's well above Mr Mattress and about level with Sloom.
 - **Tone:** confident, warm and direct, with a bit of humour. Premium, but human rather than stuffy.
 - **Size is a spec, never a problem.** Use lines like "built for big" and "finally, a bed that fits". Never use "bariatric", "obese" or "plus-size".
 - **The name is friendly and folksy, so the design has to carry the premium.** That means restraint, good type, quality materials and real photography.
