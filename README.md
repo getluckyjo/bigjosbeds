@@ -69,6 +69,20 @@ Set `COMMERCE_MODE` in the environment.
 | `brand/` | The design kit, unchanged. `src/styles/brand.css` is a copy with font and pattern paths adjusted |
 | `reference/` | Supplier quote, voice notes, competitor photo and rejected renders. Never built (see its README) |
 
+## Current setup (6 Oct 2026)
+
+- **Vercel project:** `bigjosbeds` (team "johannes-7130's projects"), linked to this repo.
+  - Settings: functions in Dublin (`dub1`), Node 22.
+  - Env: `COMMERCE_MODE=sandbox` and `SUPABASE_URL` are set.
+  - Every push to a branch builds a deployment. Vercel Authentication protects all `*.vercel.app` URLs; you can open them while logged in to Vercel.
+- **Supabase project:** "Big Jo's Beds" (`cyafpzrvzlpowociybiv`, eu-west-1). The schema from `supabase/migrations/0001_init.sql` is applied. It holds no data yet.
+
+**To finish the sandbox round trip:**
+1. **Add the secret key.** In Supabase → Project Settings → API Keys, copy the **secret** key (`sb_secret_…`, or the legacy `service_role` key). Add it in Vercel as `SUPABASE_SERVICE_ROLE_KEY`, type Sensitive, for Preview and Production.
+2. **Let PayFast reach the site.** Vercel → Project → Settings → Deployment Protection: set Vercel Authentication to "Only Preview Deployments" or turn it off while you test. PayFast's notification is a server call, so it can't log in to Vercel. A custom production domain is never protected.
+3. **Redeploy** from the Vercel dashboard (or push any commit).
+4. **Buy a bed** on the deployment URL using the PayFast sandbox test buyer. The order should turn **paid** in the `orders` table. Emails start once Resend is configured.
+
 ## Go live: what is still needed
 
 1. **Make this GitHub repository private.** It is public, and `reference/` includes supplier pricing and bank details.
