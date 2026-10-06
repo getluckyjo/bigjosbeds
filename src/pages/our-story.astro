@@ -1,18 +1,20 @@
 ---
 import Base from '../layouts/Base.astro';
 import LengthComparison from '../components/LengthComparison.astro';
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import copy from '../content/copy.json';
 import { PRODUCT_PATH } from '../lib/site';
 
 const story = copy.ourStory;
 
-// Optional founder photo: drop a real photograph at src/assets/images/founder.(jpg|png|webp).
-// No generated portraits (brand/docs/08-authentic-content.md).
+// Founder photo: a real photograph at src/assets/images/founder.(jpg|png|webp), ideally 4:5.
+// No generated portraits (brand/docs/08-authentic-content.md). The page reads fine without one.
 const founderPhotos = import.meta.glob<{ default: ImageMetadata }>('../assets/images/founder.{jpg,jpeg,png,webp}', {
   eager: true,
 });
 const founderPhoto = Object.values(founderPhotos)[0]?.default;
+// Never ask for derivatives wider than the source.
+const photoWidths = founderPhoto ? [320, 480, 640, 800].filter((w) => w <= founderPhoto.width) : [];
 ---
 
 <Base title={story.seo.title} description={story.seo.description}>
@@ -22,7 +24,17 @@ const founderPhoto = Object.values(founderPhotos)[0]?.default;
     {
       founderPhoto && (
         <figure class="bj-founder-photo">
-          <Image src={founderPhoto} alt="Johannes le Roux, founder of Big Jo’s Beds" widths={[480, 800, 1200]} sizes="(min-width: 768px) 680px, 100vw" />
+          <Picture
+            src={founderPhoto}
+            alt="Portrait of Johannes “Big Jo” le Roux, founder of Big Jo’s Beds"
+            widths={photoWidths}
+            sizes="(min-width: 640px) 280px, calc(100vw - 40px)"
+            formats={['avif', 'webp']}
+            fallbackFormat="jpg"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
         </figure>
       )
     }

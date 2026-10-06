@@ -121,14 +121,38 @@ test('icons are decorative and every fact keeps readable text', async ({ page })
   const facts = page.getByRole('list', { name: 'Quick facts' });
   await expect(facts).toContainText('160 × 210 cm');
   await expect(facts).toContainText('Width × length'); // screen-reader detail from the copy deck
-  const commerce = page.getByRole('list', { name: 'Price and delivery' });
+  const commerce = page.getByRole('list', { name: 'Buying details' });
   await expect(commerce).toContainText('R24,999 with base');
   await expect(commerce).toContainText('Free Cape Town delivery');
+  await expect(commerce).toContainText('100-day trial');
+  await expect(commerce).toContainText('20-year mattress warranty');
+});
+
+test('the trial and warranty show beside every buying decision', async ({ page }) => {
+  await page.goto('/beds/big-jos-bed');
+  const assure = page.locator('.bj-buy .bj-assure');
+  await expect(assure).toContainText('100-day trial, no questions asked');
+  await expect(assure).toContainText('20-year mattress warranty');
+  await expect(page.locator('.bj-specs')).toContainText('20 years on the mattress');
+
+  await page.goto('/checkout?item=set&finish=flax&qty=1');
+  const summary = page.locator('.bj-summary');
+  await expect(summary).toContainText('100-day trial, no questions asked');
+  await expect(summary).toContainText('20-year mattress warranty');
+
+  await page.goto('/faqs');
+  await page.getByText('Can I try it at home first?').click();
+  await expect(page.getByText('Every bed comes with a 100-day trial.')).toBeVisible();
+  await page.getByText('Is there a warranty?').click();
+  await expect(page.getByText('The mattress comes with a 20-year warranty.')).toBeVisible();
 });
 
 test('our story tells the founder story with a readable length comparison', async ({ page }) => {
   await page.goto('/our-story');
   await expect(page.getByText('I’m 2 metres tall and 125 kg.').first()).toBeVisible();
+  const photo = page.getByRole('img', { name: /Johannes “Big Jo” le Roux/ });
+  await expect(photo).toBeVisible();
+  expect(await photo.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
   const chart = page.getByRole('figure', { name: 'Why 210 cm?' });
   const rows = chart.getByRole('listitem');
   await expect(rows).toHaveCount(3);

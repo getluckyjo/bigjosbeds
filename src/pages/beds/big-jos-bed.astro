@@ -8,7 +8,7 @@ import commerce from '../../content/commerce.json';
 import { business } from '../../lib/business';
 import { claims, defaultFinish, defaultItem, finishes, items, maxQuantity, productName } from '../../lib/catalogue';
 import { canBuy, commerceMode } from '../../lib/config';
-import { imageCaption, productionBody } from '../../lib/content';
+import { assurances, imageCaption, productionBody, warrantySpec } from '../../lib/content';
 import { formatZar, toPayFastAmount } from '../../lib/money';
 
 const page = copy.productPage;
@@ -24,6 +24,7 @@ const specs: { icon: IconName; label: string; value: string }[] = [
     ? [{ icon: 'layers' as IconName, label: 'Rated for', value: `Up to ${claims.loadRating.kgPerPerson} kg per person` }]
     : []),
   { icon: 'cape-town', label: 'Made in', value: 'Cape Town' },
+  ...warrantySpec(),
 ];
 
 // Product structured data only once real prices are live (docs/04: no offer data before then).
@@ -146,6 +147,7 @@ const jsonLd =
                   <button class="bj-button" type="submit">{commerce.product.buyCta}</button>
                   <ul class="bj-assure">
                     <li><Icon name="delivery" />{commerce.product.delivery}</li>
+                    {assurances().map((a) => <li><Icon name={a.icon} />{a.text}</li>)}
                     <li><Icon name="secure" />{commerce.product.payment}</li>
                   </ul>
                 </div>

@@ -8,6 +8,7 @@ import ProductPicture from '../../components/ProductPicture.astro';
 import commerce from '../../content/commerce.json';
 import { parseSelection, selectionQuery, selectionTotalCents } from '../../lib/catalogue';
 import { commerceMode } from '../../lib/config';
+import { assurances } from '../../lib/content';
 import { deliveryAreaName, deliveryFeeCents, isInDeliveryArea, normalisePostalCode } from '../../lib/delivery';
 import { fill, formatZar } from '../../lib/money';
 import { getStore } from '../../lib/orders';
@@ -224,6 +225,11 @@ const enquiryHref = `/contact?${new URLSearchParams({ finish: selection?.finish.
               <div><dt class="bj-icon-text"><Icon name="delivery" />{c.deliveryIncluded}</dt><dd>{deliveryFeeCents === 0 ? c.free : formatZar(deliveryFeeCents)}</dd></div>
               <div class="bj-totals__total"><dt>{c.total}</dt><dd>{formatZar(total)}</dd></div>
             </dl>
+            {assurances().length > 0 && (
+              <ul class="bj-assure bj-assure--stacked">
+                {assurances().map((a) => <li><Icon name={a.icon} />{a.text}</li>)}
+              </ul>
+            )}
           </aside>
         </div>
       )
