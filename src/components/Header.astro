@@ -1,0 +1,24 @@
+---
+import Icon from './Icon.astro';
+import { nav } from '../lib/site';
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const current = (href: string) => (path === href || path.startsWith(`${href}/`) ? 'page' : undefined);
+---
+
+<header class="bj-header">
+  <div class="bj-container bj-header__inner">
+    <a class="bj-logo" href="/" aria-label="Big Jo’s Beds home">
+      <img src="/logos/big-jos-primary.svg" width="190" height="72" alt="Big Jo’s Beds" />
+    </a>
+    <nav class="bj-nav bj-desktop-nav" aria-label="Main navigation">
+      {nav.map((link) => <a href={link.href} aria-current={current(link.href)}>{link.label}</a>)}
+    </nav>
+    <details class="bj-mobile-menu">
+      <summary><Icon name="menu" />Menu</summary>
+      <nav aria-label="Mobile navigation">
+        {nav.map((link) => <a href={link.href} aria-current={current(link.href)}>{link.label}</a>)}
+      </nav>
+    </details>
+  </div>
+</header>

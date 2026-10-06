@@ -1,0 +1,118 @@
+---
+import Base from '../layouts/Base.astro';
+import ProductPicture from '../components/ProductPicture.astro';
+import FaqList from '../components/FaqList.astro';
+import Icon from '../components/Icon.astro';
+import copy from '../content/copy.json';
+import commerce from '../content/commerce.json';
+import { finishes, getItem } from '../lib/catalogue';
+import { canBuy } from '../lib/config';
+import { imageCaption } from '../lib/content';
+import { fill, formatZar } from '../lib/money';
+import { PRODUCT_PATH } from '../lib/site';
+
+const home = copy.home;
+const homeFaqs = copy.faqPage.items.filter((item) => ['size', 'who', 'feel'].includes(item.id));
+const setPrice = formatZar(getItem('set')!.priceCents);
+const flax = finishes.find((f) => f.id === 'flax')!;
+// Icons stand in for the deck's fact details (Width × length, Mattress feel, Made to order),
+// which stay available to screen readers.
+const factIcons = ['size', 'layers', 'cape-town'] as const;
+---
+
+<Base title={home.seo.title} description={home.seo.description}>
+  <section class="bj-container bj-hero">
+    <div class="bj-stack bj-hero__copy">
+      <span class="bj-eyebrow">{home.hero.eyebrow}</span>
+      <h1>{home.hero.title}</h1>
+      <p class="bj-lead">{home.hero.body}</p>
+      <div class="bj-row">
+        <a class="bj-button" href={home.hero.primaryCta.href}>{home.hero.primaryCta.label}</a>
+        <a class="bj-button bj-button--secondary" href={home.hero.secondaryCta.href}>{home.hero.secondaryCta.label}</a>
+      </div>
+      <ul class="bj-facts" aria-label="Quick facts">
+        {
+          home.facts.map((fact, i) => (
+            <li>
+              <Icon name={factIcons[i]} />
+              <span><span class="bj-sr-only">{fact.detail}: </span>{fact.label}</span>
+            </li>
+          ))
+        }
+      </ul>
+      {
+        canBuy() && (
+          <ul class="bj-facts" aria-label="Price and delivery">
+            <li><Icon name="price" />{fill(commerce.hero.priceFact, { price: setPrice })}</li>
+            <li><Icon name="delivery" />{commerce.hero.deliveryFact}</li>
+          </ul>
+        )
+      }
+    </div>
+    <figure class="bj-figure bj-stack" style="--bj-stack-gap:12px">
+      <ProductPicture name={flax.image} alt={flax.alt} sizes="(min-width: 768px) 56vw, 100vw" eager />
+      <figcaption class="bj-small bj-muted">{imageCaption()}</figcaption>
+    </figure>
+  </section>
+
+  <section class="bj-container bj-section bj-grid">
+    <h2>{home.introduction.title}</h2>
+    <div class="bj-stack">
+      {home.introduction.paragraphs.map((p) => <p>{p}</p>)}
+    </div>
+  </section>
+
+  <div class="bj-ticking" aria-hidden="true"></div>
+
+  <section class="bj-container bj-section bj-stack" id="finishes">
+    <h2>{home.finishes.title}</h2>
+    <p class="bj-reading">{home.finishes.body}</p>
+    <div class="bj-grid">
+      {
+        home.finishes.items.map((item) => {
+          const finish = finishes.find((f) => f.id === item.id)!;
+          return (
+            <article class="bj-stack">
+              <ProductPicture name={finish.image} alt={finish.alt} sizes="(min-width: 768px) 45vw, 100vw" class="bj-product-image" />
+              <h3>{item.name}</h3>
+              <p>{item.body}</p>
+              <a class="bj-link-arrow" href={`${PRODUCT_PATH}?finish=${item.id}`}>{item.cta}<Icon name="arrow-right" /></a>
+            </article>
+          );
+        })
+      }
+    </div>
+  </section>
+
+  <section class="bj-container bj-section bj-grid">
+    <h2>{home.construction.title}</h2>
+    <div class="bj-stack">
+      <p>{home.construction.body}</p>
+      <a class="bj-link-arrow" href={`${PRODUCT_PATH}#construction`}>{home.construction.cta}<Icon name="arrow-right" /></a>
+    </div>
+  </section>
+
+  <section class="bj-dark bj-section">
+    <div class="bj-container bj-grid">
+      <h2>{home.story.title}</h2>
+      <div class="bj-stack">
+        <p>{home.story.body}</p>
+        <a class="bj-link-arrow" href="/our-story">{home.story.cta}<Icon name="arrow-right" /></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bj-container bj-section bj-grid">
+    <h2>A few practical questions.</h2>
+    <div class="bj-stack">
+      <FaqList items={homeFaqs} />
+      <a class="bj-link-arrow" href="/faqs">All FAQs<Icon name="arrow-right" /></a>
+    </div>
+  </section>
+
+  <section class="bj-container bj-section bj-stack">
+    <h2>{home.closing.title}</h2>
+    <p class="bj-reading">{home.closing.body}</p>
+    <div><a class="bj-button" href="/contact">{home.closing.cta}</a></div>
+  </section>
+</Base>

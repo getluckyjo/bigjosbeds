@@ -1,0 +1,154 @@
+/* Tokens come straight from the design kit so there is one source of truth. */
+@import '../../brand/tokens/tokens.css';
+@import './brand.css';
+
+@font-face {
+  font-family: 'DM Serif Display';
+  src: url('/fonts/DMSerifDisplay-Regular.latin.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DM Sans';
+  src: url('/fonts/DMSans-Variable.latin.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 100 1000;
+  font-display: swap;
+}
+
+/* ---------- Additions for the live site (bj- prefixed, built on kit tokens) ---------- */
+
+html { overflow-x: clip; }
+main { display: block; }
+.bj-header { position: relative; z-index: 5; }
+.bj-nav a[aria-current='page'] { text-decoration: underline; text-underline-offset: .35em; }
+
+.bj-test-banner {
+  background: var(--bj-ink);
+  color: var(--bj-bone);
+  font-size: .8125rem;
+  line-height: 1.5;
+  padding: 10px 0;
+  text-align: center;
+}
+
+/* Icons: one 1.75px line family (src/data/icons.json), always paired with text. */
+.bj-icon { width: 1.25em; height: 1.25em; flex-shrink: 0; display: inline-block; vertical-align: -0.25em; }
+.bj-icon-text { display: inline-flex; align-items: center; gap: .5em; }
+
+/* Icon facts: one short line each instead of label + detail. */
+.bj-facts { display: flex; flex-wrap: wrap; gap: 12px 24px; margin: 0; padding: 0; list-style: none; }
+.bj-facts li { display: flex; align-items: center; gap: 8px; font-weight: 500; font-size: .9375rem; }
+.bj-facts .bj-icon { width: 22px; height: 22px; color: var(--bj-clay); }
+.bj-stack.bj-stack > .bj-facts + .bj-facts { margin-top: 12px; }
+
+/* Text link with a trailing arrow. */
+.bj-link-arrow { display: inline-flex; align-items: center; gap: .4em; }
+.bj-link-arrow .bj-icon { width: 1.1em; height: 1.1em; }
+
+.bj-breadcrumb { font-size: .875rem; color: var(--bj-muted); }
+.bj-breadcrumb a { color: var(--bj-muted); }
+
+:where(.bj-figure) { margin: 0; } /* zero specificity so .bj-stack spacing still applies */
+.bj-figure picture, .bj-figure img { width: 100%; }
+.bj-figure img { aspect-ratio: 3 / 2; object-fit: cover; border-radius: var(--bj-radius-card); background: var(--bj-paper); }
+.bj-figure figcaption { margin-top: 12px; }
+
+/* Finish- and item-dependent content. CSS :has() keeps image, price and names in sync
+   without JavaScript; brand.js adds aria-live updates, alt text and URL syncing. */
+[data-show-finish='charcoal'], [data-show-item='mattress'], [data-show-item='base'] { display: none; }
+.bj-config:has(input[name='finish'][value='charcoal']:checked) [data-show-finish='flax'],
+.bj-config:has(input[name='item'][value='mattress']:checked) [data-show-item='set'],
+.bj-config:has(input[name='item'][value='base']:checked) [data-show-item='set'] { display: none; }
+.bj-config:has(input[name='finish'][value='charcoal']:checked) [data-show-finish='charcoal'],
+.bj-config:has(input[name='item'][value='mattress']:checked) [data-show-item='mattress'],
+.bj-config:has(input[name='item'][value='base']:checked) [data-show-item='base'] { display: revert; }
+
+.bj-price { font: 400 clamp(2rem, 3vw, 2.5rem)/1.1 var(--bj-font-display); letter-spacing: -.02em; }
+
+.bj-options { display: grid; gap: 8px; }
+.bj-option {
+  display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 10px 14px;
+  border: 1px solid var(--bj-control-border); border-radius: var(--bj-radius-control); cursor: pointer; background: transparent;
+}
+.bj-option:has(input:checked) { border: 2px solid var(--bj-clay); padding: 9px 13px; background: var(--bj-paper); }
+.bj-option input { accent-color: var(--bj-clay); width: 18px; height: 18px; margin: 0; flex-shrink: 0; }
+.bj-option__name { flex: 1; }
+.bj-option__price { font-weight: 600; white-space: nowrap; }
+.bj-finish:has(input:focus-visible), .bj-option:has(input:focus-visible) { outline: 3px solid var(--bj-clay); outline-offset: 4px; }
+
+.bj-qty { width: 96px; }
+h2.bj-eyebrow, h3.bj-eyebrow { font-family: var(--bj-font-body); font-size: .75rem; letter-spacing: .15em; line-height: 1.4; }
+/* Kit components reset margin to 0 (.bj-fieldset, .bj-specs, lists), which would cancel
+   .bj-stack spacing; the doubled class keeps the stack rhythm in charge. */
+.bj-stack.bj-stack > * + * { margin-top: var(--bj-stack-gap, 24px); }
+form.bj-form > fieldset + fieldset { margin-top: 24px; }
+.bj-list { margin: 0; padding-left: 1.2em; }
+.bj-list li + li { margin-top: 4px; }
+.bj-checklist { margin: 0; padding: 0; list-style: none; }
+.bj-checklist li { display: flex; gap: 10px; align-items: flex-start; }
+.bj-checklist li + li { margin-top: 6px; }
+.bj-checklist .bj-icon { color: var(--bj-clay); margin-top: .15em; }
+.bj-note { display: flex; gap: 8px; align-items: flex-start; font-size: .875rem; color: var(--bj-muted); margin: 0; }
+.bj-note .bj-icon { width: 18px; height: 18px; margin-top: .1em; }
+.bj-buy { display: grid; gap: 16px; padding-top: 8px; }
+.bj-buy .bj-button { width: 100%; }
+.bj-assure { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: .875rem; color: var(--bj-muted); }
+.bj-assure li { display: flex; align-items: center; gap: 8px; }
+.bj-assure .bj-icon { width: 20px; height: 20px; color: var(--bj-ink); }
+.bj-specs dt { display: flex; align-items: center; gap: 10px; }
+.bj-specs dt .bj-icon { width: 20px; height: 20px; color: var(--bj-clay); }
+.bj-mobile-menu summary { display: inline-flex; align-items: center; gap: 8px; }
+
+/* Forms */
+.bj-form { display: grid; gap: 20px; }
+.bj-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.bj-field .bj-error { margin: 0; }
+.bj-field-label { font-weight: 600; font-size: .875rem; }
+.bj-field .bj-hint { margin: 0; font-size: .875rem; color: var(--bj-muted); }
+textarea.bj-input { min-height: 140px; resize: vertical; }
+select.bj-input { appearance: auto; }
+.bj-check { display: flex; gap: 12px; align-items: flex-start; font-size: .9375rem; }
+.bj-check input { accent-color: var(--bj-clay); width: 20px; height: 20px; margin: 2px 0 0; flex-shrink: 0; }
+.bj-honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.bj-alert { display: grid; grid-template-columns: 22px 1fr; gap: 12px; border-left: 3px solid var(--bj-error); padding: 14px 18px; background: var(--bj-paper); }
+.bj-alert > .bj-icon { width: 22px; height: 22px; color: var(--bj-error); margin-top: 1px; }
+.bj-alert--success { border-left-color: var(--bj-success); }
+.bj-alert--success > .bj-icon { color: var(--bj-success); }
+.bj-alert__body > * + * { margin-top: 8px; }
+.bj-status-icon { width: 48px; height: 48px; color: var(--bj-clay); }
+.bj-status-icon--done { color: var(--bj-success); }
+.bj-alert h2 { font-size: 1.25rem; font-family: var(--bj-font-body); font-weight: 600; letter-spacing: 0; }
+fieldset.bj-fieldset legend.bj-h3 { font: 400 var(--bj-type-h3)/1.04 var(--bj-font-display); letter-spacing: -.025em; margin-bottom: 16px; }
+
+/* Checkout and order */
+.bj-checkout { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 56px; align-items: start; }
+.bj-summary { border: 1px solid var(--bj-line); border-radius: var(--bj-radius-card); background: var(--bj-paper); padding: 24px; position: sticky; top: 24px; }
+.bj-summary > * + * { margin-top: 16px; }
+.bj-summary__item { display: grid; grid-template-columns: 96px 1fr; gap: 16px; align-items: start; }
+.bj-summary__item img { border-radius: 4px; aspect-ratio: 3 / 2; object-fit: cover; }
+.bj-totals { margin: 0; }
+.bj-totals > div { display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--bj-line); }
+.bj-totals dt { color: var(--bj-muted); }
+.bj-totals dd { margin: 0; font-weight: 500; }
+.bj-totals .bj-totals__total dt, .bj-totals .bj-totals__total dd { color: var(--bj-ink); font-weight: 600; font-size: 1.125rem; }
+.bj-ref { font: 600 1rem/1.4 ui-monospace, monospace; letter-spacing: .04em; }
+
+/* Footer */
+.bj-footer__grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 40px; }
+.bj-footer__links { display: grid; gap: 8px; align-content: start; }
+.bj-footer__links a { color: var(--bj-bone); text-decoration: none; }
+.bj-footer__links a:hover { text-decoration: underline; }
+.bj-footer .bj-small { opacity: .85; }
+
+@media (max-width: 1099px) {
+  .bj-checkout { grid-template-columns: 1fr; gap: 32px; }
+  .bj-summary { position: static; order: -1; }
+}
+@media (max-width: 767px) {
+  .bj-form-row, .bj-footer__grid { grid-template-columns: 1fr; }
+  .bj-footer__grid { gap: 28px; }
+  /* Keep buying controls near the top on phones: show the detail shot as a short strip. */
+  .bj-figure--detail img { aspect-ratio: 5 / 2; object-position: 50% 45%; }
+}

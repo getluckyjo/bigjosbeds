@@ -1,0 +1,15 @@
+---
+import Base from '../layouts/Base.astro';
+import { PRODUCT_PATH } from '../lib/site';
+---
+
+<Base title="Page not found | Big Jo’s Beds" noindex>
+  <section class="bj-container bj-section bj-stack bj-reading">
+    <h1>We couldn’t find that page.</h1>
+    <p class="bj-lead">The link may be out of date. The bed is still here.</p>
+    <div class="bj-row">
+      <a class="bj-button" href={PRODUCT_PATH}>Meet the bed</a>
+      <a class="bj-button bj-button--secondary" href="/">Home</a>
+    </div>
+  </section>
+</Base>

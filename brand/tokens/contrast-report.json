@@ -1,0 +1,37 @@
+[
+  {
+    "foreground": "ink",
+    "background": "bone",
+    "ratio": 12.44
+  },
+  {
+    "foreground": "muted",
+    "background": "bone",
+    "ratio": 5.27
+  },
+  {
+    "foreground": "clay",
+    "background": "bone",
+    "ratio": 5.39
+  },
+  {
+    "foreground": "bone",
+    "background": "clay",
+    "ratio": 5.39
+  },
+  {
+    "foreground": "bone",
+    "background": "charcoal",
+    "ratio": 8.47
+  },
+  {
+    "foreground": "ink",
+    "background": "flax",
+    "ratio": 7.49
+  },
+  {
+    "foreground": "control-border",
+    "background": "paper",
+    "ratio": 4.15
+  }
+]

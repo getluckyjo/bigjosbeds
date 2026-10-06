@@ -1,0 +1,23 @@
+{
+  "$comment": "Owner-supplied business details. null means not supplied yet. A COMMERCE_MODE=live build fails while any field listed in scripts/check-launch.mjs is null. Secrets (PayFast keys, Supabase, Resend) go in environment variables, never here.",
+  "tradingName": "Big Jo’s Beds",
+  "legalName": null,
+  "registrationNumber": null,
+  "physicalAddress": null,
+  "email": null,
+  "phone": null,
+  "vatRegistered": false,
+  "vatNumber": null,
+  "delivery": {
+    "areaName": "Cape Town",
+    "feeCents": 0,
+    "postalCodeRanges": [
+      [7100, 7199],
+      [7349, 7349],
+      [7400, 7599],
+      [7700, 8099]
+    ],
+    "postalCodeRangesStatus": "Default Cape Town metro ranges (Helderberg, Atlantis, northern suburbs, southern suburbs, CBD and peninsula). Excludes 7600–7699 (Stellenbosch, Paarl). Confirm against the PBS 55 km delivery zone."
+  },
+  "requiredPolicies": ["terms-of-sale", "delivery-and-returns", "privacy"]
+}

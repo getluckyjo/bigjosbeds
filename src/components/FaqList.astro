@@ -1,0 +1,17 @@
+---
+interface Props {
+  items: { id: string; question: string; answer: string }[];
+}
+const { items } = Astro.props;
+---
+
+<div class="bj-accordion">
+  {
+    items.map((item) => (
+      <details id={`faq-${item.id}`}>
+        <summary>{item.question}</summary>
+        <div>{item.answer}</div>
+      </details>
+    ))
+  }
+</div>

@@ -1,0 +1,119 @@
+---
+export const prerender = false;
+
+import Icon from '../components/Icon.astro';
+import Base from '../layouts/Base.astro';
+import Field from '../components/Field.astro';
+import copy from '../content/copy.json';
+import { emailConfig } from '../lib/config';
+import { ownerEnquiryAlert, resendSender, trySend } from '../lib/email';
+import { getStore } from '../lib/orders';
+import { enquirySchema, fieldErrors, formValues, type FieldErrors } from '../lib/validation';
+
+const page = copy.contactPage;
+const field = Object.fromEntries(page.fields.map((f) => [f.id, f]));
+const finishOptions = [
+  { value: 'flax', label: 'Flax' },
+  { value: 'charcoal', label: 'Charcoal' },
+  { value: 'unsure', label: 'Not sure yet' },
+];
+
+let values: Record<string, string> = {
+  finish: Astro.url.searchParams.get('finish') ?? 'unsure',
+  area: Astro.url.searchParams.get('area') ?? '',
+};
+let errors: FieldErrors = {};
+let result: 'sent' | 'failed' | null = null;
+
+if (Astro.request.method === 'POST') {
+  const form = await Astro.request.formData();
+  values = formValues(form);
+  const parsed = enquirySchema.safeParse(values);
+  if (values.website) {
+    // Honeypot filled in: treat as spam, but don't tell the bot.
+    result = 'sent';
+    values = { finish: 'unsure', area: '' };
+  } else if (!parsed.success) {
+    errors = fieldErrors(parsed.error);
+    Astro.response.status = 422;
+  } else {
+    try {
+      const enquiry = { ...parsed.data, phone: parsed.data.phone || null };
+      await getStore().saveEnquiry(enquiry);
+      const { ownerEmail } = emailConfig();
+      if (ownerEmail) await trySend(resendSender(), ownerEnquiryAlert(enquiry, ownerEmail));
+      result = 'sent';
+      values = { finish: 'unsure', area: '' };
+    } catch (error) {
+      console.error('[contact] enquiry not saved', error);
+      result = 'failed';
+      Astro.response.status = 500;
+    }
+  }
+}
+if (!['flax', 'charcoal', 'unsure'].includes(values.finish)) values.finish = 'unsure';
+const errorList = Object.entries(errors);
+---
+
+<Base title={page.seo.title} description={page.seo.description}>
+  <section class="bj-container bj-section bj-grid">
+    <div class="bj-stack">
+      <h1>{page.title}</h1>
+      <p class="bj-lead">{page.intro}</p>
+    </div>
+
+    <form class="bj-form" method="post" action="/contact" novalidate data-bj-busy>
+      {
+        result === 'sent' && (
+          <div class="bj-alert bj-alert--success" role="status" tabindex="-1" data-bj-focus>
+            <Icon name="done" />
+            <p>{page.success}</p>
+          </div>
+        )
+      }
+      {
+        result === 'failed' && (
+          <div class="bj-alert" role="alert" tabindex="-1" data-bj-focus>
+            <Icon name="alert" />
+            <p>{page.error}</p>
+          </div>
+        )
+      }
+      {
+        errorList.length > 0 && (
+          <div class="bj-alert" role="alert" tabindex="-1" data-bj-focus>
+            <Icon name="alert" />
+            <div class="bj-alert__body">
+              <h2>Please check the highlighted details.</h2>
+              <ul class="bj-list">
+                {errorList.map(([name]) => (
+                  <li><a href={`#en-${name}`}>{field[name]?.label ?? name}</a></li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )
+      }
+
+      <div class="bj-honeypot" aria-hidden="true">
+        <label for="en-website">Leave this empty</label>
+        <input id="en-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+
+      <Field idPrefix="en" name="name" label={field.name.label} value={values.name} error={errors.name} required autocomplete="name" maxlength={100} />
+      <Field idPrefix="en" name="email" type="email" label={field.email.label} value={values.email} error={errors.email} required autocomplete="email" maxlength={254} />
+      <Field idPrefix="en" name="phone" type="tel" label={field.phone.label} value={values.phone} error={errors.phone} autocomplete="tel" maxlength={30} />
+      <Field idPrefix="en" name="area" label={field.area.label} hint={field.area.hint} value={values.area} error={errors.area} required autocomplete="address-level2" maxlength={100} />
+      <div class="bj-field">
+        <label for="en-finish">{field.finish.label}</label>
+        <select class="bj-input" id="en-finish" name="finish">
+          {finishOptions.map((o) => <option value={o.value} selected={values.finish === o.value}>{o.label}</option>)}
+        </select>
+      </div>
+      <Field idPrefix="en" name="message" type="textarea" label={field.message.label} value={values.message} error={errors.message} required maxlength={3000} />
+      <div>
+        <button class="bj-button" type="submit" data-busy-label={page.submitting} data-label={page.submit}>{page.submit}</button>
+      </div>
+    </form>
+  </section>
+</Base>
