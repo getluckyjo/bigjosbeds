@@ -125,3 +125,17 @@ test('icons are decorative and every fact keeps readable text', async ({ page })
   await expect(commerce).toContainText('R24,999 with base');
   await expect(commerce).toContainText('Free Cape Town delivery');
 });
+
+test('our story tells the founder story with a readable length comparison', async ({ page }) => {
+  await page.goto('/our-story');
+  await expect(page.getByText('I’m 2 metres tall and 125 kg.').first()).toBeVisible();
+  const chart = page.getByRole('figure', { name: 'Why 210 cm?' });
+  const rows = chart.getByRole('listitem');
+  await expect(rows).toHaveCount(3);
+  await expect(rows.nth(0)).toContainText('188 cm');
+  await expect(rows.nth(2)).toContainText('10 cm to spare');
+  // Bars are proportional: the Big Jo's bar is longer than the standard one.
+  const widths = await chart.locator('.bj-compare__bar').evaluateAll((bars) => bars.map((b) => b.getBoundingClientRect().width));
+  expect(widths[2]).toBeGreaterThan(widths[1]);
+  expect(widths[1]).toBeGreaterThan(widths[0]);
+});

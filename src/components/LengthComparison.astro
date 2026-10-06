@@ -1,0 +1,51 @@
+---
+/**
+ * Mattress lengths against a person's height. Emphasis form (dataviz guidance):
+ * one highlighted bar in Clay, context bars in a warm grey, every value labelled
+ * directly, bars grow from a zero baseline, and the height is a reference line.
+ * Plain HTML list, so it reads as text without CSS or to a screen reader.
+ */
+interface Row {
+  label: string;
+  cm: number;
+  note: string;
+  highlight?: boolean;
+}
+
+interface Props {
+  title: string;
+  caption: string;
+  markerLabel: string;
+  markerCm: number;
+  rows: Row[];
+}
+
+const { title, caption, markerLabel, markerCm, rows } = Astro.props;
+// Scale with a little headroom past the longest bar so the value never touches the edge.
+const scaleMax = Math.ceil((Math.max(markerCm, ...rows.map((r) => r.cm)) + 10) / 10) * 10;
+const ratio = (cm: number) => (cm / scaleMax).toFixed(4);
+---
+
+<figure class="bj-compare" aria-labelledby="compare-title">
+  <h2 id="compare-title" class="bj-compare__title">{title}</h2>
+  <div class="bj-compare__chart" style={`--bj-marker: ${ratio(markerCm)}`}>
+    <span class="bj-compare__marker" aria-hidden="true"><span>{markerLabel}</span></span>
+    <ul class="bj-compare__rows">
+      {
+        rows.map((row) => (
+          <li class:list={['bj-compare__row', { 'is-highlight': row.highlight }]}>
+            <span class="bj-compare__label">
+              {row.label}
+              <span class="bj-compare__note">{row.note}</span>
+            </span>
+            <span class="bj-compare__track" aria-hidden="true">
+              <span class="bj-compare__bar" style={`--bj-bar: ${ratio(row.cm)}`} />
+            </span>
+            <span class="bj-compare__value">{row.cm} cm</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <figcaption class="bj-small bj-muted">{caption}</figcaption>
+</figure>

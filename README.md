@@ -115,8 +115,9 @@ They replace two-line "label + detail" copy: hero facts, specs, delivery and pay
    - Confirm the final product name.
    - Decide whether to publish the 250 kg rating, warranty, cotton cover and production days. Each has a `publish` flag in `catalogue.json`.
    - Review the draft wording in `commerce.json`.
-9. **Photos:** replace the concept renders in `src/assets/images/` with photos of the real bed, using the same file names, and update the alt text in `catalogue.json`.
-10. Set `COMMERCE_MODE=live` and redeploy. The build lists anything still missing.
+9. **Founder photo:** add a real photo of Johannes, ideally beside the actual bed, at `src/assets/images/founder.jpg`. The story page picks it up automatically. Don't use a generated portrait.
+10. **Photos:** replace the concept renders in `src/assets/images/` with photos of the real bed, using the same file names, and update the alt text in `catalogue.json`.
+11. Set `COMMERCE_MODE=live` and redeploy. The build lists anything still missing.
 
 ### Test the full round trip on a Vercel preview first
 

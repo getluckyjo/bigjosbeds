@@ -96,6 +96,10 @@ const factIcons = ['size', 'layers', 'cape-town'] as const;
     <div class="bj-container bj-grid">
       <h2>{home.story.title}</h2>
       <div class="bj-stack">
+        <blockquote class="bj-quote">
+          <p>“{home.story.quote}”</p>
+          <footer>{home.story.quoteBy}</footer>
+        </blockquote>
         <p>{home.story.body}</p>
         <a class="bj-link-arrow" href="/our-story">{home.story.cta}<Icon name="arrow-right" /></a>
       </div>
