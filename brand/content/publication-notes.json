@@ -1,0 +1,30 @@
+{
+  "notForAutomaticPublication": true,
+  "items": [
+    {
+      "id": "load-rating",
+      "proposedCopy": "Rated for up to 250 kg per person.",
+      "sourceStatus": "Explicitly supplied in the brief",
+      "releaseWhen": "Manufacturer confirms the rating and its applicable mattress/base conditions.",
+      "note": "Do not double this into a 500kg combined rating without confirmation."
+    },
+    {
+      "id": "cotton",
+      "proposedCopy": "Finished with a 100% cotton cover.",
+      "sourceStatus": "Explicitly supplied in the brief; finish not final",
+      "releaseWhen": "Final supplied cover composition is confirmed."
+    },
+    {
+      "id": "production-days",
+      "proposedCopy": "Made to order in Cape Town in 3–5 working days. Delivery is arranged separately.",
+      "sourceStatus": "Explicitly supplied production time",
+      "releaseWhen": "Current production capacity and the start point for that period are confirmed."
+    },
+    {
+      "id": "ordering",
+      "proposedCopy": null,
+      "sourceStatus": "Price, VAT, payment, policies and delivery details not supplied",
+      "releaseWhen": "Owner provides actual terms and contact destination."
+    }
+  ]
+}

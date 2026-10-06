@@ -1,0 +1,291 @@
+{
+  "version": "1.1.0",
+  "source": "content/source/design-brief-background.md",
+  "editorialStatus": "New website draft for owner review. No invented testimonials or personal experiences.",
+  "home": {
+    "route": "/",
+    "seo": {
+      "title": "Big Jo’s Beds | Beds for big and tall people",
+      "description": "A firm 160 × 210 cm mattress and matching heavy-duty base, made to order in Cape Town. Meet Big Jo’s Beds and explore Flax and Charcoal finishes."
+    },
+    "hero": {
+      "eyebrow": "Made to order in Cape Town",
+      "title": "A bed you fit in.",
+      "body": "A firm mattress and matching heavy-duty base for big and tall people. At 160 × 210 cm, there’s more room to stretch out.",
+      "primaryCta": {
+        "label": "Meet the bed",
+        "href": "/beds/big-jos-bed"
+      },
+      "secondaryCta": {
+        "label": "See the dimensions",
+        "href": "/beds/big-jos-bed#dimensions"
+      }
+    },
+    "facts": [
+      {
+        "label": "160 × 210 cm",
+        "detail": "Width × length"
+      },
+      {
+        "label": "Firm",
+        "detail": "Mattress feel"
+      },
+      {
+        "label": "Cape Town",
+        "detail": "Made to order"
+      }
+    ],
+    "introduction": {
+      "title": "Your feet shouldn’t have to hang off the end.",
+      "paragraphs": [
+        "If you’re big or tall, buying a bed means paying attention to things other people might never check: the extra length, the mattress rating, whether the base is up to the job.",
+        "Big Jo’s starts with those details. The mattress is 210 cm long and 160 cm wide, with a reinforced foam core, a latex comfort layer and a matching heavy-duty base."
+      ]
+    },
+    "finishes": {
+      "title": "Which one suits your room?",
+      "body": "Choose a finish for the mattress sides and matching base. Both keep the cream sleeping surface.",
+      "items": [
+        {
+          "id": "flax",
+          "name": "Flax",
+          "body": "Natural-coloured woven fabric with clay stripes. The warmer, lighter option.",
+          "cta": "See Flax"
+        },
+        {
+          "id": "charcoal",
+          "name": "Charcoal",
+          "body": "Dark grey woven fabric with subtle tonal stripes. A darker finish with the same cream top.",
+          "cta": "See Charcoal"
+        }
+      ]
+    },
+    "construction": {
+      "title": "Here’s what’s inside.",
+      "body": "The mattress has three layers: a reinforced high-density support core, an ultra-high-density foam layer and a latex comfort layer. Together, they make up a firm mattress approximately 25 cm deep.",
+      "cta": "See the full specification"
+    },
+    "story": {
+      "title": "Started in Cape Town. Built for big.",
+      "body": "Big Jo’s Beds was founded by Johannes le Roux, the Cape Town entrepreneur who co-founded The Duchess. This time, the brief is a bed for people who need more length and support than a standard bed offers.",
+      "cta": "About Big Jo’s"
+    },
+    "closing": {
+      "title": "Will it fit your room?",
+      "body": "Start with the 160 × 210 cm mattress dimensions. Allow space for the base, your furniture and a clear route around the bed. If you have a question, send it through.",
+      "cta": "Ask about the bed"
+    }
+  },
+  "productPage": {
+    "route": "/beds/big-jos-bed",
+    "seo": {
+      "title": "The Big Jo’s Bed | 160 × 210 cm | Big Jo’s Beds",
+      "description": "Explore the Big Jo’s firm mattress and matching heavy-duty base. 160 × 210 cm, made to order in Cape Town, with Flax and Charcoal finish options."
+    },
+    "title": "The Big Jo’s Bed",
+    "intro": "A firm 160 × 210 cm mattress with a matching heavy-duty base. Made to order in Cape Town for big and tall people.",
+    "finishLabel": "Choose your finish",
+    "cta": "Ask about this bed",
+    "secondaryCta": "View dimensions and materials",
+    "dimensions": {
+      "id": "dimensions",
+      "title": "Check the fit.",
+      "body": "The mattress measures 160 cm wide by 210 cm long. That’s 22 cm longer than a 188 cm mattress. Check the exact measurements against your room, bed linen and access route.",
+      "notes": "Mattress dimensions are not the complete bed’s outer dimensions. Confirm the base footprint and access requirements before ordering."
+    },
+    "feel": {
+      "title": "A firm mattress.",
+      "body": "The construction combines two foam support layers with a 20 mm latex comfort layer. If you’re looking for a very soft, sink-in mattress, the firm feel is worth considering before you choose."
+    },
+    "construction": {
+      "title": "The layers, from the bottom up.",
+      "layers": [
+        {
+          "name": "Reinforced support core",
+          "size": "180 mm",
+          "description": "High-density foam at the bottom of the mattress."
+        },
+        {
+          "name": "Additional support layer",
+          "size": "50 mm",
+          "description": "Ultra-high-density foam above the main core."
+        },
+        {
+          "name": "Comfort layer",
+          "size": "20 mm",
+          "description": "Latex at the top of the mattress."
+        }
+      ],
+      "summary": "Approximate total mattress depth: 25 cm."
+    },
+    "base": {
+      "title": "A matching heavy-duty base.",
+      "body": "The base follows your chosen mattress finish: Flax or Charcoal. It gives the bed a consistent look from the mattress border to the floor."
+    },
+    "production": {
+      "title": "Made to order in Cape Town.",
+      "body": "Your bed is made to order. Ask us about the current production time and delivery arrangements for your area before ordering."
+    },
+    "enquiry": {
+      "title": "Want to know a bit more?",
+      "body": "Tell us which finish you like and where the bed needs to go. You can also ask about sizing, materials or ordering.",
+      "cta": "Ask about this bed"
+    },
+    "imageCaption": "Finish concept shown. Confirm the final fabric and included items before ordering."
+  },
+  "ourStory": {
+    "route": "/our-story",
+    "seo": {
+      "title": "About Big Jo’s | Cape Town beds for big and tall people",
+      "description": "Meet Big Jo’s Beds, founded by Cape Town entrepreneur Johannes le Roux to make beds for big and tall people."
+    },
+    "title": "Some of us need a bigger bed.",
+    "paragraphs": [
+      "For big and tall people, the usual bed-shopping questions come with a few extras. Will my feet hang off the end? What weight is the mattress designed for? Is the base strong enough?",
+      "Big Jo’s Beds starts there. We make a firm 160 × 210 cm mattress and matching heavy-duty base, made to order in Cape Town.",
+      "The size and support matter. So does how the bed looks in your room. The Flax and Charcoal finish designs use woven fabrics, simple stripes and a small sewn-on label.",
+      "Big Jo’s was founded by Johannes le Roux, a Cape Town entrepreneur and co-founder of The Duchess. The focus here is straightforward: beds for people who have outgrown the standard options."
+    ],
+    "closing": "Best sleep for big people.",
+    "cta": "Meet the bed"
+  },
+  "faqPage": {
+    "route": "/faqs",
+    "title": "A few things you might want to know.",
+    "intro": "The size, the feel and the practical details.",
+    "items": [
+      {
+        "id": "size",
+        "question": "What size is the mattress?",
+        "answer": "160 cm wide by 210 cm long, with an approximate depth of 25 cm. Use those measurements when checking your room and linen."
+      },
+      {
+        "id": "who",
+        "question": "Is it for tall people or heavier people?",
+        "answer": "Both. Big Jo’s is designed around the extra length and support that big and tall people look for in a bed."
+      },
+      {
+        "id": "feel",
+        "question": "How firm is it?",
+        "answer": "It’s a firm mattress, with a reinforced high-density support core, an ultra-high-density foam layer and a latex comfort layer."
+      },
+      {
+        "id": "springs",
+        "question": "Does it have springs?",
+        "answer": "No. It uses foam and latex layers rather than springs."
+      },
+      {
+        "id": "finishes",
+        "question": "What’s the difference between Flax and Charcoal?",
+        "answer": "The finish. Flax uses a natural-coloured weave with clay stripes. Charcoal uses a dark grey weave with tonal stripes. Both designs have a cream sleeping surface and a matching base."
+      },
+      {
+        "id": "made",
+        "question": "Where is it made?",
+        "answer": "The bed is made to order in Cape Town."
+      },
+      {
+        "id": "linen",
+        "question": "Will my current sheets fit?",
+        "answer": "Check the label and measurements. The mattress is 160 × 210 cm and approximately 25 cm deep, so a standard size name alone won’t tell you whether a fitted sheet will fit."
+      },
+      {
+        "id": "base",
+        "question": "Is there a matching base?",
+        "answer": "Yes. There’s a matching heavy-duty base in either finish. Confirm your chosen mattress-and-base configuration when you enquire."
+      },
+      {
+        "id": "production",
+        "question": "How long does it take?",
+        "answer": "Ask us for the current production time when you enquire. Delivery is a separate arrangement and depends on where the bed needs to go."
+      },
+      {
+        "id": "room",
+        "question": "What should I measure before ordering?",
+        "answer": "Measure the room and the route the bed will take into it, including doors, stairs and tight corners. Ask us for the finished base dimensions and how it will arrive so you can check the full route."
+      }
+    ]
+  },
+  "contactPage": {
+    "route": "/contact",
+    "seo": {
+      "title": "Contact Big Jo’s Beds | Ask about your bed",
+      "description": "Ask Big Jo’s Beds about mattress dimensions, finishes, production and ordering."
+    },
+    "title": "Ask us about the bed.",
+    "intro": "Have a question about the size, finish or getting it into your room? Tell us what you need to know.",
+    "fields": [
+      {
+        "id": "name",
+        "label": "Your name",
+        "required": true
+      },
+      {
+        "id": "email",
+        "label": "Email address",
+        "required": true
+      },
+      {
+        "id": "phone",
+        "label": "Phone number (optional)",
+        "required": false
+      },
+      {
+        "id": "area",
+        "label": "Town or suburb",
+        "required": true,
+        "hint": "So we know where the bed needs to go."
+      },
+      {
+        "id": "finish",
+        "label": "Which finish are you interested in?",
+        "options": [
+          "Flax",
+          "Charcoal",
+          "Not sure yet"
+        ]
+      },
+      {
+        "id": "message",
+        "label": "What would you like to know?",
+        "required": true
+      }
+    ],
+    "submit": "Send enquiry",
+    "submitting": "Sending…",
+    "success": "Thanks. We’ve received your enquiry and will reply using the contact details you provided.",
+    "error": "Your enquiry didn’t send. Please try again. Your message is still here.",
+    "successRule": "Display only after the real backend confirms receipt. No response-time promise is implied."
+  },
+  "hero": {
+    "eyebrow": "Made to order in Cape Town",
+    "title": "A bed you fit in.",
+    "body": "A firm mattress and matching heavy-duty base for big and tall people. At 160 × 210 cm, there’s more room to stretch out.",
+    "cta": "Meet the bed"
+  },
+  "product": {
+    "title": "The Big Jo’s Bed",
+    "body": "A firm 160 × 210 cm mattress with a matching heavy-duty base. Made to order in Cape Town for big and tall people.",
+    "cta": "Ask about this bed"
+  },
+  "finishes": {
+    "title": "Which one suits your room?",
+    "flax": "Natural-coloured woven fabric with clay stripes. The warmer, lighter option.",
+    "charcoal": "Dark grey woven fabric with subtle tonal stripes. A darker finish with the same cream top."
+  },
+  "closing": {
+    "title": "Will it fit your room?",
+    "cta": "Ask about the bed"
+  },
+  "global": {
+    "tagline": "Best sleep for big people.",
+    "navigation": [
+      "The bed",
+      "Our story",
+      "FAQs",
+      "Contact"
+    ],
+    "footer": "Big Jo’s Beds. Made to order in Cape Town.",
+    "imageConceptCaption": "Finish concept shown. Confirm the final fabric and included items before ordering."
+  }
+}

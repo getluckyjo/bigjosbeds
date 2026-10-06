@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "1.0",
+  "brand": {
+    "name": "Big Jo’s Beds",
+    "tagline": "Best sleep for big people.",
+    "origin": "Cape Town",
+    "founder": "Johannes le Roux"
+  },
+  "product": {
+    "id": "big-jos-bed",
+    "name": "The Big Jo’s Bed",
+    "nameStatus": "working name; owner approval pending",
+    "dimensionsCm": {
+      "width": 160,
+      "length": 210,
+      "depthApprox": 25
+    },
+    "firmness": "Firm",
+    "source": "content/source/design-brief-background.md (user supplied, 6 October 2026)",
+    "specificationStatus": "brief-supplied; check against final manufactured sample",
+    "constructionBottomToTop": [
+      {
+        "material": "Reinforced high-density support core",
+        "depthMm": 180
+      },
+      {
+        "material": "Ultra-high-density foam",
+        "depthMm": 50
+      },
+      {
+        "material": "Latex comfort layer",
+        "depthMm": 20
+      }
+    ],
+    "cover": {
+      "composition": "100% cotton",
+      "status": "brief-supplied; final fabric verification needed",
+      "topPreference": "Flat knitted top; final sample pending"
+    },
+    "loadRating": {
+      "kgPerPerson": 250,
+      "status": "requires manufacturer substantiation",
+      "publish": false
+    },
+    "production": {
+      "location": "Cape Town",
+      "madeToOrder": true,
+      "targetWorkingDays": {
+        "min": 3,
+        "max": 5
+      },
+      "status": "target from brief; confirm before promise",
+      "deliveryTime": null
+    },
+    "finishes": [
+      {
+        "id": "flax",
+        "name": "Flax",
+        "swatchHex": "#CDBA9E",
+        "image": "assets/images/bed-flax.png",
+        "description": "Natural woven upholstery with clay ticking stripes."
+      },
+      {
+        "id": "charcoal",
+        "name": "Charcoal",
+        "swatchHex": "#454541",
+        "image": "assets/images/bed-charcoal.png",
+        "description": "Dark grey woven upholstery with tonal ticking stripes."
+      }
+    ],
+    "matchingBase": true,
+    "headboardIncluded": null,
+    "priceZAR": null,
+    "vatIncluded": null,
+    "sku": null,
+    "availability": null,
+    "warranty": null,
+    "trial": null,
+    "returns": null,
+    "deliveryRegions": null,
+    "deliveryPriceZAR": null,
+    "contactEmail": null,
+    "whatsapp": null,
+    "checkoutProvider": null,
+    "imageStatus": "AI-generated concept renders; accessories and headboard are styling only; final inclusions unconfirmed"
+  },
+  "commerce": {
+    "mode": "enquiry",
+    "submitEndpoint": null,
+    "enabled": false
+  }
+}
