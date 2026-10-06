@@ -23,7 +23,7 @@ From the bottom up:
 
 | Layer | Thickness | Spec | What we still need to know |
 |---|---:|---|---|
-| Heavy-duty core | 180 mm | "Heavy duty core" | Is it foam or pocket springs? Foam needs a density (kg/m³). Springs need a gauge and count. This layer does most of the work at 250 kg. |
+| Heavy-duty core | 180 mm | SC800 ultra-compressed reinforced chip (rebonded) foam. No springs. | The density in kg/m³ behind "SC800". This layer does most of the work at 250 kg. |
 | Ultra-high-density foam | 50 mm | "Ultra high density" | The actual density in kg/m³. "Ultra high density" is a label, not a number. |
 | Latex | 20 mm | 65 density (kg/m³) | Natural, synthetic or blended? |
 | Cover | — | 100% cotton | Is it zip-off? Is the top quilted or flat? What side colours are there? Can it be washed? 100% cotton shrinks. |
@@ -32,6 +32,7 @@ That's about 25 cm of foam and core before the cover and quilting. Measure the f
 
 **What the specs mean:**
 - **The latex is thin.** At 2 cm it's a feel layer on top. Support comes from the 18 cm core and the 5 cm foam, which is consistent with the firm feel you chose.
+- **The core is chip foam, not springs.** Chip foam is foam offcuts compressed and bonded into a very dense block. It's a sensible choice at 250 kg: it barely sags, it's quiet, and a partner won't feel you move. The catch for a premium brand is that chip foam is common in budget orthopaedic beds, and it makes the mattress heavy and warmer than a spring core. Sell it on what it does ("reinforced high-density support core, built not to sag"), not on what it's called.
 - **Why latex, not memory foam** (asked at 09:00; compare with Gary's answer):
   - Latex springs back quicker and holds its shape longer under heavy weight. Heavy-duty mattresses most often fail by sagging and leaving body impressions.
   - Latex sleeps cooler. Memory foam softens with body heat and traps it, and big guys tend to run hot.
@@ -47,7 +48,7 @@ That's about 25 cm of foam and core before the cover and quilting. Measure the f
 | Size | 160 × 210 cm | 160 × 210 cm | ✅ |
 | Weight | Holds a 250 kg person | "250kgs per person" | ✅ Get this confirmed in the warranty terms |
 | Comfort layer | Memory foam | 20 mm latex (65 density) over 50 mm UHD foam | ⚠️ Changed. Reason asked at 09:00. |
-| Core | — | 180 mm "heavy duty core" | ❓ Foam or springs? Density or gauge? |
+| Core | — | 180 mm SC800 reinforced chip foam | ✅ Foam, not springs. ❓ Density still needed. |
 | Cover | High-quality zip-off cover | 100% cotton | ❓ Zip-off, flat or quilted, and colours not yet answered |
 | Base | Solid base | "Custom foam – Custom Base – heavy duty" | ❓ Construction, legs and centre support not specified |
 | Firmness | — | Firm (chosen at 08:05) | ✅ |
@@ -85,6 +86,7 @@ That's about 25 cm of foam and core before the cover and quilting. Measure the f
 - **08:30:** Two voice notes in reply.
 - **08:35:** Johannes asks about delivery fees. Gary asks where he's based. Johannes says 40 Strubens Road, Mowbray.
 - **08:51:** Gary sends specs: 180 mm heavy-duty core, 50 mm ultra-high-density foam, 20 mm latex (65 density), 100% cotton covers.
+- **Later:** The core is confirmed as SC800 ultra-compressed reinforced chip foam.
 - **08:57:** Johannes asks whether Gary knows anyone who makes custom sheets or bedding.
 - **08:59:** Johannes asks for raw photos of similar mattresses and bases PBS has made.
 - **09:00:** Johannes asks why latex was used instead of memory foam.
@@ -95,7 +97,7 @@ Already asked and waiting on Gary: delivery fee, real photos, the reason for lat
 
 Still to ask:
 1. Which option is "the first one": mattress only, or mattress and base?
-2. **Core:** Is the 180 mm core foam or pocket springs? What density, or what gauge and count?
+2. **Core:** What density (kg/m³) is the SC800 chip core, and how heavy is the finished mattress?
 3. **Foam and latex:** What density (kg/m³) is the 50 mm UHD foam? Is the latex natural, synthetic or blended?
 4. **Cover:** Is the cotton cover zip-off and washable? Is the top flat or quilted? What side colours are there besides grey?
 5. **Base:** How is it built (frame, legs, centre support)? What's the maximum load with two heavy sleepers? Can it be made as two halves for doors and stairs?
@@ -127,7 +129,7 @@ Still to ask:
 ## Draft WhatsApp to Gary (send after he answers the 08:57–09:00 questions)
 
 > Thanks Gary, the specs are really helpful. Just a few gaps for my feasibility pack:
-> - Is the 180mm core foam or pocket springs? And what density/gauge?
+> - What density is the SC800 chip core, and roughly what does the finished mattress weigh?
 > - What density is the 50mm UHD foam, and is the latex natural or blended?
 > - Is the cotton cover zip-off and washable? Flat or quilted top, and any colours other than grey?
 > - Base: what's it made of, legs/centre support, max load with two people on it, and can it be split for delivery?
