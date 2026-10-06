@@ -6,6 +6,10 @@ import { business, whatsappHref } from '../lib/business';
 import { fill } from '../lib/money';
 import { canBuy } from '../lib/config';
 import { nav, policies } from '../lib/site';
+
+// The number is shown once (as the phone link) when WhatsApp uses the same number.
+const digits = (n: string | null) => (n ?? '').replace(/\D/g, '');
+const whatsappIsPhone = !!business.phone && digits(business.phone) === digits(business.whatsapp);
 ---
 
 <footer class="bj-dark bj-section bj-footer">
@@ -23,7 +27,10 @@ import { nav, policies } from '../lib/site';
       {business.email && <a href={`mailto:${business.email}`}>{business.email}</a>}
       {business.phone && <a href={`tel:${business.phone.replace(/\s+/g, '')}`}>{business.phone}</a>}
       {business.whatsapp && (
-        <a class="bj-icon-text" href={whatsappHref(commerce.whatsapp.prefill)}><Icon name="chat" />{fill(commerce.whatsapp.footerLink, { number: business.whatsapp })}</a>
+        <a class="bj-icon-text" href={whatsappHref(commerce.whatsapp.prefill)}>
+          <Icon name="chat" />
+          {whatsappIsPhone ? commerce.whatsapp.footerLinkSamePhone : fill(commerce.whatsapp.footerLink, { number: business.whatsapp })}
+        </a>
       )}
       {canBuy() && <p class="bj-small bj-icon-text"><Icon name="secure" />Payments are processed by PayFast.</p>}
     </div>

@@ -105,7 +105,7 @@ They replace two-line "label + detail" copy: hero facts, specs, delivery and pay
 3. **Supabase:** create a project and run `supabase/migrations/0001_init.sql` in the SQL editor. Add `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` to Vercel. Paid orders appear in the `orders_to_make` view.
 4. **Resend:** verify the sending domain. Add `RESEND_API_KEY`, `EMAIL_FROM` and `OWNER_EMAIL`.
 5. **Domain:** connect it in Vercel and set `PUBLIC_SITE_URL`.
-6. **Business details (ECTA section 43)** in `src/config/business.json`: legal name, registration number, physical address, email and phone.
+6. **Business details (ECTA section 43)** in `src/config/business.json`: legal name, registration number, physical address and email. The phone is set: +27 60 961 5091, which is also the WhatsApp number.
 7. **Policies** as Markdown in `src/content/policies/`, each starting with `---\ntitle: …\n---`:
    - `terms-of-sale.md`: **drafted** in `src/content/policies/drafts/`. Fill in its `[TO CONFIRM: …]` gaps (legal details, VAT, delivery-day needs, cancelling before delivery, refund timing and method, warranty cover), then move it up a folder
    - `delivery-and-returns.md`: **published** (owner approved, 6 Oct 2026). It covers delivery and the 100-day trial: the trial starts on delivery, collection is free and the refund is full. Still to add: how soon refunds are paid, and whether an order can be cancelled before delivery
@@ -117,7 +117,7 @@ They replace two-line "label + detail" copy: hero facts, specs, delivery and pay
    - Confirm the final product name.
    - Decide whether to publish the 250 kg rating, cotton cover and production days. Each has a `publish` flag in `catalogue.json`. The 20-year mattress warranty and 100-day trial are published (owner approval, 6 Oct 2026).
    - Review the draft wording in `commerce.json`.
-9. **Founder photo:** done. Johannes's studio portrait is at `src/assets/images/founder.jpg`, cropped to 4:5 with the backdrop warmed toward the site's neutrals. The story page shows it beside the opening lines on wider screens and as a square under the heading on phones. To swap it, replace that file with another real photo (4:5 works best). A shot of him beside the actual bed would also work well on the home or product page later. Don't use a generated portrait.
+9. **Founder photo:** done. Johannes's studio portrait is at `src/assets/images/founder.jpg`, cropped to 4:5 with the backdrop warmed toward the site's neutrals. `src/lib/founder.ts` shares it between two pages. On the story page it sits beside the opening lines, and on the home page it sits in the founder section. In both places it fills the height of the text beside it. To swap it, replace that file with another real photo (4:5 works best). Don't use a generated portrait.
 10. **Photos:** replace the concept renders in `src/assets/images/` with photos of the real bed, using the same file names, and update the alt text in `catalogue.json`.
 11. Set `COMMERCE_MODE=live` and redeploy. The build lists anything still missing.
 

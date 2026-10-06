@@ -20,6 +20,7 @@
     "contactLink": "Message Johannes on {number}",
     "productLink": "WhatsApp Johannes",
     "footerLink": "WhatsApp {number}",
+    "footerLinkSamePhone": "WhatsApp us",
     "prefill": "Hi Johannes, I’ve got a question about the Big Jo’s Bed."
   },
   "hero": {

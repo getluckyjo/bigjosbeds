@@ -12,7 +12,7 @@ Big Jo’s Beds is a trading name of **[TO CONFIRM: legal name and status, for e
 
 - Physical address: **[TO CONFIRM]**
 - Email: **[TO CONFIRM]**
-- Phone: **[TO CONFIRM]**
+- Phone and WhatsApp: +27 60 961 5091
 
 ## What you’re buying
 

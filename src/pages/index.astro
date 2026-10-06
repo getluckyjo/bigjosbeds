@@ -2,12 +2,14 @@
 import Base from '../layouts/Base.astro';
 import ProductPicture from '../components/ProductPicture.astro';
 import FaqList from '../components/FaqList.astro';
+import { Picture } from 'astro:assets';
 import Icon from '../components/Icon.astro';
 import copy from '../content/copy.json';
 import commerce from '../content/commerce.json';
 import { finishes, getItem } from '../lib/catalogue';
 import { canBuy } from '../lib/config';
 import { assurances, imageCaption } from '../lib/content';
+import { founderPhoto, founderPhotoAlt, founderPhotoWidths } from '../lib/founder';
 import { fill, formatZar } from '../lib/money';
 import { PRODUCT_PATH } from '../lib/site';
 
@@ -94,9 +96,25 @@ const factIcons = ['size', 'layers', 'cape-town'] as const;
   </section>
 
   <section class="bj-dark bj-section">
-    <div class="bj-container bj-grid">
-      <h2>{home.story.title}</h2>
-      <div class="bj-stack">
+    <div class:list={['bj-container', founderPhoto ? 'bj-home-story' : 'bj-grid']}>
+      <h2 class="bj-home-story__title">{home.story.title}</h2>
+      {
+        founderPhoto && (
+          <figure class="bj-home-story__photo">
+            <Picture
+              src={founderPhoto}
+              alt={founderPhotoAlt}
+              widths={founderPhotoWidths}
+              sizes="(min-width: 1024px) 40vw, calc(100vw - 40px)"
+              formats={['avif', 'webp']}
+              fallbackFormat="jpg"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        )
+      }
+      <div class="bj-stack bj-home-story__body">
         <blockquote class="bj-quote">
           <p>“{home.story.quote}”</p>
           <footer>{home.story.quoteBy}</footer>

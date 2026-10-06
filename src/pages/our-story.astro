@@ -5,19 +5,12 @@ import ProductPicture from '../components/ProductPicture.astro';
 import { Picture } from 'astro:assets';
 import copy from '../content/copy.json';
 import { defaultFinish, finishes } from '../lib/catalogue';
+import { founderPhoto, founderPhotoAlt, founderPhotoWidths } from '../lib/founder';
 import { PRODUCT_PATH } from '../lib/site';
 
 const story = copy.ourStory;
 const ctaFinish = finishes.find((f) => f.id === defaultFinish)!;
 
-// Founder photo: a real photograph at src/assets/images/founder.(jpg|png|webp), ideally 4:5.
-// No generated portraits (brand/docs/08-authentic-content.md). The page reads fine without one.
-const founderPhotos = import.meta.glob<{ default: ImageMetadata }>('../assets/images/founder.{jpg,jpeg,png,webp}', {
-  eager: true,
-});
-const founderPhoto = Object.values(founderPhotos)[0]?.default;
-// Never ask for derivatives wider than the source.
-const photoWidths = founderPhoto ? [320, 480, 640, 800].filter((w) => w <= founderPhoto.width) : [];
 ---
 
 <Base title={story.seo.title} description={story.seo.description}>
@@ -32,8 +25,8 @@ const photoWidths = founderPhoto ? [320, 480, 640, 800].filter((w) => w <= found
           <figure class="bj-founder-photo">
             <Picture
               src={founderPhoto}
-              alt="Portrait of Johannes “Big Jo” le Roux, founder of Big Jo’s Beds"
-              widths={photoWidths}
+              alt={founderPhotoAlt}
+              widths={founderPhotoWidths}
               sizes="(min-width: 1024px) 380px, (min-width: 768px) 40vw, calc(100vw - 40px)"
               formats={['avif', 'webp']}
               fallbackFormat="jpg"
