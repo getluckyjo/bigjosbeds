@@ -1,0 +1,111 @@
+{
+  "$comment": "Commerce copy added for online checkout. DRAFT for owner review: written to match the v1.1 copy deck's voice. The deck (copy.json) stays verbatim; 'overrides' replaces three deck lines that conflict with buying online.",
+  "status": "draft — owner review",
+  "overrides": {
+    "imageCaption": "Concept image. Pillows, bedside furniture and room styling are not included.",
+    "productionBody": "Your bed is made to order in Cape Town. After you pay, we’ll email you to confirm the production time and arrange a delivery date.",
+    "faqProductionAnswer": "We make each bed to order in Cape Town. After you pay, we’ll confirm the production time by email and arrange a delivery date with you."
+  },
+  "hero": {
+    "priceLine": "Mattress and base {price} · Free delivery in Cape Town"
+  },
+  "product": {
+    "itemLegend": "Choose what you need",
+    "quantityLabel": "Quantity",
+    "includedTitle": "What’s included",
+    "notIncluded": "The pillows, bedside table and other items in the photos are styling only and aren’t included.",
+    "delivery": "Free delivery in Cape Town. Outside Cape Town? Ask us first.",
+    "buyCta": "Buy now",
+    "askLink": "Ask about this bed",
+    "vatIncluded": "Price includes VAT."
+  },
+  "faqExtra": [
+    {
+      "id": "payment",
+      "question": "How do I pay?",
+      "answer": "Online, through PayFast. You can pay by Instant EFT, Capitec Pay or card. We never see your card or banking details."
+    },
+    {
+      "id": "delivery-area",
+      "question": "Where do you deliver?",
+      "answer": "Delivery is included anywhere in Cape Town. If the bed needs to go further, ask us first and we’ll tell you what’s possible."
+    }
+  ],
+  "checkout": {
+    "seoTitle": "Checkout | Big Jo’s Beds",
+    "title": "Checkout",
+    "summaryTitle": "Your order",
+    "change": "Change",
+    "deliveryIncluded": "Delivery in Cape Town",
+    "free": "Included",
+    "total": "Total",
+    "detailsTitle": "Your details",
+    "addressTitle": "Where should we deliver it?",
+    "addressIntro": "We deliver in Cape Town. We’ll contact you to arrange a day and check the route into your home.",
+    "fields": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email address",
+      "phone": "Mobile number",
+      "phoneHint": "So we can arrange delivery.",
+      "street": "Street address",
+      "suburb": "Suburb",
+      "postalCode": "Postal code",
+      "city": "City",
+      "notes": "Anything we should know about access? (optional)",
+      "notesHint": "Stairs, narrow doors, gate codes, complex rules."
+    },
+    "acceptTerms": "I’ve read and accept the {terms}.",
+    "acceptTermsTest": "I understand this is a test order. No payment will be taken and no bed will be made.",
+    "termsLinkText": "terms of sale",
+    "payButton": "Pay {amount} with PayFast",
+    "paying": "Taking you to PayFast…",
+    "payNote": "You’ll pay securely on PayFast by Instant EFT, Capitec Pay or card. We never see your card or banking details.",
+    "errorSummary": "Please check the highlighted details.",
+    "outOfAreaTitle": "We deliver in Cape Town for now.",
+    "outOfAreaBody": "That postal code looks like it’s outside our delivery area. Send us an enquiry with your town and we’ll let you know what’s possible.",
+    "outOfAreaCta": "Ask about delivery",
+    "startError": "We couldn’t start your payment. Nothing has been charged. Please try again in a moment.",
+    "emptyTitle": "Choose your bed first.",
+    "emptyBody": "Pick a finish and what you need, then come back here to pay.",
+    "emptyCta": "Meet the bed",
+    "unavailable": "Online ordering is paused at the moment. Ask us about the bed and we’ll help you order."
+  },
+  "pay": {
+    "title": "Taking you to PayFast…",
+    "body": "If nothing happens in a few seconds, use the button below.",
+    "button": "Continue to PayFast",
+    "alreadyPaid": "This order has already been paid."
+  },
+  "cancelled": {
+    "seoTitle": "Payment not completed | Big Jo’s Beds",
+    "title": "Your payment didn’t go through.",
+    "body": "Nothing was charged. Your selection is saved if you’d like to try again.",
+    "retry": "Try again",
+    "ask": "Ask us a question"
+  },
+  "order": {
+    "seoTitle": "Your order | Big Jo’s Beds",
+    "reference": "Order reference",
+    "paidTitle": "Thanks. Your order is confirmed.",
+    "paidBody": "We’ve emailed a confirmation to {email}. We’ll be in touch to confirm the production time and arrange delivery.",
+    "pendingTitle": "We’re confirming your payment.",
+    "pendingBody": "This usually takes a few seconds. Refresh this page in a moment. If you paid by EFT, it can take a little longer. We’ll email you as soon as it’s confirmed.",
+    "refresh": "Refresh",
+    "problemTitle": "We’re checking this payment.",
+    "problemBody": "Something about this payment needs a manual check. We’ll contact you by email. You don’t need to pay again.",
+    "closedTitle": "This order wasn’t paid.",
+    "closedBody": "Nothing was charged. You can start again whenever you’re ready.",
+    "notFoundTitle": "We couldn’t find that order.",
+    "notFoundBody": "Check the link in your email, or ask us and we’ll look it up."
+  },
+  "testShop": "Test shop: checkout uses the PayFast sandbox. No real payments are taken and no beds are made.",
+  "email": {
+    "customerSubject": "Your Big Jo’s order {reference}",
+    "customerIntro": "Thanks for your order. Your payment has been received.",
+    "customerNext": "We’ll be in touch to confirm the production time and arrange a delivery date.",
+    "ownerSubject": "New paid order {reference}: {item}, {finish}",
+    "ownerReviewSubject": "Check order {reference}: payment notification needs review",
+    "enquirySubject": "New enquiry from {name}"
+  }
+}

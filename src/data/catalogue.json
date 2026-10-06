@@ -1,0 +1,84 @@
+{
+  "$comment": "Catalogue data. Prices are in cents (ZAR). Edit prices, items and claim flags here only; pages and checkout read from this file.",
+  "currency": "ZAR",
+  "productId": "big-jos-bed",
+  "productName": "The Big Jo’s Bed",
+  "productNameStatus": "working name; owner approval pending",
+  "maxQuantity": 3,
+  "defaultItem": "set",
+  "defaultFinish": "flax",
+  "items": [
+    {
+      "id": "set",
+      "name": "Mattress and base",
+      "checkoutName": "Mattress and matching base",
+      "priceCents": 2499900,
+      "includes": [
+        "The Big Jo’s 160 × 210 cm firm mattress",
+        "A matching heavy-duty base in the same finish"
+      ]
+    },
+    {
+      "id": "mattress",
+      "name": "Mattress only",
+      "checkoutName": "Mattress only",
+      "priceCents": 1999900,
+      "includes": ["The Big Jo’s 160 × 210 cm firm mattress"]
+    },
+    {
+      "id": "base",
+      "name": "Base only",
+      "checkoutName": "Matching base only",
+      "priceCents": 599900,
+      "includes": ["A heavy-duty 160 × 210 cm base"]
+    }
+  ],
+  "finishes": [
+    {
+      "id": "flax",
+      "name": "Flax",
+      "swatchHex": "#CDBA9E",
+      "image": "bed-flax",
+      "detailImage": "detail-flax",
+      "alt": "Big Jo’s mattress and matching base in Flax: natural woven sides with clay stripes and a cream top, in a bedroom.",
+      "detailAlt": "Close-up of the Flax finish: woven fabric, clay ticking stripes, cream piping and the sewn-on Big Jo’s Beds label."
+    },
+    {
+      "id": "charcoal",
+      "name": "Charcoal",
+      "swatchHex": "#454541",
+      "image": "bed-charcoal",
+      "detailImage": "detail-charcoal",
+      "alt": "Big Jo’s mattress and matching base in Charcoal: dark grey woven sides with tonal stripes and a cream top, in a bedroom.",
+      "detailAlt": "Close-up of the Charcoal finish: dark grey woven fabric, tonal ticking stripes, cream piping and the sewn-on Big Jo’s Beds label."
+    }
+  ],
+  "imageStatus": "AI-generated concept renders. Replace with photographs of the manufactured bed when available.",
+  "claims": {
+    "$comment": "Supplied but unverified claims. Nothing here renders unless publish is true. See brand/docs/05-content-and-claims.md.",
+    "loadRating": {
+      "kgPerPerson": 250,
+      "publish": false,
+      "source": "Design brief; PBS quote QUO0010447 (6 Oct 2026) states '250kgs per person'",
+      "releaseWhen": "Owner approves wording and the supplier confirms the rating and its test basis in writing."
+    },
+    "warranty": {
+      "text": null,
+      "publish": false,
+      "source": "PBS quote QUO0010447 lists '20 year warranty' and '2 year guarantee' (supplier to Big Jo’s)",
+      "releaseWhen": "Owner sets Big Jo’s own customer warranty terms."
+    },
+    "cottonCover": {
+      "publish": false,
+      "source": "Design brief",
+      "releaseWhen": "Final cover composition confirmed."
+    },
+    "productionDays": {
+      "min": 3,
+      "max": 5,
+      "publish": false,
+      "source": "Design brief",
+      "releaseWhen": "Production capacity and start point confirmed."
+    }
+  }
+}

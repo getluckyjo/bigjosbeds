@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import copy from '../content/copy.json';
+import { PRODUCT_PATH } from '../lib/site';
+
+const story = copy.ourStory;
+---
+
+<Base title={story.seo.title} description={story.seo.description}>
+  <section class="bj-container bj-section bj-stack bj-reading">
+    <span class="bj-eyebrow">About Big Jo’s</span>
+    <h1>{story.title}</h1>
+    {story.paragraphs.map((p) => <p>{p}</p>)}
+    <hr class="bj-rule" />
+    <p class="bj-lead">{story.closing}</p>
+    <div><a class="bj-button" href={PRODUCT_PATH}>{story.cta}</a></div>
+  </section>
+</Base>
