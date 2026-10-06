@@ -203,7 +203,7 @@ const enquiryHref = `/contact?${new URLSearchParams({ finish: selection?.finish.
           <aside class="bj-summary" aria-labelledby="summary-title">
             <h2 id="summary-title" class="bj-eyebrow">{c.summaryTitle}</h2>
             <div class="bj-summary__item">
-              <ProductPicture name={selection.finish.image} alt="" sizes="96px" />
+              <ProductPicture name={selection.finish.image} alt="" sizes="96px" widths={[192, 288]} />
               <div>
                 <p><strong>{selection.item.checkoutName}</strong></p>
                 <p class="bj-small">{selection.finish.name} · 160 × 210 cm</p>

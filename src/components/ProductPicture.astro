@@ -8,15 +8,17 @@ interface Props {
   sizes: string;
   eager?: boolean;
   class?: string;
+  /** Override for small renders such as the checkout thumbnail. */
+  widths?: number[];
 }
 
-const { name, alt, sizes, eager = false, class: className } = Astro.props;
+const { name, alt, sizes, eager = false, class: className, widths = imageWidths } = Astro.props;
 ---
 
 <Picture
   src={image(name)}
   alt={alt}
-  widths={imageWidths}
+  widths={widths}
   sizes={sizes}
   formats={['avif', 'webp']}
   fallbackFormat="jpg"
