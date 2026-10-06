@@ -129,6 +129,9 @@ test('icons are decorative and every fact keeps readable text', async ({ page })
 test('our story tells the founder story with a readable length comparison', async ({ page }) => {
   await page.goto('/our-story');
   await expect(page.getByText('I’m 2 metres tall and 125 kg.').first()).toBeVisible();
+  const photo = page.getByRole('img', { name: /Johannes “Big Jo” le Roux/ });
+  await expect(photo).toBeVisible();
+  expect(await photo.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
   const chart = page.getByRole('figure', { name: 'Why 210 cm?' });
   const rows = chart.getByRole('listitem');
   await expect(rows).toHaveCount(3);

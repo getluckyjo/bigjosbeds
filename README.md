@@ -115,7 +115,7 @@ They replace two-line "label + detail" copy: hero facts, specs, delivery and pay
    - Confirm the final product name.
    - Decide whether to publish the 250 kg rating, warranty, cotton cover and production days. Each has a `publish` flag in `catalogue.json`.
    - Review the draft wording in `commerce.json`.
-9. **Founder photo:** add a real photo of Johannes, ideally beside the actual bed, at `src/assets/images/founder.jpg`. The story page picks it up automatically. Don't use a generated portrait.
+9. **Founder photo:** done. Johannes's studio portrait is at `src/assets/images/founder.jpg`, cropped to 4:5 with the backdrop warmed toward the site's neutrals. The story page shows it beside the opening lines on wider screens and as a square under the heading on phones. To swap it, replace that file with another real photo (4:5 works best). A shot of him beside the actual bed would also work well on the home or product page later. Don't use a generated portrait.
 10. **Photos:** replace the concept renders in `src/assets/images/` with photos of the real bed, using the same file names, and update the alt text in `catalogue.json`.
 11. Set `COMMERCE_MODE=live` and redeploy. The build lists anything still missing.
 
