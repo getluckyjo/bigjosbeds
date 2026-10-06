@@ -1,24 +1,46 @@
 ---
 import Icon from './Icon.astro';
-import { nav } from '../lib/site';
+import { navFor } from '../lib/site';
+import { htmlLang, type Locale } from '../i18n/locales';
+import { path as pathFor } from '../i18n/routes';
+import { ui } from '../i18n/ui';
 
+interface Props {
+  locale: Locale;
+  /** This page in each language, for the language switch. */
+  alternatePaths: Record<Locale, string>;
+}
+
+const { locale, alternatePaths } = Astro.props;
+const t = ui(locale);
+const nav = navFor(locale);
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const current = (href: string) => (path === href || path.startsWith(`${href}/`) ? 'page' : undefined);
+
+// The switch names the other language in that language, and keeps any query (finish, item, order token).
+const other: Locale = locale === 'en' ? 'af' : 'en';
+const switchHref = alternatePaths[other] + Astro.url.search;
 ---
 
 <header class="bj-header">
   <div class="bj-container bj-header__inner">
-    <a class="bj-logo" href="/" aria-label="Big Jo’s Beds home">
+    <a class="bj-logo" href={pathFor(locale, 'home')} aria-label={t.homeLink}>
       <img src="/logos/big-jos-primary.svg" width="190" height="64" alt="Big Jo’s Beds" />
     </a>
-    <nav class="bj-nav bj-desktop-nav" aria-label="Main navigation">
+    <nav class="bj-nav bj-desktop-nav" aria-label={t.mainNav}>
       {nav.map((link) => <a href={link.href} aria-current={current(link.href)}>{link.label}</a>)}
     </nav>
-    <details class="bj-mobile-menu">
-      <summary><Icon name="menu" />Menu</summary>
-      <nav aria-label="Mobile navigation">
-        {nav.map((link) => <a href={link.href} aria-current={current(link.href)}>{link.label}</a>)}
-      </nav>
-    </details>
+    <div class="bj-header__end">
+      <a class="bj-lang" href={switchHref} hreflang={htmlLang[other]} lang={htmlLang[other]} data-bj-lang-switch>
+        <span class="bj-lang__long">{t.switchTo}</span>
+        <span class="bj-lang__short" aria-hidden="true">{t.switchToShort}</span>
+      </a>
+      <details class="bj-mobile-menu">
+        <summary><Icon name="menu" />{t.menu}</summary>
+        <nav aria-label={t.mobileNav}>
+          {nav.map((link) => <a href={link.href} aria-current={current(link.href)}>{link.label}</a>)}
+        </nav>
+      </details>
+    </div>
   </div>
 </header>

@@ -1,0 +1,17 @@
+---
+/**
+ * Hands the customer to PayFast with a signed form. Reached by a 303 from POST /checkout,
+ * so going "back" from PayFast lands here (GET) rather than re-posting the checkout form.
+ */
+export const prerender = false;
+
+import PayPage from '../../../../views/PayPage.astro';
+import { preparePayment } from '../../../../lib/forms';
+
+const pay = await preparePayment(Astro.params.reference ?? '', Astro.url.searchParams.get('t'), Astro.url, 'af');
+if (pay.kind === 'missing') return new Response(null, { status: 404 });
+if (pay.kind === 'redirect') return Astro.redirect(pay.to, 303);
+Astro.response.headers.set('Cache-Control', 'no-store');
+---
+
+<PayPage locale="af" reference={pay.reference} action={pay.action} fields={pay.fields} />

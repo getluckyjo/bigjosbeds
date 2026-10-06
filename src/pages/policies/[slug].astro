@@ -1,28 +1,19 @@
 ---
 /**
- * Renders owner-approved policies from src/content/policies/<slug>.md.
+ * Owner-approved policies from src/content/policies/ (translations in a language folder).
  * No file, no page: the site never publishes an empty or placeholder policy.
  */
-import Base from '../../layouts/Base.astro';
+import PolicyPage from '../../views/PolicyPage.astro';
+import { policiesFor, policyTranslated } from '../../lib/site';
 
-export async function getStaticPaths() {
-  const files = import.meta.glob<{ frontmatter: { title: string; updated?: string }; Content: any }>(
-    '../../content/policies/*.md',
-    { eager: true },
-  );
-  return Object.entries(files).map(([file, mod]) => ({
-    params: { slug: file.split('/').pop()!.replace(/\.md$/, '') },
-    props: { title: mod.frontmatter.title, updated: mod.frontmatter.updated, Content: mod.Content },
+export function getStaticPaths() {
+  return policiesFor('en').map((policy) => ({
+    params: { slug: policy.slug },
+    props: { policy, translated: policyTranslated(policy.slug) },
   }));
 }
 
-const { title, updated, Content } = Astro.props;
+const { policy, translated } = Astro.props;
 ---
 
-<Base title={`${title} | Big Jo’s Beds`}>
-  <article class="bj-container bj-section bj-stack bj-reading">
-    <h1>{title}</h1>
-    {updated && <p class="bj-small bj-muted">Last updated {updated}</p>}
-    <Content />
-  </article>
-</Base>
+<PolicyPage locale="en" policy={policy} translated={translated} />

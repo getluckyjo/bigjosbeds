@@ -1,0 +1,188 @@
+---
+import Icon from '../components/Icon.astro';
+import Base from '../layouts/Base.astro';
+import Field from '../components/Field.astro';
+import ProductPicture from '../components/ProductPicture.astro';
+import { selectionQuery, selectionTotalCents } from '../lib/catalogue';
+import { commerceMode } from '../lib/config';
+import { assurances } from '../lib/content';
+import { deliveryAreaName, deliveryFeeCents } from '../lib/delivery';
+import type { CheckoutState } from '../lib/forms';
+import { fill, formatZar } from '../lib/money';
+import { policyHref } from '../lib/site';
+import { commerceFor } from '../i18n/content';
+import type { Locale } from '../i18n/locales';
+import { path } from '../i18n/routes';
+import { ui } from '../i18n/ui';
+
+interface Props extends Omit<CheckoutState, 'status' | 'redirect'> {
+  locale: Locale;
+}
+
+const { locale, selection, values, errors, outOfArea, startError } = Astro.props;
+const t = ui(locale);
+const c = commerceFor(locale).checkout;
+const f = c.fields;
+const mode = commerceMode();
+const productPath = path(locale, 'product');
+const contactPath = path(locale, 'contact');
+
+const total = selection ? selectionTotalCents(selection, deliveryFeeCents) : 0;
+const termsHref = policyHref('terms-of-sale', locale);
+const changeHref = selection ? `${productPath}?${selectionQuery(selection)}` : productPath;
+const errorList = Object.entries(errors);
+const fieldLabels: Record<string, string> = {
+  firstName: f.firstName,
+  lastName: f.lastName,
+  email: f.email,
+  phone: f.phone,
+  street: f.street,
+  suburb: f.suburb,
+  postalCode: f.postalCode,
+  notes: f.notes,
+  accept: t.confirmation,
+};
+const enquiryHref = `${contactPath}?${new URLSearchParams({ finish: selection?.finish.id ?? 'unsure', area: values.suburb ?? '' })}`;
+const assure = selection ? assurances(selection.item.id, locale) : [];
+---
+
+<Base title={c.seoTitle} noindex locale={locale}>
+  <section class="bj-container bj-section bj-stack">
+    <h1>{c.title}</h1>
+
+    {
+      mode === 'enquiry' ? (
+        <div class="bj-stack bj-reading">
+          <p class="bj-lead">{c.unavailable}</p>
+          <div><a class="bj-button" href={contactPath}>{t.askAboutBed}</a></div>
+        </div>
+      ) : !selection ? (
+        <div class="bj-stack bj-reading">
+          <h2>{c.emptyTitle}</h2>
+          <p>{c.emptyBody}</p>
+          <div><a class="bj-button" href={productPath}>{c.emptyCta}</a></div>
+        </div>
+      ) : (
+        <div class="bj-checkout">
+          <form class="bj-form" method="post" action={path(locale, 'checkout')} novalidate data-bj-busy>
+            {errorList.length > 0 && (
+              <div class="bj-alert" role="alert" tabindex="-1" data-bj-focus>
+                <Icon name="alert" />
+                <div class="bj-alert__body">
+                  <h2>{c.errorSummary}</h2>
+                  <ul class="bj-list">
+                    {errorList.map(([field]) => (
+                      <li><a href={`#co-${field}`}>{fieldLabels[field] ?? field}</a></li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            )}
+            {outOfArea && (
+              <div class="bj-alert" role="alert" tabindex="-1" data-bj-focus>
+                <Icon name="delivery" />
+                <div class="bj-alert__body">
+                  <h2>{c.outOfAreaTitle}</h2>
+                  <p>{c.outOfAreaBody}</p>
+                  <p><a class="bj-link-arrow" href={enquiryHref}>{c.outOfAreaCta}<Icon name="arrow-right" /></a></p>
+                </div>
+              </div>
+            )}
+            {startError && (
+              <div class="bj-alert" role="alert" tabindex="-1" data-bj-focus>
+                <Icon name="alert" />
+                <p>{c.startError}</p>
+              </div>
+            )}
+
+            <input type="hidden" name="item" value={selection.item.id} />
+            <input type="hidden" name="finish" value={selection.finish.id} />
+            <input type="hidden" name="qty" value={selection.quantity} />
+            <div class="bj-honeypot" aria-hidden="true">
+              <label for="co-website">{t.honeypot}</label>
+              <input id="co-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <fieldset class="bj-fieldset bj-form">
+              <legend class="bj-h3">{c.detailsTitle}</legend>
+              <div class="bj-form-row">
+                <Field idPrefix="co" name="firstName" label={f.firstName} value={values.firstName} error={errors.firstName} required autocomplete="given-name" maxlength={100} />
+                <Field idPrefix="co" name="lastName" label={f.lastName} value={values.lastName} error={errors.lastName} required autocomplete="family-name" maxlength={100} />
+              </div>
+              <Field idPrefix="co" name="email" type="email" label={f.email} value={values.email} error={errors.email} required autocomplete="email" maxlength={254} />
+              <Field idPrefix="co" name="phone" type="tel" label={f.phone} hint={f.phoneHint} value={values.phone} error={errors.phone} required autocomplete="tel" maxlength={30} />
+            </fieldset>
+
+            <fieldset class="bj-fieldset bj-form">
+              <legend class="bj-h3">{c.addressTitle}</legend>
+              <p class="bj-muted">{c.addressIntro}</p>
+              <Field idPrefix="co" name="street" label={f.street} value={values.street} error={errors.street} required autocomplete="street-address" maxlength={200} />
+              <div class="bj-form-row">
+                <Field idPrefix="co" name="suburb" label={f.suburb} value={values.suburb} error={errors.suburb} required autocomplete="address-level3" maxlength={100} />
+                <Field idPrefix="co" name="postalCode" label={f.postalCode} value={values.postalCode} error={errors.postalCode} required autocomplete="postal-code" inputmode="numeric" maxlength={10} />
+              </div>
+              <div class="bj-field">
+                <span class="bj-field-label">{f.city}</span>
+                <p>{deliveryAreaName}</p>
+              </div>
+              <Field idPrefix="co" name="notes" type="textarea" label={f.notes} hint={f.notesHint} value={values.notes} error={errors.notes} maxlength={1000} />
+            </fieldset>
+
+            <div class="bj-field">
+              <label class="bj-check" for="co-accept">
+                <input
+                  id="co-accept"
+                  type="checkbox"
+                  name="accept"
+                  value="yes"
+                  required
+                  checked={values.accept === 'yes'}
+                  aria-invalid={errors.accept ? 'true' : undefined}
+                  aria-describedby={errors.accept ? 'co-accept-error' : undefined}
+                />
+                <span>
+                  {mode === 'sandbox' || !termsHref ? (
+                    c.acceptTermsTest
+                  ) : (
+                    <Fragment set:html={fill(c.acceptTerms, { terms: `<a href="${termsHref}" target="_blank" rel="noopener">${c.termsLinkText}</a>` })} />
+                  )}
+                </span>
+              </label>
+              {errors.accept && <p class="bj-error" id="co-accept-error">{errors.accept}</p>}
+            </div>
+
+            <div class="bj-stack" style="--bj-stack-gap:12px">
+              <button class="bj-button" type="submit" data-busy-label={c.paying} data-label={fill(c.payButton, { amount: formatZar(total) })}>
+                {fill(c.payButton, { amount: formatZar(total) })}
+              </button>
+              <p class="bj-note"><Icon name="secure" />{c.payNote}</p>
+            </div>
+          </form>
+
+          <aside class="bj-summary" aria-labelledby="summary-title">
+            <h2 id="summary-title" class="bj-eyebrow">{c.summaryTitle}</h2>
+            <div class="bj-summary__item">
+              <ProductPicture name={selection.finish.image} alt="" sizes="96px" widths={[192, 288]} />
+              <div>
+                <p><strong>{selection.item.checkoutName}</strong></p>
+                <p class="bj-small">{selection.finish.name} · 160 × 210 cm</p>
+                <p class="bj-small">{fill(t.quantity, { qty: String(selection.quantity) })}</p>
+                <a class="bj-small" href={changeHref}>{c.change}</a>
+              </div>
+            </div>
+            <dl class="bj-totals">
+              <div><dt>{selection.item.name}{selection.quantity > 1 ? ` × ${selection.quantity}` : ''}</dt><dd>{formatZar(selection.item.priceCents * selection.quantity)}</dd></div>
+              <div><dt class="bj-icon-text"><Icon name="delivery" />{c.deliveryIncluded}</dt><dd>{deliveryFeeCents === 0 ? c.free : formatZar(deliveryFeeCents)}</dd></div>
+              <div class="bj-totals__total"><dt>{c.total}</dt><dd>{formatZar(total)}</dd></div>
+            </dl>
+            {assure.length > 0 && (
+              <ul class="bj-assure bj-assure--stacked">
+                {assure.map((a) => <li><Icon name={a.icon} />{a.text}</li>)}
+              </ul>
+            )}
+          </aside>
+        </div>
+      )
+    }
+  </section>
+</Base>

@@ -1,11 +1,22 @@
 ---
 import Icon from './Icon.astro';
-import copy from '../content/copy.json';
-import commerce from '../content/commerce.json';
 import { business, whatsappHref } from '../lib/business';
 import { fill } from '../lib/money';
 import { canBuy } from '../lib/config';
-import { nav, policies } from '../lib/site';
+import { navFor, policiesFor } from '../lib/site';
+import { commerceFor, copyFor } from '../i18n/content';
+import { htmlLang, type Locale } from '../i18n/locales';
+import { policyPath } from '../i18n/routes';
+import { ui } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = copyFor(locale);
+const commerce = commerceFor(locale);
+const t = ui(locale);
 
 // The number is shown once (as the phone link) when WhatsApp uses the same number.
 const digits = (n: string | null) => (n ?? '').replace(/\D/g, '');
@@ -17,13 +28,16 @@ const whatsappIsPhone = !!business.phone && digits(business.phone) === digits(bu
     <div class="bj-stack" style="--bj-stack-gap:16px">
       <img src="/logos/big-jos-bone.svg" width="190" height="64" alt="Big Jo’s Beds" loading="lazy" />
       <p>{copy.global.tagline}</p>
-      <p class="bj-small">{copy.global.footer}</p>
     </div>
-    <nav class="bj-footer__links" aria-label="Footer">
-      {nav.map((link) => <a href={link.href}>{link.label}</a>)}
+    <nav class="bj-footer__links" aria-label={t.footerNav}>
+      {navFor(locale).map((link) => <a href={link.href}>{link.label}</a>)}
     </nav>
     <div class="bj-footer__links">
-      {policies.map((p) => <a href={`/policies/${p.slug}`}>{p.title}</a>)}
+      {
+        policiesFor(locale).map((p) => (
+          <a href={policyPath(locale, p.slug)} lang={p.textLocale === locale ? undefined : htmlLang[p.textLocale]}>{p.title}</a>
+        ))
+      }
       {business.email && <a href={`mailto:${business.email}`}>{business.email}</a>}
       {business.phone && <a href={`tel:${business.phone.replace(/\s+/g, '')}`}>{business.phone}</a>}
       {business.whatsapp && (
@@ -32,7 +46,7 @@ const whatsappIsPhone = !!business.phone && digits(business.phone) === digits(bu
           {whatsappIsPhone ? commerce.whatsapp.footerLinkSamePhone : fill(commerce.whatsapp.footerLink, { number: business.whatsapp })}
         </a>
       )}
-      {canBuy() && <p class="bj-small bj-icon-text"><Icon name="secure" />Payments are processed by PayFast.</p>}
+      {canBuy() && <p class="bj-small bj-icon-text"><Icon name="secure" />{t.paymentsByPayFast}</p>}
     </div>
   </div>
 </footer>

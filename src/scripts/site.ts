@@ -32,6 +32,7 @@ for (const root of document.querySelectorAll<HTMLElement>('[data-bj-config]')) {
       url.searchParams.set('finish', finish.value);
       if (item) url.searchParams.set('item', item.value);
       history.replaceState(null, '', url);
+      for (const link of document.querySelectorAll<HTMLAnchorElement>('[data-bj-lang-switch]')) link.search = url.search;
     }
   };
   sync(false);
@@ -62,6 +63,12 @@ window.addEventListener('pageshow', (event) => {
     if (button.dataset.label) button.textContent = button.dataset.label;
   }
 });
+
+// Static pages are built without a query string; carry the current one (finish, item) across
+// when switching language.
+for (const link of document.querySelectorAll<HTMLAnchorElement>('[data-bj-lang-switch]')) {
+  if (!link.search && window.location.search) link.search = window.location.search;
+}
 
 // Move focus to an error summary or confirmation rendered by the server.
 document.querySelector<HTMLElement>('[data-bj-focus]')?.focus();

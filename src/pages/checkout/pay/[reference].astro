@@ -5,65 +5,13 @@
  */
 export const prerender = false;
 
-import Base from '../../../layouts/Base.astro';
-import commerce from '../../../content/commerce.json';
-import { selectionQuery } from '../../../lib/catalogue';
-import { payfastConfig, siteOrigin } from '../../../lib/config';
-import { toPayFastAmount } from '../../../lib/money';
-import { getStore, tokenMatches } from '../../../lib/orders';
-import { buildCheckoutForm } from '../../../lib/payfast';
+import PayPage from '../../../views/PayPage.astro';
+import { preparePayment } from '../../../lib/forms';
 
-const reference = Astro.params.reference ?? '';
-const token = Astro.url.searchParams.get('t');
-const order = await getStore().getByReference(reference);
-
-if (!order || !tokenMatches(order, token)) return new Response(null, { status: 404 });
-const orderUrl = `/order/${order.reference}?t=${encodeURIComponent(order.statusToken)}`;
-if (order.status === 'paid' || order.status === 'needs_review') return Astro.redirect(orderUrl, 303);
-
-const origin = siteOrigin(Astro.url);
-const retry = selectionQuery({ item: { id: order.itemId }, finish: { id: order.finishId }, quantity: order.quantity });
-const { action, fields } = buildCheckoutForm(
-  {
-    reference: order.reference,
-    amount: toPayFastAmount(order.totalCents),
-    itemName: `Big Jo’s Beds ${order.itemName}, ${order.finishName}`,
-    itemDescription: `160 x 210 cm, ${order.finishName} finish. Quantity ${order.quantity}. Made to order in Cape Town. Delivery to ${order.suburb}.`,
-    firstName: order.firstName,
-    lastName: order.lastName,
-    email: order.email,
-    cellNumber: order.phone,
-    returnUrl: `${origin}${orderUrl}`,
-    cancelUrl: `${origin}/checkout/cancelled?${retry}`,
-    notifyUrl: `${origin}/api/payfast/itn`,
-    customInt1: order.quantity,
-    customStr1: order.finishId,
-    customStr2: order.itemId,
-  },
-  payfastConfig(),
-);
-
+const pay = await preparePayment(Astro.params.reference ?? '', Astro.url.searchParams.get('t'), Astro.url, 'en');
+if (pay.kind === 'missing') return new Response(null, { status: 404 });
+if (pay.kind === 'redirect') return Astro.redirect(pay.to, 303);
 Astro.response.headers.set('Cache-Control', 'no-store');
 ---
 
-<Base title={`${commerce.pay.title} | Big Jo’s Beds`} noindex>
-  <section class="bj-container bj-section bj-stack bj-reading">
-    <h1>{commerce.pay.title}</h1>
-    <p>{commerce.pay.body}</p>
-    <form id="payfast" name="payfast" method="post" action={action}>
-      {fields.map(([name, value]) => <input type="hidden" name={name} value={value} />)}
-      <button class="bj-button" type="submit">{commerce.pay.button}</button>
-    </form>
-  </section>
-  <script is:inline define:vars={{ reference: order.reference }}>
-    // Submit automatically once per order per tab, so "back" from PayFast doesn't bounce the
-    // customer straight back to PayFast. After that, the button above does the job.
-    var key = 'bj-payfast-' + reference;
-    var first = true;
-    try {
-      first = !sessionStorage.getItem(key);
-      sessionStorage.setItem(key, '1');
-    } catch (e) {}
-    if (first) document.forms.payfast.submit();
-  </script>
-</Base>
+<PayPage locale="en" reference={pay.reference} action={pay.action} fields={pay.fields} />

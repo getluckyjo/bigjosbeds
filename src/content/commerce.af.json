@@ -1,0 +1,146 @@
+{
+  "$comment": "Afrikaans version of commerce.json. DRAFT for owner review: translated from the English commerce copy, with no new claims or terms. “overrides” replaces three deck lines that conflict with buying online.",
+  "status": "draft — owner review",
+  "overrides": {
+    "imageCaption": "Konsepbeeld. Kussings, meubels langs die bed en die kamer se dekor is nie ingesluit nie.",
+    "productionBody": "Jou bed word op bestelling in Kaapstad gemaak. Nadat jy betaal het, e-pos ons jou om die produksietyd te bevestig en ’n afleweringsdatum te reël.",
+    "faqProductionAnswer": "Ons maak elke bed op bestelling in Kaapstad. Nadat jy betaal het, bevestig ons die produksietyd per e-pos en reël ons ’n afleweringsdatum met jou."
+  },
+  "assurance": {
+    "$comment": "Afrikaans wording for the owner-approved trial and warranty (catalogue.json claims). {days} and {years} come from the catalogue. The warranty covers the mattress only, not the base (owner, 6 Oct 2026), so it is hidden for base-only purchases.",
+    "trial": "{days} dae proeftyd, geen vrae gevra nie",
+    "trialShort": "{days} dae proeftyd",
+    "warranty": "{years} jaar waarborg op die matras",
+    "warrantySpecLabel": "Waarborg",
+    "warrantySpecValue": "{years} jaar, slegs die matras"
+  },
+  "whatsapp": {
+    "$comment": "Direct WhatsApp to Johannes (owner request, 6 Oct 2026), Afrikaans wording. Number lives in business.json → whatsapp.",
+    "contactPrompt": "Verkies jy WhatsApp?",
+    "contactLink": "Stuur vir Johannes ’n boodskap op {number}",
+    "productLink": "WhatsApp Johannes",
+    "footerLink": "WhatsApp {number}",
+    "footerLinkSamePhone": "WhatsApp ons",
+    "prefill": "Hallo Johannes, ek het ’n vraag oor die Big Jo’s Bed."
+  },
+  "hero": {
+    "priceFact": "{price} met basis",
+    "priceFactSr": "Matras en bypassende basis:",
+    "deliveryFact": "Gratis aflewering in Kaapstad"
+  },
+  "product": {
+    "itemLegend": "Kies wat jy nodig het",
+    "quantityLabel": "Hoeveelheid",
+    "includedTitle": "Wat ingesluit is",
+    "notIncluded": "Kussings, ’n bedkassie en die kamer se dekor is nie ingesluit nie.",
+    "delivery": "Gratis aflewering in Kaapstad",
+    "buyCta": "Koop nou",
+    "askLink": "Vra oor hierdie bed",
+    "vatIncluded": "Prys sluit BTW in.",
+    "payment": "Instant EFT, Capitec Pay of kaart"
+  },
+  "faqExtra": [
+    {
+      "id": "payment",
+      "question": "Hoe betaal ek?",
+      "answer": "Aanlyn, deur PayFast. Jy kan met Instant EFT, Capitec Pay of ’n kaart betaal. Ons sien nooit jou kaart- of bankbesonderhede nie."
+    },
+    {
+      "id": "delivery-area",
+      "question": "Waarheen lewer julle af?",
+      "answer": "Aflewering is ingesluit oral in Kaapstad. As die bed verder moet gaan, vra ons eers, dan sê ons vir jou wat moontlik is."
+    },
+    {
+      "id": "trial",
+      "question": "Kan ek dit eers by die huis probeer?",
+      "answer": "Ja. Elke bed kom met ’n proeftyd van {days} dae, wat begin op die dag dat dit afgelewer word. As dit nie vir jou reg is nie, laat weet ons binne {days} dae. Ons haal dit gratis by jou af en betaal jou binne 30 dae ten volle terug, geen vrae gevra nie."
+    },
+    {
+      "id": "cancel",
+      "question": "Kan ek kanselleer voordat die bed afgelewer is?",
+      "answer": "Ja. Jy kan enige tyd kanselleer voordat jou bed afgelewer word, en ons betaal die volle bedrag wat jy betaal het binne 30 dae terug."
+    },
+    {
+      "id": "warranty",
+      "question": "Is daar ’n waarborg?",
+      "answer": "Ja. Die matras kom met ’n waarborg van {years} jaar. Dit dek slegs die matras, nie die basis nie."
+    }
+  ],
+  "checkout": {
+    "seoTitle": "Afreken | Big Jo’s Beds",
+    "title": "Afreken",
+    "summaryTitle": "Jou bestelling",
+    "change": "Verander",
+    "deliveryIncluded": "Aflewering in Kaapstad",
+    "free": "Ingesluit",
+    "total": "Totaal",
+    "detailsTitle": "Jou besonderhede",
+    "addressTitle": "Waarheen moet ons dit aflewer?",
+    "addressIntro": "Ons lewer in Kaapstad af. Ons kontak jou om ’n dag te reël en die roete tot in jou huis na te gaan.",
+    "fields": {
+      "firstName": "Voornaam",
+      "lastName": "Van",
+      "email": "E-posadres",
+      "phone": "Selfoonnommer",
+      "phoneHint": "Sodat ons die aflewering kan reël.",
+      "street": "Straatadres",
+      "suburb": "Voorstad",
+      "postalCode": "Poskode",
+      "city": "Stad",
+      "notes": "Enigiets wat ons oor toegang moet weet? (opsioneel)",
+      "notesHint": "Trappe, nou deure, hekkodes, reëls van die kompleks."
+    },
+    "acceptTerms": "Ek het die {terms} gelees en aanvaar dit.",
+    "acceptTermsTest": "Ek verstaan dat dit ’n toetsbestelling is. Ek betaal niks nie en geen bed word gemaak nie.",
+    "termsLinkText": "verkoopsvoorwaardes",
+    "payButton": "Betaal {amount} met PayFast",
+    "paying": "Ons neem jou na PayFast…",
+    "payNote": "Betaal veilig op PayFast met Instant EFT, Capitec Pay of ’n kaart. Ons sien nooit jou kaart- of bankbesonderhede nie.",
+    "errorSummary": "Gaan asseblief die gemerkte besonderhede na.",
+    "outOfAreaTitle": "Ons lewer vir eers net in Kaapstad af.",
+    "outOfAreaBody": "Dit lyk of daardie poskode buite ons afleweringsgebied val. Stuur vir ons ’n navraag met jou dorp, dan laat weet ons jou wat moontlik is.",
+    "outOfAreaCta": "Vra oor aflewering",
+    "startError": "Ons kon nie jou betaling begin nie. Jy het niks betaal nie. Probeer asseblief oor ’n oomblik weer.",
+    "emptyTitle": "Kies eers jou bed.",
+    "emptyBody": "Kies ’n afwerking en wat jy nodig het, en kom dan terug hierheen om te betaal.",
+    "emptyCta": "Leer die bed ken",
+    "unavailable": "Aanlyn bestellings is tydelik onderbreek. Vra ons oor die bed, dan help ons jou om te bestel."
+  },
+  "pay": {
+    "title": "Ons neem jou na PayFast…",
+    "body": "As niks binne ’n paar sekondes gebeur nie, gebruik die knoppie hieronder.",
+    "button": "Gaan voort na PayFast",
+    "alreadyPaid": "Hierdie bestelling is reeds betaal."
+  },
+  "cancelled": {
+    "seoTitle": "Betaling nie voltooi nie | Big Jo’s Beds",
+    "title": "Jou betaling het nie deurgegaan nie.",
+    "body": "Jy het niks betaal nie. Jou keuse is gestoor as jy weer wil probeer.",
+    "retry": "Probeer weer",
+    "ask": "Vra ons ’n vraag"
+  },
+  "order": {
+    "seoTitle": "Jou bestelling | Big Jo’s Beds",
+    "reference": "Bestellingsverwysing",
+    "paidTitle": "Dankie. Jou bestelling is bevestig.",
+    "paidBody": "Ons het ’n bevestiging per e-pos na {email} gestuur. Ons sal jou kontak om die produksietyd te bevestig en die aflewering te reël.",
+    "pendingTitle": "Ons bevestig tans jou betaling.",
+    "pendingBody": "Dit neem gewoonlik net ’n paar sekondes. Herlaai hierdie bladsy oor ’n oomblik. As jy met EFT betaal het, kan dit ’n bietjie langer neem. Ons e-pos jou sodra dit bevestig is.",
+    "refresh": "Herlaai",
+    "problemTitle": "Ons gaan hierdie betaling na.",
+    "problemBody": "Iets aan hierdie betaling moet met die hand nagegaan word. Ons kontak jou per e-pos. Jy hoef nie weer te betaal nie.",
+    "closedTitle": "Hierdie bestelling is nie betaal nie.",
+    "closedBody": "Jy het niks betaal nie. Jy kan weer begin wanneer jy gereed is.",
+    "notFoundTitle": "Ons kon nie daardie bestelling kry nie.",
+    "notFoundBody": "Kyk na die skakel in jou e-pos, of vra ons, dan soek ons dit op."
+  },
+  "testShop": "Toetswinkel: die betaalproses gebruik PayFast se toetsomgewing (sandbox). Geen regte betalings word verwerk nie en geen beddens word gemaak nie.",
+  "email": {
+    "customerSubject": "Jou Big Jo’s-bestelling {reference}",
+    "customerIntro": "Dankie vir jou bestelling. Ons het jou betaling ontvang.",
+    "customerNext": "Ons sal jou kontak om die produksietyd te bevestig en ’n afleweringsdatum te reël.",
+    "ownerSubject": "Nuwe betaalde bestelling {reference}: {item}, {finish}",
+    "ownerReviewSubject": "Gaan bestelling {reference} na: betalingskennisgewing moet nagegaan word",
+    "enquirySubject": "Nuwe navraag van {name}"
+  }
+}

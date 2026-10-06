@@ -1,0 +1,42 @@
+{
+  "$comment": "Afrikaans overlay for catalogue.json text (draft for owner review). Prices, ids and images stay in catalogue.json.",
+  "items": {
+    "set": {
+      "name": "Matras en basis",
+      "checkoutName": "Matras en bypassende basis",
+      "includes": [
+        "Die ferm Big Jo’s-matras van 160 × 210 cm",
+        "’n Bypassende swaardiensbasis in dieselfde afwerking"
+      ]
+    },
+    "mattress": {
+      "name": "Net die matras",
+      "checkoutName": "Net die matras",
+      "includes": [
+        "Die ferm Big Jo’s-matras van 160 × 210 cm"
+      ]
+    },
+    "base": {
+      "name": "Net die basis",
+      "checkoutName": "Net die bypassende basis",
+      "includes": [
+        "’n Swaardiensbasis van 160 × 210 cm"
+      ]
+    }
+  },
+  "finishes": {
+    "flax": {
+      "name": "Flax",
+      "alt": "Big Jo’s-matras en bypassende basis in Flax: naturelkleurige geweefde kante met kleikleurige strepe en ’n roomkleurige bokant, in ’n slaapkamer.",
+      "detailAlt": "Nabyskoot van die Flax-afwerking: geweefde stof, kleikleurige tykstrepe, roomkleurige biesies en die aangewerkte Big Jo’s Beds-etiket."
+    },
+    "charcoal": {
+      "name": "Charcoal",
+      "alt": "Big Jo’s-matras en bypassende basis in Charcoal: donkergrys geweefde kante met toon-op-toon-strepe en ’n roomkleurige bokant, in ’n slaapkamer.",
+      "detailAlt": "Nabyskoot van die Charcoal-afwerking: donkergrys geweefde stof, toon-op-toon-tykstrepe, roomkleurige biesies en die aangewerkte Big Jo’s Beds-etiket."
+    }
+  },
+  "homeHero": {
+    "alt": "Big Jo’s-matras en bypassende basis in Flax in ’n sonnige slaapkamer, langs ’n platespeler op ’n rak met vinielplate."
+  }
+}

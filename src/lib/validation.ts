@@ -1,5 +1,9 @@
 import { z } from 'zod';
 import { isInDeliveryArea, normalisePostalCode } from './delivery';
+import { locales, type Locale } from '../i18n/locales';
+import { ui, type Ui } from '../i18n/ui';
+
+type Messages = Ui['validation'];
 
 const text = (max: number) => z.string().trim().max(max);
 const required = (max: number, message: string) => text(max).min(1, message);
@@ -14,28 +18,44 @@ function form<T extends z.ZodRawShape>(shape: T) {
   }, z.object(shape));
 }
 
-export const checkoutSchema = form({
-  firstName: required(100, 'Enter your first name.'),
-  lastName: required(100, 'Enter your last name.'),
-  email: text(254).pipe(z.email('Enter an email address like name@example.com.')),
-  phone: text(30).refine((v) => /^\+?[\d\s()-]{9,}$/.test(v), 'Enter a phone number we can reach you on.'),
-  street: required(200, 'Enter the street address.'),
-  suburb: required(100, 'Enter the suburb.'),
-  postalCode: text(10).refine((v) => normalisePostalCode(v) !== null, 'Enter a four-digit postal code.'),
-  notes: text(1000).optional().default(''),
-  accept: z.literal('yes', { error: 'Please confirm to continue.' }),
-});
+function checkoutSchemaFor(m: Messages) {
+  return form({
+    firstName: required(100, m.firstName),
+    lastName: required(100, m.lastName),
+    email: text(254).pipe(z.email(m.email)),
+    phone: text(30).refine((v) => /^\+?[\d\s()-]{9,}$/.test(v), m.phone),
+    street: required(200, m.street),
+    suburb: required(100, m.suburb),
+    postalCode: text(10).refine((v) => normalisePostalCode(v) !== null, m.postalCode),
+    notes: text(1000).optional().default(''),
+    accept: z.literal('yes', { error: m.accept }),
+  });
+}
+
+function enquirySchemaFor(m: Messages) {
+  return form({
+    name: required(100, m.name),
+    email: text(254).pipe(z.email(m.email)),
+    phone: text(30).optional().default(''),
+    area: required(100, m.area),
+    finish: z.enum(['flax', 'charcoal', 'unsure']).catch('unsure'),
+    message: required(3000, m.message),
+  });
+}
+
+/** Form schemas with error messages in each language. */
+export const schemas = Object.fromEntries(
+  locales.map((locale) => {
+    const m = ui(locale).validation;
+    return [locale, { checkout: checkoutSchemaFor(m), enquiry: enquirySchemaFor(m) }];
+  }),
+) as Record<Locale, { checkout: ReturnType<typeof checkoutSchemaFor>; enquiry: ReturnType<typeof enquirySchemaFor> }>;
+
+export const checkoutSchema = schemas.en.checkout;
 
 export type CheckoutInput = z.infer<typeof checkoutSchema>;
 
-export const enquirySchema = form({
-  name: required(100, 'Enter your name.'),
-  email: text(254).pipe(z.email('Enter an email address like name@example.com.')),
-  phone: text(30).optional().default(''),
-  area: required(100, 'Tell us your town or suburb.'),
-  finish: z.enum(['flax', 'charcoal', 'unsure']).catch('unsure'),
-  message: required(3000, 'Tell us what you’d like to know.'),
-});
+export const enquirySchema = schemas.en.enquiry;
 
 export type EnquiryInput = z.infer<typeof enquirySchema>;
 

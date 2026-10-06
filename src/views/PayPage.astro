@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import type { Pair } from '../lib/payfast';
+import { commerceFor } from '../i18n/content';
+import type { Locale } from '../i18n/locales';
+
+interface Props {
+  locale: Locale;
+  reference: string;
+  action: string;
+  fields: Pair[];
+}
+
+const { locale, reference, action, fields } = Astro.props;
+const pay = commerceFor(locale).pay;
+---
+
+<Base title={`${pay.title} | Big Jo’s Beds`} noindex locale={locale}>
+  <section class="bj-container bj-section bj-stack bj-reading">
+    <h1>{pay.title}</h1>
+    <p>{pay.body}</p>
+    <form id="payfast" name="payfast" method="post" action={action}>
+      {fields.map(([name, value]) => <input type="hidden" name={name} value={value} />)}
+      <button class="bj-button" type="submit">{pay.button}</button>
+    </form>
+  </section>
+  <script is:inline define:vars={{ reference }}>
+    // Submit automatically once per order per tab, so "back" from PayFast doesn't bounce the
+    // customer straight back to PayFast. After that, the button above does the job.
+    var key = 'bj-payfast-' + reference;
+    var first = true;
+    try {
+      first = !sessionStorage.getItem(key);
+      sessionStorage.setItem(key, '1');
+    } catch (e) {}
+    if (first) document.forms.payfast.submit();
+  </script>
+</Base>

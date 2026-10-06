@@ -9,7 +9,5 @@ const photos = import.meta.glob<{ default: ImageMetadata }>('../assets/images/fo
 
 export const founderPhoto: ImageMetadata | undefined = Object.values(photos)[0]?.default;
 
-export const founderPhotoAlt = 'Portrait of Johannes “Big Jo” le Roux, founder of Big Jo’s Beds';
-
 /** Responsive widths, never wider than the source. */
 export const founderPhotoWidths: number[] = founderPhoto ? [320, 480, 640, 800].filter((w) => w <= founderPhoto!.width) : [];

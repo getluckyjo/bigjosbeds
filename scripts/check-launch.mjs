@@ -18,11 +18,15 @@ if (!['enquiry', 'sandbox', 'live'].includes(mode)) {
 const business = JSON.parse(fs.readFileSync(path.join(root, 'src/config/business.json'), 'utf8'));
 
 // Drafts in src/content/policies/drafts/ mark gaps with "[TO CONFIRM: …]". A published policy
-// (top level of src/content/policies/) must never show one, in any mode.
+// (top level of src/content/policies/, or an approved translation in af/) must never show one, in any mode.
 const policyDir = path.join(root, 'src/content/policies');
-const unresolved = fs
-  .readdirSync(policyDir)
-  .filter((f) => f.endsWith('.md') && fs.readFileSync(path.join(policyDir, f), 'utf8').includes('TO CONFIRM'));
+const publishedDirs = ['', 'af'].filter((d) => fs.existsSync(path.join(policyDir, d)));
+const unresolved = publishedDirs.flatMap((d) =>
+  fs
+    .readdirSync(path.join(policyDir, d))
+    .filter((f) => f.endsWith('.md') && fs.readFileSync(path.join(policyDir, d, f), 'utf8').includes('TO CONFIRM'))
+    .map((f) => path.join(d, f)),
+);
 if (unresolved.length > 0) {
   console.error(
     `[launch check] These published policies still contain TO CONFIRM gaps: ${unresolved.join(', ')}.\n` +

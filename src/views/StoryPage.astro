@@ -1,0 +1,68 @@
+---
+import Base from '../layouts/Base.astro';
+import LengthComparison from '../components/LengthComparison.astro';
+import ProductPicture from '../components/ProductPicture.astro';
+import { Picture } from 'astro:assets';
+import { defaultFinish, finishesFor } from '../lib/catalogue';
+import { founderPhoto, founderPhotoWidths } from '../lib/founder';
+import { copyFor } from '../i18n/content';
+import type { Locale } from '../i18n/locales';
+import { path } from '../i18n/routes';
+import { ui } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const story = copyFor(locale).ourStory;
+const ctaFinish = finishesFor(locale).find((f) => f.id === defaultFinish)!;
+---
+
+<Base title={story.seo.title} description={story.seo.description} locale={locale}>
+  <article class="bj-container bj-section bj-story">
+    <div class:list={['bj-story__intro', { 'has-photo': founderPhoto }]}>
+      <div class="bj-story__head bj-stack">
+        <span class="bj-eyebrow">{story.eyebrow}</span>
+        <h1>{story.title}</h1>
+      </div>
+      {
+        founderPhoto && (
+          <figure class="bj-founder-photo">
+            <Picture
+              src={founderPhoto}
+              alt={ui(locale).founderPhotoAlt}
+              widths={founderPhotoWidths}
+              sizes="(min-width: 1024px) 380px, (min-width: 768px) 40vw, calc(100vw - 40px)"
+              formats={['avif', 'webp']}
+              fallbackFormat="jpg"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </figure>
+        )
+      }
+      <div class="bj-story__body bj-stack">
+        <p class="bj-lead">{story.intro}</p>
+        {story.paragraphs.map((p) => <p>{p}</p>)}
+      </div>
+    </div>
+    <LengthComparison {...story.comparison} />
+    <div class="bj-story__letter">
+      <div class="bj-story__text bj-stack">
+        {story.paragraphsAfter.map((p) => <p>{p}</p>)}
+        <p class="bj-signature"><strong>{story.signature}</strong><span>{story.signatureRole}</span></p>
+      </div>
+      <div class="bj-story__cta bj-green">
+        <div class="bj-story__cta-image">
+          <ProductPicture name={ctaFinish.image} alt={ctaFinish.alt} sizes="(min-width: 1024px) 380px, (min-width: 768px) 40vw, 100vw" />
+        </div>
+        <div class="bj-story__cta-copy">
+          <p class="bj-story__closing">{story.closing}</p>
+          <a class="bj-button" href={path(locale, 'product')}>{story.cta}</a>
+        </div>
+      </div>
+    </div>
+  </article>
+</Base>

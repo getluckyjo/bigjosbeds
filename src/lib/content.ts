@@ -1,20 +1,22 @@
 /**
- * Copy resolved for the current commerce mode. The deck (copy.json) stays verbatim;
+ * Copy resolved for the current commerce mode and language. The deck (copy.json) stays verbatim;
  * when online ordering is on, three enquiry-only lines are replaced by commerce.json overrides.
  */
-import copy from '../content/copy.json';
-import commerce from '../content/commerce.json';
 import { claims, items as catalogueItems } from './catalogue';
 import { canBuy } from './config';
 import type { IconName } from './icons';
 import { fill } from './money';
+import { commerceFor, copyFor } from '../i18n/content';
+import type { Locale } from '../i18n/locales';
 
 const claimValues = { days: String(claims.trial.days), years: String(claims.warranty.years) };
 
 /** FAQs that state the trial or warranty only appear once that claim is published. */
 const claimFaqs: Record<string, boolean> = { trial: claims.trial.publish, warranty: claims.warranty.publish };
 
-export function faqItems() {
+export function faqItems(locale: Locale = 'en') {
+  const copy = copyFor(locale);
+  const commerce = commerceFor(locale);
   const buying = canBuy();
   const items = copy.faqPage.items.map((item) =>
     buying && item.id === 'production' ? { ...item, answer: commerce.overrides.faqProductionAnswer } : item,
@@ -41,8 +43,8 @@ const warrantyItems: string[] = claims.warranty.appliesToItems;
  * The owner-approved trial and warranty, for lists beside prices and buy buttons.
  * Pass the chosen item to leave out anything that doesn't apply to it.
  */
-export function assurances(itemId?: string): Assurance[] {
-  const a = commerce.assurance;
+export function assurances(itemId?: string, locale: Locale = 'en'): Assurance[] {
+  const a = commerceFor(locale).assurance;
   const list: Assurance[] = [];
   if (claims.trial.publish) {
     list.push({ id: 'trial', icon: 'returns', text: fill(a.trial, claimValues), short: fill(a.trialShort, claimValues), notFor: [] });
@@ -56,16 +58,16 @@ export function assurances(itemId?: string): Assurance[] {
 }
 
 /** Spec-table row for the warranty, or nothing while it's unpublished. */
-export function warrantySpec(): { icon: IconName; label: string; value: string }[] {
+export function warrantySpec(locale: Locale = 'en'): { icon: IconName; label: string; value: string }[] {
   if (!claims.warranty.publish) return [];
-  const a = commerce.assurance;
+  const a = commerceFor(locale).assurance;
   return [{ icon: 'warranty', label: a.warrantySpecLabel, value: fill(a.warrantySpecValue, claimValues) }];
 }
 
-export function imageCaption(): string {
-  return canBuy() ? commerce.overrides.imageCaption : copy.global.imageConceptCaption;
+export function imageCaption(locale: Locale = 'en'): string {
+  return canBuy() ? commerceFor(locale).overrides.imageCaption : copyFor(locale).global.imageConceptCaption;
 }
 
-export function productionBody(): string {
-  return canBuy() ? commerce.overrides.productionBody : copy.productPage.production.body;
+export function productionBody(locale: Locale = 'en'): string {
+  return canBuy() ? commerceFor(locale).overrides.productionBody : copyFor(locale).productPage.production.body;
 }

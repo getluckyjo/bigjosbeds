@@ -1,15 +1,32 @@
 ---
+/**
+ * One static 404 for both languages (the host serves it for any unknown path),
+ * so it says the same thing in English and Afrikaans.
+ */
 import Base from '../layouts/Base.astro';
-import { PRODUCT_PATH } from '../lib/site';
+import { copyFor } from '../i18n/content';
+import { path } from '../i18n/routes';
+import { ui } from '../i18n/ui';
+
+const en = ui('en').notFound;
+const af = ui('af').notFound;
 ---
 
-<Base title="Page not found | Big Jo’s Beds" noindex>
+<Base title={en.seoTitle} noindex locale="en" translated={false} alternatePaths={{ en: path('en', 'home'), af: path('af', 'home') }}>
   <section class="bj-container bj-section bj-stack bj-reading">
-    <h1>We couldn’t find that page.</h1>
-    <p class="bj-lead">The link may be out of date. The bed is still here.</p>
+    <h1>{en.title}</h1>
+    <p class="bj-lead">{en.body}</p>
     <div class="bj-row">
-      <a class="bj-button" href={PRODUCT_PATH}>Meet the bed</a>
-      <a class="bj-button bj-button--secondary" href="/">Home</a>
+      <a class="bj-button" href={path('en', 'product')}>{ui('en').meetTheBed}</a>
+      <a class="bj-button bj-button--secondary" href={path('en', 'home')}>{en.home}</a>
+    </div>
+    <div class="bj-stack bj-not-found-af" lang="af-ZA">
+      <h2 class="bj-h3">{af.title}</h2>
+      <p>{af.body}</p>
+      <div class="bj-row">
+        <a class="bj-button" href={path('af', 'product')}>{copyFor('af').home.hero.primaryCta.label}</a>
+        <a class="bj-button bj-button--secondary" href={path('af', 'home')}>{af.home}</a>
+      </div>
     </div>
   </section>
 </Base>

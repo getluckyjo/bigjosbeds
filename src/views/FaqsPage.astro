@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import FaqList from '../components/FaqList.astro';
+import { faqItems } from '../lib/content';
+import { copyFor } from '../i18n/content';
+import type { Locale } from '../i18n/locales';
+import { path } from '../i18n/routes';
+import { ui } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = ui(locale);
+const faq = copyFor(locale).faqPage;
+---
+
+<Base title={t.faqsTitle} description={faq.intro} locale={locale}>
+  <section class="bj-container bj-section bj-stack bj-reading">
+    <h1>{faq.title}</h1>
+    <p class="bj-lead">{faq.intro}</p>
+    <FaqList items={faqItems(locale)} />
+    <div><a class="bj-button" href={path(locale, 'contact')}>{t.askQuestion}</a></div>
+  </section>
+</Base>

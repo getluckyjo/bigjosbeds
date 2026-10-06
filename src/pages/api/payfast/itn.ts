@@ -32,9 +32,9 @@ export const POST: APIRoute = async (context) => {
       payfast,
       isPayFastIp: (address) => isPayFastIp(address),
       confirm: (paramString) => confirmWithPayFast(paramString, payfast.host),
-      onPaid: async (order) => {
-        await trySend(send, customerConfirmation(order));
-        if (ownerEmail) await trySend(send, ownerPaidAlert(order, ownerEmail));
+      onPaid: async (order, locale) => {
+        await trySend(send, customerConfirmation(order, process.env, locale));
+        if (ownerEmail) await trySend(send, ownerPaidAlert(order, ownerEmail, locale));
       },
       onReview: async (order, reasons) => {
         if (ownerEmail) await trySend(send, ownerReviewAlert(order, reasons, ownerEmail));
