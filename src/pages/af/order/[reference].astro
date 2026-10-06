@@ -1,0 +1,12 @@
+---
+export const prerender = false;
+
+import OrderPage from '../../../views/OrderPage.astro';
+import { findOrder } from '../../../lib/forms';
+
+const order = await findOrder(Astro.params.reference ?? '', Astro.url.searchParams.get('t'));
+if (!order) Astro.response.status = 404;
+Astro.response.headers.set('Cache-Control', 'no-store');
+---
+
+<OrderPage locale="af" order={order} />

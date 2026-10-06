@@ -1,17 +1,5 @@
 ---
-import Base from '../layouts/Base.astro';
-import FaqList from '../components/FaqList.astro';
-import copy from '../content/copy.json';
-import { faqItems } from '../lib/content';
-
-const faq = copy.faqPage;
+import FaqsPage from '../views/FaqsPage.astro';
 ---
 
-<Base title="FAQs | Big Jo’s Beds" description={faq.intro}>
-  <section class="bj-container bj-section bj-stack bj-reading">
-    <h1>{faq.title}</h1>
-    <p class="bj-lead">{faq.intro}</p>
-    <FaqList items={faqItems()} />
-    <div><a class="bj-button" href="/contact">Ask us a question</a></div>
-  </section>
-</Base>
+<FaqsPage locale="en" />

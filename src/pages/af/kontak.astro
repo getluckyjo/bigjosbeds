@@ -1,0 +1,11 @@
+---
+export const prerender = false;
+
+import ContactPage from '../../views/ContactPage.astro';
+import { handleContact } from '../../lib/forms';
+
+const state = await handleContact(Astro.request, Astro.url, 'af');
+if (state.status) Astro.response.status = state.status;
+---
+
+<ContactPage locale="af" {...state} />

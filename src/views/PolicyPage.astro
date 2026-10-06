@@ -1,0 +1,32 @@
+---
+/**
+ * An owner-approved policy. Until the owner approves a translation, the other language's
+ * page shows the English text, marked as English, with a note saying so.
+ */
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { fill } from '../lib/money';
+import type { Policy } from '../lib/site';
+import { htmlLang, type Locale } from '../i18n/locales';
+import { ui } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  policy: Policy;
+  /** Whether the policy has an approved text in every language (for hreflang). */
+  translated: boolean;
+}
+
+const { locale, policy, translated } = Astro.props;
+const { title, updated, Content, textLocale } = policy;
+const inOtherLanguage = textLocale !== locale;
+---
+
+<Base title={`${title} | Big Jo’s Beds`} locale={locale} translated={translated} noindex={inOtherLanguage}>
+  <article class="bj-container bj-section bj-stack bj-reading" lang={inOtherLanguage ? htmlLang[textLocale] : undefined}>
+    {inOtherLanguage && <p class="bj-note" lang={htmlLang[locale]}><Icon name="info" />{ui(locale).policyOnlyInEnglish}</p>}
+    <h1>{title}</h1>
+    {updated && <p class="bj-small bj-muted">{fill(ui(textLocale).policyUpdated, { date: updated })}</p>}
+    <Content />
+  </article>
+</Base>

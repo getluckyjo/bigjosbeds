@@ -2,29 +2,46 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import commerce from '../content/commerce.json';
 import { commerceMode } from '../lib/config';
 import { getImage } from 'astro:assets';
 import { image } from '../lib/images';
+import { commerceFor } from '../i18n/content';
+import { htmlLang, localeFromPath, locales, ogLocale, type Locale } from '../i18n/locales';
+import { alternates } from '../i18n/routes';
+import { ui } from '../i18n/ui';
 
 interface Props {
   title: string;
   description?: string;
   /** Pages that must never be indexed (checkout, orders). */
   noindex?: boolean;
+  locale?: Locale;
+  /** False when the page has no real translation (hreflang only links true equivalents). */
+  translated?: boolean;
+  /** Where the language switch goes, when it isn't the same page in the other language. */
+  alternatePaths?: Record<Locale, string>;
 }
 
-const { title, description, noindex = false } = Astro.props;
+const {
+  title,
+  description,
+  noindex = false,
+  locale = localeFromPath(Astro.url.pathname),
+  translated = true,
+  alternatePaths = alternates(Astro.url.pathname),
+} = Astro.props;
 const mode = commerceMode();
 const robots = noindex || mode !== 'live' ? 'noindex, nofollow' : 'index, follow';
-const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : null;
+const absolute = (path: string) => (Astro.site ? new URL(path, Astro.site).href : null);
+const canonical = noindex ? null : absolute(alternatePaths[locale]);
+const hreflang = Astro.site && translated && !noindex;
 const ogImage = Astro.site
   ? new URL((await getImage({ src: image('bed-flax'), width: 1200, format: 'jpg' })).src, Astro.site).href
   : null;
 ---
 
 <!doctype html>
-<html lang="en-ZA">
+<html lang={htmlLang[locale]}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -36,23 +53,26 @@ const ogImage = Astro.site
     <link rel="preload" href="/fonts/DMSerifDisplay-Regular.latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/DMSans-Variable.latin.woff2" as="font" type="font/woff2" crossorigin />
     {canonical && <link rel="canonical" href={canonical} />}
+    {hreflang && locales.map((l) => <link rel="alternate" hreflang={htmlLang[l]} href={absolute(alternatePaths[l])} />)}
+    {hreflang && <link rel="alternate" hreflang="x-default" href={absolute(alternatePaths.en)} />}
     <meta property="og:site_name" content="Big Jo’s Beds" />
     <meta property="og:title" content={title} />
     {description && <meta property="og:description" content={description} />}
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="en_ZA" />
+    <meta property="og:locale" content={ogLocale[locale]} />
+    {translated && locales.filter((l) => l !== locale).map((l) => <meta property="og:locale:alternate" content={ogLocale[l]} />)}
     {canonical && <meta property="og:url" content={canonical} />}
     {ogImage && <meta property="og:image" content={ogImage} />}
     <slot name="head" />
   </head>
   <body>
-    <a class="bj-skip bj-button" href="#main">Skip to content</a>
-    {mode === 'sandbox' && <p class="bj-test-banner"><span class="bj-container">{commerce.testShop}</span></p>}
-    <Header />
+    <a class="bj-skip bj-button" href="#main">{ui(locale).skipLink}</a>
+    {mode === 'sandbox' && <p class="bj-test-banner"><span class="bj-container">{commerceFor(locale).testShop}</span></p>}
+    <Header locale={locale} alternatePaths={alternatePaths} />
     <main id="main">
       <slot />
     </main>
-    <Footer />
+    <Footer locale={locale} />
     <script>
       import '../scripts/site.ts';
     </script>

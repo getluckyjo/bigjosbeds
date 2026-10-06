@@ -1,0 +1,19 @@
+---
+/**
+ * Owner-approved policies from src/content/policies/ (translations in a language folder).
+ * No file, no page: the site never publishes an empty or placeholder policy.
+ */
+import PolicyPage from '../../../views/PolicyPage.astro';
+import { policiesFor, policyTranslated } from '../../../lib/site';
+
+export function getStaticPaths() {
+  return policiesFor('af').map((policy) => ({
+    params: { slug: policy.slug },
+    props: { policy, translated: policyTranslated(policy.slug) },
+  }));
+}
+
+const { policy, translated } = Astro.props;
+---
+
+<PolicyPage locale="af" policy={policy} translated={translated} />

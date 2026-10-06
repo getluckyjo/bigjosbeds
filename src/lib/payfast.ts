@@ -75,6 +75,8 @@ export interface CheckoutRequest {
   notifyUrl: string;
   customStr1?: string;
   customStr2?: string;
+  /** The language the customer checked out in; PayFast returns it in the ITN. */
+  customStr3?: string;
   customInt1?: number;
 }
 
@@ -98,6 +100,7 @@ export function buildCheckoutForm(req: CheckoutRequest, cfg: PayFastConfig): { a
     ['custom_int1', req.customInt1 === undefined ? '' : String(req.customInt1)],
     ['custom_str1', cleanText(req.customStr1 ?? '', 255)],
     ['custom_str2', cleanText(req.customStr2 ?? '', 255)],
+    ['custom_str3', cleanText(req.customStr3 ?? '', 255)],
   ];
   // Only non-blank fields are posted, so the posted set is exactly the signed set.
   const fields = ordered.filter(([, value]) => value.trim() !== '').map(([k, v]) => [k, v.trim()] as Pair);

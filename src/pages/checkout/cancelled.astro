@@ -1,27 +1,7 @@
 ---
 export const prerender = false;
 
-import Icon from '../../components/Icon.astro';
-import Base from '../../layouts/Base.astro';
-import commerce from '../../content/commerce.json';
-import { parseSelection, selectionQuery } from '../../lib/catalogue';
-
-const c = commerce.cancelled;
-const params = Astro.url.searchParams;
-const selection = parseSelection({ item: params.get('item'), finish: params.get('finish'), qty: params.get('qty') ?? '1' });
-const retryHref = selection ? `/checkout?${selectionQuery(selection)}` : '/beds/big-jos-bed';
-const askHref = `/contact?finish=${selection?.finish.id ?? 'unsure'}`;
+import CancelledPage from '../../views/CancelledPage.astro';
 ---
 
-<Base title={c.seoTitle} noindex>
-  <section class="bj-container bj-section bj-stack bj-reading">
-    <Icon name="info" class="bj-status-icon" />
-    <h1>{c.title}</h1>
-    <p class="bj-lead">{c.body}</p>
-    {selection && <p>{selection.item.checkoutName}, {selection.finish.name}. Quantity {selection.quantity}.</p>}
-    <div class="bj-row">
-      <a class="bj-button" href={retryHref}>{c.retry}</a>
-      <a class="bj-button bj-button--secondary" href={askHref}>{c.ask}</a>
-    </div>
-  </section>
-</Base>
+<CancelledPage locale="en" />

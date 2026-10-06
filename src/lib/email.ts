@@ -5,6 +5,10 @@
  */
 import { Resend } from 'resend';
 import commerce from '../content/commerce.json';
+import { commerceFor } from '../i18n/content';
+import { localeName, type Locale } from '../i18n/locales';
+import { ui } from '../i18n/ui';
+import { getFinish, getItem } from './catalogue';
 import { emailConfig } from './config';
 import { fill, formatZar } from './money';
 import type { NewEnquiry, Order } from './orders';
@@ -50,39 +54,48 @@ export function resendSender(env: Record<string, string | undefined> = process.e
   };
 }
 
-function orderLines(order: Order): string {
+/** Item and finish names in the customer's language; owner emails use the English names stored on the order. */
+function orderLines(order: Order, locale: Locale = 'en'): string {
+  const e = ui(locale).email;
+  const itemName = locale === 'en' ? order.itemName : (getItem(order.itemId, locale)?.checkoutName ?? order.itemName);
+  const finishName = locale === 'en' ? order.finishName : (getFinish(order.finishId, locale)?.name ?? order.finishName);
   const lines = [
-    `${order.itemName} — ${order.finishName}`,
-    `Quantity: ${order.quantity}`,
-    `Total paid: ${formatZar(order.totalCents)}`,
-    `Delivery: ${order.deliveryFeeCents === 0 ? 'included' : formatZar(order.deliveryFeeCents)}`,
+    `${itemName} — ${finishName}`,
+    fill(e.quantity, { qty: String(order.quantity) }),
+    fill(e.totalPaid, { amount: formatZar(order.totalCents) }),
+    fill(e.delivery, { fee: order.deliveryFeeCents === 0 ? e.deliveryIncluded : formatZar(order.deliveryFeeCents) }),
   ];
   return lines.join('\n');
 }
+
+/** A line telling the owner to reply in the customer's language, when it isn't English. */
+const languageLine = (locale: Locale) => (locale === 'en' ? [] : [`Customer language: ${localeName[locale]}`]);
 
 function address(order: Order): string {
   return [order.street, order.suburb, `${order.city} ${order.postalCode}`].join('\n');
 }
 
-export function customerConfirmation(order: Order, env: NodeJS.ProcessEnv = process.env): Message {
-  const e = commerce.email;
+/** The customer's confirmation, in the language they checked out in. */
+export function customerConfirmation(order: Order, env: NodeJS.ProcessEnv = process.env, locale: Locale = 'en'): Message {
+  const e = commerceFor(locale).email;
+  const labels = ui(locale).email;
   return {
     to: order.email,
     // Customer replies go to the owner, not the no-reply sending address.
     replyTo: emailConfig(env).ownerEmail ?? undefined,
     subject: fill(e.customerSubject, { reference: order.reference }),
     text: [
-      `Hi ${order.firstName},`,
+      fill(labels.greeting, { name: order.firstName }),
       e.customerIntro,
-      `Order ${order.reference}\n${orderLines(order)}`,
-      `Delivery address:\n${address(order)}`,
+      `${fill(labels.order, { reference: order.reference })}\n${orderLines(order, locale)}`,
+      `${labels.address}\n${address(order)}`,
       e.customerNext,
-      'Big Jo’s Beds. Made to order in Cape Town.',
+      labels.signOff,
     ].join('\n\n'),
   };
 }
 
-export function ownerPaidAlert(order: Order, ownerEmail: string): Message {
+export function ownerPaidAlert(order: Order, ownerEmail: string, locale: Locale = 'en'): Message {
   return {
     to: ownerEmail,
     replyTo: order.email,
@@ -96,6 +109,7 @@ export function ownerPaidAlert(order: Order, ownerEmail: string): Message {
       orderLines(order),
       `PayFast payment ID: ${order.payfastPaymentId ?? 'n/a'}`,
       `Customer: ${order.firstName} ${order.lastName}\n${order.email}\n${order.phone}`,
+      ...languageLine(locale),
       `Deliver to:\n${address(order)}`,
       `Access notes: ${order.notes || 'none'}`,
     ].join('\n\n'),
@@ -115,7 +129,7 @@ export function ownerReviewAlert(order: Order, reasons: string[], ownerEmail: st
   };
 }
 
-export function ownerEnquiryAlert(enquiry: NewEnquiry, ownerEmail: string): Message {
+export function ownerEnquiryAlert(enquiry: NewEnquiry, ownerEmail: string, locale: Locale = 'en'): Message {
   return {
     to: ownerEmail,
     replyTo: enquiry.email,
@@ -124,6 +138,7 @@ export function ownerEnquiryAlert(enquiry: NewEnquiry, ownerEmail: string): Mess
       `From: ${enquiry.name} <${enquiry.email}>${enquiry.phone ? `, ${enquiry.phone}` : ''}`,
       `Area: ${enquiry.area}`,
       `Finish: ${enquiry.finish}`,
+      ...languageLine(locale),
       enquiry.message,
     ].join('\n\n'),
   };

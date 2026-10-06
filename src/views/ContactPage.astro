@@ -1,0 +1,99 @@
+---
+import Icon from '../components/Icon.astro';
+import Base from '../layouts/Base.astro';
+import Field from '../components/Field.astro';
+import { business, whatsappHref } from '../lib/business';
+import type { ContactState } from '../lib/forms';
+import { fill } from '../lib/money';
+import { commerceFor, copyFor } from '../i18n/content';
+import type { Locale } from '../i18n/locales';
+import { path } from '../i18n/routes';
+import { ui } from '../i18n/ui';
+
+interface Props extends ContactState {
+  locale: Locale;
+}
+
+const { locale, values, errors, result } = Astro.props;
+const t = ui(locale);
+const commerce = commerceFor(locale);
+const page = copyFor(locale).contactPage;
+const field = Object.fromEntries(page.fields.map((f) => [f.id, f]));
+// Option labels from the copy deck, in the same order as the stored values.
+const finishOptions = ['flax', 'charcoal', 'unsure'].map((value, i) => ({ value, label: field.finish.options![i] }));
+const errorList = Object.entries(errors);
+---
+
+<Base title={page.seo.title} description={page.seo.description} locale={locale}>
+  <section class="bj-container bj-section bj-grid">
+    <div class="bj-stack">
+      <h1>{page.title}</h1>
+      <p class="bj-lead">{page.intro}</p>
+      {
+        business.whatsapp && (
+          <p class="bj-icon-text bj-whatsapp-line">
+            <Icon name="chat" />
+            <span>
+              {commerce.whatsapp.contactPrompt}{' '}
+              <a href={whatsappHref(commerce.whatsapp.prefill)}>{fill(commerce.whatsapp.contactLink, { number: business.whatsapp })}</a>
+            </span>
+          </p>
+        )
+      }
+    </div>
+
+    <form class="bj-form" method="post" action={path(locale, 'contact')} novalidate data-bj-busy>
+      {
+        result === 'sent' && (
+          <div class="bj-alert bj-alert--success" role="status" tabindex="-1" data-bj-focus>
+            <Icon name="done" />
+            <p>{page.success}</p>
+          </div>
+        )
+      }
+      {
+        result === 'failed' && (
+          <div class="bj-alert" role="alert" tabindex="-1" data-bj-focus>
+            <Icon name="alert" />
+            <p>{page.error}</p>
+          </div>
+        )
+      }
+      {
+        errorList.length > 0 && (
+          <div class="bj-alert" role="alert" tabindex="-1" data-bj-focus>
+            <Icon name="alert" />
+            <div class="bj-alert__body">
+              <h2>{t.checkDetails}</h2>
+              <ul class="bj-list">
+                {errorList.map(([name]) => (
+                  <li><a href={`#en-${name}`}>{field[name]?.label ?? name}</a></li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )
+      }
+
+      <div class="bj-honeypot" aria-hidden="true">
+        <label for="en-website">{t.honeypot}</label>
+        <input id="en-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+
+      <Field idPrefix="en" name="name" label={field.name.label} value={values.name} error={errors.name} required autocomplete="name" maxlength={100} />
+      <Field idPrefix="en" name="email" type="email" label={field.email.label} value={values.email} error={errors.email} required autocomplete="email" maxlength={254} />
+      <Field idPrefix="en" name="phone" type="tel" label={field.phone.label} value={values.phone} error={errors.phone} autocomplete="tel" maxlength={30} />
+      <Field idPrefix="en" name="area" label={field.area.label} hint={field.area.hint} value={values.area} error={errors.area} required autocomplete="address-level2" maxlength={100} />
+      <div class="bj-field">
+        <label for="en-finish">{field.finish.label}</label>
+        <select class="bj-input" id="en-finish" name="finish">
+          {finishOptions.map((o) => <option value={o.value} selected={values.finish === o.value}>{o.label}</option>)}
+        </select>
+      </div>
+      <Field idPrefix="en" name="message" type="textarea" label={field.message.label} value={values.message} error={errors.message} required maxlength={3000} />
+      <div>
+        <button class="bj-button" type="submit" data-busy-label={page.submitting} data-label={page.submit}>{page.submit}</button>
+      </div>
+    </form>
+  </section>
+</Base>

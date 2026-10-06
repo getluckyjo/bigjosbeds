@@ -1,0 +1,91 @@
+---
+/**
+ * Order status after PayFast. Status comes from the database (set by the ITN),
+ * never from the fact that PayFast redirected the customer here.
+ */
+import Icon from '../components/Icon.astro';
+import Base from '../layouts/Base.astro';
+import { getFinish, getItem } from '../lib/catalogue';
+import { fill, formatZar } from '../lib/money';
+import type { Order } from '../lib/orders';
+import { commerceFor } from '../i18n/content';
+import type { Locale } from '../i18n/locales';
+import { path } from '../i18n/routes';
+import { ui } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  order: Order | null;
+}
+
+const { locale, order } = Astro.props;
+const t = ui(locale);
+const o = commerceFor(locale).order;
+const itemName = order ? (getItem(order.itemId, locale)?.checkoutName ?? order.itemName) : '';
+const finishName = order ? (getFinish(order.finishId, locale)?.name ?? order.finishName) : '';
+
+const state = !order
+  ? 'missing'
+  : order.status === 'paid'
+    ? 'paid'
+    : order.status === 'needs_review'
+      ? 'review'
+      : order.status === 'pending_payment'
+        ? 'pending'
+        : 'closed';
+---
+
+<Base title={o.seoTitle} noindex locale={locale}>
+  <section class="bj-container bj-section bj-stack bj-reading">
+    {
+      state === 'missing' && (
+        <>
+          <h1>{o.notFoundTitle}</h1>
+          <p class="bj-lead">{o.notFoundBody}</p>
+          <div><a class="bj-button" href={path(locale, 'contact')}>{t.askUs}</a></div>
+        </>
+      )
+    }
+    {
+      order && (
+        <>
+          {state === 'paid' && (
+            <div class="bj-stack" role="status">
+              <Icon name="done" class="bj-status-icon bj-status-icon--done" />
+              <h1>{o.paidTitle}</h1>
+              <p class="bj-lead">{fill(o.paidBody, { email: order.email })}</p>
+            </div>
+          )}
+          {state === 'pending' && (
+            <div class="bj-stack" role="status">
+              <Icon name="pending" class="bj-status-icon" />
+              <h1>{o.pendingTitle}</h1>
+              <p class="bj-lead">{o.pendingBody}</p>
+              <div><a class="bj-button bj-button--secondary" href={Astro.url.pathname + Astro.url.search}>{o.refresh}</a></div>
+            </div>
+          )}
+          {state === 'review' && (
+            <div class="bj-stack" role="status">
+              <Icon name="alert" class="bj-status-icon" />
+              <h1>{o.problemTitle}</h1>
+              <p class="bj-lead">{o.problemBody}</p>
+            </div>
+          )}
+          {state === 'closed' && (
+            <div class="bj-stack">
+              <h1>{o.closedTitle}</h1>
+              <p class="bj-lead">{o.closedBody}</p>
+              <div><a class="bj-button" href={path(locale, 'product')}>{t.meetTheBed}</a></div>
+            </div>
+          )}
+          <dl class="bj-totals">
+            <div><dt>{o.reference}</dt><dd class="bj-ref">{order.reference}</dd></div>
+            <div><dt>{itemName}</dt><dd>{finishName} × {order.quantity}</dd></div>
+            <div><dt>{t.delivery}</dt><dd>{order.suburb}, {order.city}</dd></div>
+            <div class="bj-totals__total"><dt>{t.total}</dt><dd>{formatZar(order.totalCents)}</dd></div>
+          </dl>
+        </>
+      )
+    }
+  </section>
+</Base>

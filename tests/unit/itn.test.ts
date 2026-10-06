@@ -74,6 +74,15 @@ beforeEach(async () => {
 const status = async () => (await store.getByReference(order.reference))!.status;
 
 describe('processItn', () => {
+  it('passes the checkout language (custom_str3) to onPaid, English if missing or unknown', async () => {
+    await processItn(itnBody(fields(order, { custom_str3: 'af' })), PAYFAST_IP, deps);
+    expect(deps.onPaid).toHaveBeenCalledWith(expect.objectContaining({ reference: order.reference }), 'af');
+
+    const other = await store.createOrder(newOrder);
+    await processItn(itnBody(fields(other, { custom_str3: 'xx' })), PAYFAST_IP, deps);
+    expect(deps.onPaid).toHaveBeenLastCalledWith(expect.objectContaining({ reference: other.reference }), 'en');
+  });
+
   it('marks a fully verified notification paid and notifies once', async () => {
     const result = await processItn(itnBody(fields(order)), PAYFAST_IP, deps);
     expect(result).toEqual({ httpStatus: 200, outcome: 'paid' });

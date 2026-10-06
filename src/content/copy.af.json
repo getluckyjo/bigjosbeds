@@ -1,0 +1,323 @@
+{
+  "version": "1.2.0",
+  "source": "content/source/design-brief-background.md",
+  "editorialStatus": "Afrikaans translation of copy.json v1.2, DRAFT for owner review. Founder story translated from the facts Johannes le Roux supplied on 6 Oct 2026 (2 m tall, 125 kg, has looked for a bed he fits on all his life; Big Jo is his nickname). No other invented personal experiences, quotes or testimonials.",
+  "home": {
+    "route": "/af/",
+    "seo": {
+      "title": "Ekstra lang bed vir groot en lang mense | Big Jo’s Beds",
+      "description": "’n Ferm 160 × 210 cm matras en bypassende swaardiensbasis, op bestelling in Kaapstad gemaak. Die ekstra lang bed vir groot en lang mense, in Flax of Charcoal."
+    },
+    "hero": {
+      "eyebrow": "Op bestelling gemaak in Kaapstad",
+      "title": "’n Bed waarin jy pas.",
+      "body": "’n Ferm matras en bypassende swaardiensbasis vir groot en lang mense. Met 160 × 210 cm het jy meer plek om uit te strek.",
+      "primaryCta": {
+        "label": "Leer die bed ken",
+        "href": "/af/beddens/big-jos-bed"
+      },
+      "secondaryCta": {
+        "label": "Kyk na die afmetings",
+        "href": "/af/beddens/big-jos-bed#dimensions"
+      }
+    },
+    "facts": [
+      {
+        "label": "160 × 210 cm",
+        "detail": "Breedte × lengte"
+      },
+      {
+        "label": "Ferm",
+        "detail": "Matrasgevoel"
+      },
+      {
+        "label": "Kaapstad",
+        "detail": "Op bestelling gemaak"
+      }
+    ],
+    "introduction": {
+      "title": "Jou voete hoef nie oor die voetenent te hang nie.",
+      "paragraphs": [
+        "As jy groot of lank is en ’n bed koop, moet jy let op dinge wat ander mense dalk nooit nagaan nie: die ekstra lengte, die matras se gradering en of die basis sy man kan staan.",
+        "Big Jo’s begin juis by daardie besonderhede. Die matras is 210 cm lank en 160 cm breed, met ’n versterkte skuimkern, ’n gemakslaag van latex en ’n bypassende swaardiensbasis."
+      ]
+    },
+    "finishes": {
+      "title": "Watter een pas by jou kamer?",
+      "body": "Kies ’n afwerking vir die kante van die matras en die bypassende basis. By albei bly die slaapoppervlak roomkleurig.",
+      "items": [
+        {
+          "id": "flax",
+          "name": "Flax",
+          "body": "Naturelkleurige geweefde stof met kleikleurige strepe. Die warmer, ligter keuse.",
+          "cta": "Kyk na Flax"
+        },
+        {
+          "id": "charcoal",
+          "name": "Charcoal",
+          "body": "Donkergrys geweefde stof met subtiele toon-op-toon-strepe. ’n Donkerder afwerking met dieselfde roomkleurige bokant.",
+          "cta": "Kyk na Charcoal"
+        }
+      ]
+    },
+    "construction": {
+      "title": "Hier is wat binne-in sit.",
+      "body": "Die matras het drie lae: ’n versterkte steunkern met ’n hoë digtheid, ’n skuimlaag met ’n ultrahoë digtheid en ’n gemakslaag van latex. Saam vorm hulle ’n ferm matras van ongeveer 25 cm diep.",
+      "cta": "Kyk na die volle spesifikasies"
+    },
+    "story": {
+      "title": "In Kaapstad begin. Vir groot mense gebou.",
+      "quote": "Ek is 2 meter lank en weeg 125 kg. My hele lewe lank soek ek al na ’n bed waarop ek behoorlik pas.",
+      "quoteBy": "Johannes “Big Jo” le Roux, stigter",
+      "body": "Toe bou hy self een: 210 cm lank, ferm, op ’n bypassende swaardiensbasis en op bestelling in Kaapstad gemaak. Johannes het The Duchess help stig. Dié keer was die opdrag persoonlik.",
+      "cta": "Lees Johannes se storie"
+    },
+    "closing": {
+      "title": "Sal dit in jou kamer pas?",
+      "body": "Begin met die matras se afmetings: 160 × 210 cm. Los plek vir die basis, jou meubels en ’n oop roete om die bed. As jy ’n vraag het, stuur dit gerus deur.",
+      "cta": "Vra oor die bed"
+    }
+  },
+  "productPage": {
+    "route": "/af/beddens/big-jos-bed",
+    "seo": {
+      "title": "Big Jo’s Bed: 160 × 210 cm matras en basis | Big Jo’s Beds",
+      "description": "’n Ekstra lang bed vir lang mense: die ferm 160 × 210 cm Big Jo’s-matras en bypassende swaardiensbasis. Op bestelling in Kaapstad gemaak, in Flax of Charcoal."
+    },
+    "title": "Die Big Jo’s Bed",
+    "intro": "’n Ferm 160 × 210 cm matras met ’n bypassende swaardiensbasis. Op bestelling in Kaapstad gemaak vir groot en lang mense.",
+    "finishLabel": "Kies jou afwerking",
+    "cta": "Vra oor hierdie bed",
+    "secondaryCta": "Kyk na afmetings en materiale",
+    "dimensions": {
+      "id": "dimensions",
+      "title": "Kyk of dit pas.",
+      "body": "Die matras is 160 cm breed en 210 cm lank. Dis 22 cm langer as ’n 188 cm-matras. Vergelyk die presiese mates met jou kamer, jou beddegoed en die roete waarlangs die bed moet inkom.",
+      "notes": "Die matras se afmetings is nie die buitemate van die hele bed nie. Bevestig hoeveel vloerspasie die basis beslaan en wat nodig is om dit in te kry, voordat jy bestel."
+    },
+    "feel": {
+      "title": "’n Ferm matras.",
+      "body": "Die matras kombineer twee steunlae van skuim met ’n gemakslaag van 20 mm latex. As jy ’n baie sagte matras soek waarin jy wegsak, dink eers mooi oor die ferm gevoel voordat jy kies."
+    },
+    "construction": {
+      "title": "Die lae, van onder na bo.",
+      "layers": [
+        {
+          "name": "Versterkte steunkern",
+          "size": "180 mm",
+          "description": "Skuim met ’n hoë digtheid, heel onder in die matras."
+        },
+        {
+          "name": "Ekstra steunlaag",
+          "size": "50 mm",
+          "description": "Skuim met ’n ultrahoë digtheid, bo-op die hoofkern."
+        },
+        {
+          "name": "Gemakslaag",
+          "size": "20 mm",
+          "description": "Latex, heel bo in die matras."
+        }
+      ],
+      "summary": "Totale diepte van die matras: ongeveer 25 cm."
+    },
+    "base": {
+      "title": "’n Bypassende swaardiensbasis.",
+      "body": "Die basis kom in dieselfde afwerking as jou matras: Flax of Charcoal. So lyk die bed eenvormig, van die matras se rand tot op die vloer."
+    },
+    "production": {
+      "title": "Op bestelling gemaak in Kaapstad.",
+      "body": "Jou bed word op bestelling gemaak. Vra ons oor die huidige produksietyd en afleweringsreëlings vir jou area voordat jy bestel."
+    },
+    "enquiry": {
+      "title": "Wil jy ’n bietjie meer weet?",
+      "body": "Sê vir ons watter afwerking jy verkies en waarheen die bed moet gaan. Jy kan ook vra oor groottes, materiale of hoe om te bestel.",
+      "cta": "Vra oor hierdie bed"
+    },
+    "imageCaption": "Konsep van die afwerking. Bevestig die finale stof en wat ingesluit is voordat jy bestel."
+  },
+  "ourStory": {
+    "route": "/af/ons-storie",
+    "seo": {
+      "title": "Ons storie: ’n bed vir groot en lang mense | Big Jo’s Beds",
+      "description": "Big Jo’s Beds is vernoem na Johannes “Big Jo” le Roux. Hy is 2 m lank, weeg 125 kg en het die ferm 160 × 210 cm bed gebou wat hy sy lewe lank gesoek het."
+    },
+    "eyebrow": "Oor Big Jo’s",
+    "title": "Party van ons het ’n groter bed nodig.",
+    "intro": "Ek is 2 meter lank en weeg 125 kg. My hele lewe lank soek ek al na ’n bed waarop ek behoorlik pas.",
+    "paragraphs": [
+      "’n Standaard 188 cm-matras is 12 cm korter as ek. ’n Ekstra lang een is presies so lank soos ek, met niks oor nie. Toe hou ek op soek en begin bou."
+    ],
+    "comparison": {
+      "title": "Hoekom 210 cm?",
+      "caption": "As jy 2 meter lank is, is ’n standaardmatras 12 cm te kort, en ’n ekstra lang een los niks oor nie. Big Jo’s gee jou 10 cm speling.",
+      "markerLabel": "Johannes, 2 m",
+      "markerCm": 200,
+      "rows": [
+        {
+          "label": "Standaardmatras",
+          "cm": 188,
+          "note": "12 cm te kort"
+        },
+        {
+          "label": "Ekstra lang matras",
+          "cm": 200,
+          "note": "Geen speling nie"
+        },
+        {
+          "label": "Big Jo’s-matras",
+          "cm": 210,
+          "note": "10 cm speling",
+          "highlight": true
+        }
+      ]
+    },
+    "paragraphsAfter": [
+      "Big Jo’s begin by die dinge wat groot en lang mense regtig nagaan: die lengte, die steun en of die basis sy man kan staan. Die matras is 210 cm lank en 160 cm breed, met ’n versterkte kern met ’n hoë digtheid, ’n skuimlaag met ’n ultrahoë digtheid en ’n gemakslaag van latex. Dit staan op ’n bypassende swaardiensbasis.",
+      "Dis ferm, dit word op bestelling in Kaapstad gemaak, en dit kom in Flax of Charcoal: geweefde stof, eenvoudige strepe en ’n klein aangewerkte etiket. ’n Bed waarin jy pas, moet steeds mooi lyk in jou kamer.",
+      "Big Jo is my bynaam, so die naam was maklik. Ek het al voorheen ’n handelsmerk gebou, as medestigter van The Duchess, maar hierdie een is persoonlik. As jy al ooit skuins geslaap het om in die bed te pas, of jou voete oor die voetenent laat hang het, is dit ook vir jou."
+    ],
+    "signature": "Johannes “Big Jo” le Roux",
+    "closing": "Die beste slaap vir groot mense.",
+    "cta": "Leer die bed ken",
+    "signatureRole": "Stigter, Big Jo’s Beds"
+  },
+  "faqPage": {
+    "route": "/af/vrae",
+    "title": "’n Paar dinge wat jy dalk wil weet.",
+    "intro": "Die grootte, die gevoel en die praktiese besonderhede.",
+    "items": [
+      {
+        "id": "size",
+        "question": "Hoe groot is die matras?",
+        "answer": "160 cm breed en 210 cm lank, met ’n diepte van ongeveer 25 cm. Gebruik dié mates wanneer jy jou kamer en beddegoed nagaan."
+      },
+      {
+        "id": "who",
+        "question": "Is dit vir lang mense of vir swaarder mense?",
+        "answer": "Albei. Big Jo’s is ontwerp rondom die ekstra lengte en steun wat groot en lang mense in ’n bed soek."
+      },
+      {
+        "id": "feel",
+        "question": "Hoe ferm is dit?",
+        "answer": "Dis ’n ferm matras, met ’n versterkte steunkern met ’n hoë digtheid, ’n skuimlaag met ’n ultrahoë digtheid en ’n gemakslaag van latex."
+      },
+      {
+        "id": "springs",
+        "question": "Het dit vere?",
+        "answer": "Nee. Dit het lae van skuim en latex, nie vere nie."
+      },
+      {
+        "id": "finishes",
+        "question": "Wat is die verskil tussen Flax en Charcoal?",
+        "answer": "Die afwerking. Flax het ’n naturelkleurige weefstof met kleikleurige strepe. Charcoal het ’n donkergrys weefstof met toon-op-toon-strepe. Albei ontwerpe het ’n roomkleurige slaapoppervlak en ’n bypassende basis."
+      },
+      {
+        "id": "made",
+        "question": "Waar word dit gemaak?",
+        "answer": "Die bed word op bestelling in Kaapstad gemaak."
+      },
+      {
+        "id": "linen",
+        "question": "Sal my huidige lakens pas?",
+        "answer": "Kyk na die etiket en die mates. Die matras is 160 × 210 cm en ongeveer 25 cm diep, so die naam van ’n standaardgrootte alleen sê jou nie of ’n passlaken sal pas nie."
+      },
+      {
+        "id": "base",
+        "question": "Is daar ’n bypassende basis?",
+        "answer": "Ja. Daar is ’n bypassende swaardiensbasis in albei afwerkings. Bevestig die matras-en-basis-kombinasie wat jy kies wanneer jy navraag doen."
+      },
+      {
+        "id": "production",
+        "question": "Hoe lank neem dit?",
+        "answer": "Vra ons wat die huidige produksietyd is wanneer jy navraag doen. Aflewering word apart gereël en hang af van waarheen die bed moet gaan."
+      },
+      {
+        "id": "room",
+        "question": "Wat moet ek meet voordat ek bestel?",
+        "answer": "Meet die kamer en die roete waarlangs die bed moet inkom, insluitend deure, trappe en nou draaie. Vra ons vir die basis se finale afmetings en hoe dit gaan aankom, sodat jy die hele roete kan nagaan."
+      }
+    ]
+  },
+  "contactPage": {
+    "route": "/af/kontak",
+    "seo": {
+      "title": "Kontak ons: vra oor jou ekstra lang bed | Big Jo’s Beds",
+      "description": "Vra Big Jo’s Beds oor die matras se afmetings, die Flax- en Charcoal-afwerkings, produksie en bestellings. ’n Ekstra lang 160 × 210 cm bed, in Kaapstad gemaak."
+    },
+    "title": "Vra ons oor die bed.",
+    "intro": "Het jy ’n vraag oor die grootte, die afwerking of hoe jy dit in jou kamer gaan kry? Sê vir ons wat jy wil weet.",
+    "fields": [
+      {
+        "id": "name",
+        "label": "Jou naam",
+        "required": true
+      },
+      {
+        "id": "email",
+        "label": "E-posadres",
+        "required": true
+      },
+      {
+        "id": "phone",
+        "label": "Telefoonnommer (opsioneel)",
+        "required": false
+      },
+      {
+        "id": "area",
+        "label": "Dorp of voorstad",
+        "required": true,
+        "hint": "Sodat ons weet waarheen die bed moet gaan."
+      },
+      {
+        "id": "finish",
+        "label": "In watter afwerking stel jy belang?",
+        "options": [
+          "Flax",
+          "Charcoal",
+          "Nog nie seker nie"
+        ]
+      },
+      {
+        "id": "message",
+        "label": "Wat wil jy graag weet?",
+        "required": true
+      }
+    ],
+    "submit": "Stuur navraag",
+    "submitting": "Besig om te stuur…",
+    "success": "Dankie. Ons het jou navraag ontvang en sal jou antwoord via die kontakbesonderhede wat jy gegee het.",
+    "error": "Jou navraag is nie gestuur nie. Probeer asseblief weer. Jou boodskap is nog hier.",
+    "successRule": "Display only after the real backend confirms receipt. No response-time promise is implied."
+  },
+  "hero": {
+    "eyebrow": "Op bestelling gemaak in Kaapstad",
+    "title": "’n Bed waarin jy pas.",
+    "body": "’n Ferm matras en bypassende swaardiensbasis vir groot en lang mense. Met 160 × 210 cm het jy meer plek om uit te strek.",
+    "cta": "Leer die bed ken"
+  },
+  "product": {
+    "title": "Die Big Jo’s Bed",
+    "body": "’n Ferm 160 × 210 cm matras met ’n bypassende swaardiensbasis. Op bestelling in Kaapstad gemaak vir groot en lang mense.",
+    "cta": "Vra oor hierdie bed"
+  },
+  "finishes": {
+    "title": "Watter een pas by jou kamer?",
+    "flax": "Naturelkleurige geweefde stof met kleikleurige strepe. Die warmer, ligter keuse.",
+    "charcoal": "Donkergrys geweefde stof met subtiele toon-op-toon-strepe. ’n Donkerder afwerking met dieselfde roomkleurige bokant."
+  },
+  "closing": {
+    "title": "Sal dit in jou kamer pas?",
+    "cta": "Vra oor die bed"
+  },
+  "global": {
+    "tagline": "Die beste slaap vir groot mense.",
+    "navigation": [
+      "Die bed",
+      "Ons storie",
+      "Vrae",
+      "Kontak"
+    ],
+    "footer": "Big Jo’s Beds. Op bestelling gemaak in Kaapstad.",
+    "imageConceptCaption": "Konsep van die afwerking. Bevestig die finale stof en wat ingesluit is voordat jy bestel."
+  }
+}

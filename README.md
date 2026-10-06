@@ -64,6 +64,8 @@ Set `COMMERCE_MODE` in the environment.
 | `src/content/copy.json` | Website copy v1.1, verbatim from the copy deck |
 | `src/content/commerce.json` | Checkout, order and email copy (draft for owner review) |
 | `src/content/policies/*.md` | Policy pages. A file becomes a page and a footer link. No file, no page |
+| `src/content/*.af.json`, `src/i18n/` | The Afrikaans site (see "Afrikaans" below) |
+| `src/views/` | Page markup shared by the English and Afrikaans routes in `src/pages/` |
 | `src/lib/payfast.ts`, `src/lib/itn.ts` | PayFast signing and ITN verification |
 | `supabase/migrations/0001_init.sql` | `orders` and `enquiries` tables (RLS on) and an `orders_to_make` view |
 | `src/data/icons.json` | The Big Jo’s line icons (see "Icons" below) |
@@ -83,6 +85,25 @@ Set `COMMERCE_MODE` in the environment.
 2. **Let PayFast reach the site.** Vercel → Project → Settings → Deployment Protection: set Vercel Authentication to "Only Preview Deployments" or turn it off while you test. PayFast's notification is a server call, so it can't log in to Vercel. A custom production domain is never protected.
 3. **Redeploy** from the Vercel dashboard (or push any commit).
 4. **Buy a bed** on the deployment URL using the PayFast sandbox test buyer. The order should turn **paid** in the `orders` table. Emails start once Resend is configured.
+
+## Afrikaans
+
+The whole site is in English and Afrikaans. English stays at the root, and Afrikaans lives under `/af` with Afrikaans addresses:
+
+| English | Afrikaans |
+|---|---|
+| `/` | `/af/` |
+| `/beds/big-jos-bed` | `/af/beddens/big-jos-bed` |
+| `/our-story` | `/af/ons-storie` |
+| `/faqs` | `/af/vrae` |
+| `/contact` | `/af/kontak` |
+| `/checkout`, `/order/…`, `/policies/…` | `/af/checkout`, `/af/order/…`, `/af/policies/…` |
+
+- **Copy:** `src/content/copy.af.json` and `commerce.af.json` mirror the English files key for key. The catalogue's names, inclusions and alt text are in `catalogue.af.json`; prices and ids stay in `catalogue.json` only. Labels that aren't in the deck (menus, form errors, email labels) are in `src/i18n/ui.ts`. All Afrikaans wording is a **draft for owner review**. A unit test fails if a key, list or `{placeholder}` goes missing.
+- **Switching:** every page has a language switch in the header (“Afrikaans” / “English”, shortened to AF/EN on phones). It goes to the same page in the other language and keeps the chosen finish and item.
+- **Search:** each page sets `lang` (`en-ZA` / `af-ZA`), `og:locale`, a canonical URL and `hreflang` links to its translation. Once live, `/sitemap.xml` lists both languages with their alternates. The Afrikaans titles and descriptions use Afrikaans search terms (“ekstra lang bed”, “bed vir lang mense”).
+- **Checkout:** an Afrikaans checkout uses Afrikaans form errors, PayFast item name and return and cancel pages. PayFast carries the language back in `custom_str3`, so the customer's confirmation email is in Afrikaans. Orders keep the English item names, and the owner's emails stay in English with a "Customer language: Afrikaans" line.
+- **Policies:** the Afrikaans translation of the delivery and returns policy is in `src/content/policies/drafts/af/`. Until the owner approves it, `/af/policies/…` shows the English text, marked as English and not indexed. To publish it, move it to `src/content/policies/af/`.
 
 ## Colours
 

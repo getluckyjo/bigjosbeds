@@ -1,0 +1,13 @@
+---
+export const prerender = false;
+
+import CheckoutPage from '../../../views/CheckoutPage.astro';
+import { handleCheckout } from '../../../lib/forms';
+
+const { status, redirect, ...state } = await handleCheckout(Astro.request, Astro.url, 'af');
+if (redirect) return Astro.redirect(redirect, 303);
+if (status) Astro.response.status = status;
+Astro.response.headers.set('Cache-Control', 'no-store');
+---
+
+<CheckoutPage locale="af" {...state} />

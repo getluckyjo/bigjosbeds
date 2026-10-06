@@ -8,6 +8,7 @@
  * order paid; it is flagged "needs_review" and the owner is emailed.
  */
 import type { PayFastConfig } from './config';
+import { defaultLocale, isLocale, type Locale } from '../i18n/locales';
 import { fromPayFastAmount } from './money';
 import type { Order, OrderStore } from './orders';
 import { itnParamString, parseItnBody, verifyItnSignature, type Confirmation } from './payfast';
@@ -17,7 +18,8 @@ export interface ItnDeps {
   payfast: PayFastConfig;
   isPayFastIp: (ip: string) => Promise<boolean>;
   confirm: (paramString: string) => Promise<Confirmation>;
-  onPaid: (order: Order) => Promise<void>;
+  /** locale: the language the customer checked out in (custom_str3), for their confirmation email. */
+  onPaid: (order: Order, locale: Locale) => Promise<void>;
   onReview: (order: Order, reasons: string[]) => Promise<void>;
 }
 
@@ -81,7 +83,7 @@ export async function processItn(body: string, ip: string, deps: ItnDeps): Promi
   if (status === 'COMPLETE') {
     const paid = await deps.store.markPaid(reference, { payfastPaymentId: data.pf_payment_id ?? null, payload });
     if (!paid) return { httpStatus: 200, outcome: 'duplicate' };
-    await deps.onPaid(paid);
+    await deps.onPaid(paid, isLocale(data.custom_str3) ? data.custom_str3 : defaultLocale);
     return { httpStatus: 200, outcome: 'paid' };
   }
   if (status === 'CANCELLED' || status === 'FAILED') {
