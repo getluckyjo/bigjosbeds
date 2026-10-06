@@ -138,7 +138,7 @@ They replace two-line "label + detail" copy: hero facts, specs, delivery and pay
    - Decide whether to publish the 250 kg rating, cotton cover and production days. Each has a `publish` flag in `catalogue.json`. The 20-year mattress warranty and 100-day trial are published (owner approval, 6 Oct 2026).
    - Review the draft wording in `commerce.json`.
 9. **Founder photo:** done. Johannes's studio portrait is at `src/assets/images/founder.jpg`, cropped to 4:5 with the backdrop warmed toward the site's neutrals. `src/lib/founder.ts` shares it between two pages. On the story page it sits beside the opening lines, and on the home page it sits in the founder section. In both places it fills the height of the text beside it. To swap it, replace that file with another real photo (4:5 works best). Don't use a generated portrait.
-10. **Photos:** replace the concept renders in `src/assets/images/` with photos of the real bed, using the same file names, and update the alt text in `catalogue.json`.
+10. **Photos:** replace the concept renders in `src/assets/images/` with photos of the real bed, using the same file names, and update the alt text in `catalogue.json`. The home page's top image is `hero-vinyl-nook.png`: the Flax bed in a bedroom with a record player, uploaded by Johannes. It's shown full width under the headline at 2.2:1 on desktop and 16:9 on phones, and its alt text is in `catalogue.json → homeHero`.
 11. Set `COMMERCE_MODE=live` and redeploy. The build lists anything still missing.
 
 ### Test the full round trip on a Vercel preview first

@@ -28,6 +28,7 @@ export const maxQuantity = catalogue.maxQuantity;
 export const defaultItem = catalogue.defaultItem as ItemId;
 export const defaultFinish = catalogue.defaultFinish as FinishId;
 export const claims = catalogue.claims;
+export const homeHero = catalogue.homeHero;
 
 export function getItem(id: unknown): CatalogueItem | undefined {
   return items.find((item) => item.id === id);

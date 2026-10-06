@@ -57,6 +57,11 @@
       "detailAlt": "Close-up of the Charcoal finish: dark grey woven fabric, tonal ticking stripes, cream piping and the sewn-on Big Jo’s Beds label."
     }
   ],
+  "homeHero": {
+    "image": "hero-vinyl-nook",
+    "alt": "Big Jo’s mattress and matching base in Flax in a sunlit bedroom, beside a record player on a shelf of vinyl records.",
+    "source": "Owner upload, 6 Oct 2026 (\"Retro vinyl nook in the bedroom\"). Concept render; label checked: reads \"Big Jo’s\"."
+  },
   "imageStatus": "AI-generated concept renders. Replace with photographs of the manufactured bed when available.",
   "claims": {
     "$comment": "Supplied but unverified claims. Nothing here renders unless publish is true. See brand/docs/05-content-and-claims.md.",
