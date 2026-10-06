@@ -143,7 +143,9 @@ test('the trial and warranty show beside every buying decision', async ({ page }
   await page.goto('/faqs');
   await page.getByText('Can I try it at home first?').click();
   await expect(page.getByText('Every bed comes with a 100-day trial, starting on the day it’s delivered.')).toBeVisible();
-  await expect(page.getByText('We’ll collect it for free and give you a full refund')).toBeVisible();
+  await expect(page.getByText('We’ll collect it for free and refund you in full within 30 days')).toBeVisible();
+  await page.getByText('Can I cancel before delivery?').click();
+  await expect(page.getByText('You can cancel at any time before your bed is delivered')).toBeVisible();
   await page.getByText('Is there a warranty?').click();
   await expect(page.getByText('The mattress comes with a 20-year warranty.')).toBeVisible();
 });
@@ -176,7 +178,9 @@ test('the approved delivery and returns policy is published and linked from the 
   expect(res?.status()).toBe(200);
   await expect(page.locator('h1')).toHaveText('Delivery and returns');
   await expect(page.getByText('The trial starts on the day it’s delivered.')).toBeVisible();
-  await expect(page.getByText('We’ll refund the full amount you paid.')).toBeVisible();
+  await expect(page.getByText('We’ll refund the full amount you paid within 30 days of collecting it.')).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Cancelling before delivery' })).toBeVisible();
+  await expect(page.getByText('You can cancel your order at any time before your bed is delivered.')).toBeVisible();
   await page.goto('/');
   await expect(page.locator('footer a[href="/policies/delivery-and-returns"]')).toHaveText('Delivery and returns');
 });

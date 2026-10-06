@@ -53,7 +53,12 @@
     {
       "id": "trial",
       "question": "Can I try it at home first?",
-      "answer": "Yes. Every bed comes with a {days}-day trial, starting on the day it’s delivered. If it’s not right for you, let us know within {days} days. We’ll collect it for free and give you a full refund, no questions asked."
+      "answer": "Yes. Every bed comes with a {days}-day trial, starting on the day it’s delivered. If it’s not right for you, let us know within {days} days. We’ll collect it for free and refund you in full within 30 days, no questions asked."
+    },
+    {
+      "id": "cancel",
+      "question": "Can I cancel before delivery?",
+      "answer": "Yes. You can cancel at any time before your bed is delivered, and we’ll refund the full amount you paid within 30 days."
     },
     {
       "id": "warranty",

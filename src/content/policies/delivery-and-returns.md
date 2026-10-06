@@ -17,9 +17,13 @@ You get 100 days to sleep on your bed at home. The trial starts on the day it’
 If it’s not right for you, let us know within those 100 days. You don’t need to give a reason.
 
 - We’ll collect the bed from you, free of charge.
-- We’ll refund the full amount you paid.
+- We’ll refund the full amount you paid within 30 days of collecting it.
 
 To start a return, [contact us](/contact) with your order reference.
+
+## Cancelling before delivery
+
+You can cancel your order at any time before your bed is delivered. [Contact us](/contact) with your order reference, and we’ll refund the full amount you paid within 30 days.
 
 ## Your rights
 

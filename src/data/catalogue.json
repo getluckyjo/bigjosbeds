@@ -78,9 +78,11 @@
       "startsOn": "delivery",
       "collection": "free",
       "refund": "full",
+      "refundWithinDays": 30,
+      "cancelBeforeDelivery": "accepted, full refund within 30 days",
       "publish": true,
-      "source": "Owner instruction 6 Oct 2026: \"100 day trial returns no questions asked\"; then \"full refund, we collect free, starts on delivery\".",
-      "openQuestions": "How soon refunds are paid, and whether an order can be cancelled before delivery."
+      "source": "Owner instructions 6 Oct 2026: \"100 day trial returns no questions asked\"; \"full refund, we collect free, starts on delivery\"; \"refunds within 30 days, cancellations before delivery are accepted\".",
+      "openQuestions": "How refunds are paid (back to the card through PayFast, or by EFT). Full refund on a pre-delivery cancellation is read from the full-refund trial; confirm."
     },
     "cottonCover": {
       "publish": false,
