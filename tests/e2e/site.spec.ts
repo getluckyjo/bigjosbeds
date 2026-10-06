@@ -179,3 +179,12 @@ test('draft policies are never published', async ({ page }) => {
   const res = await page.goto('/policies/drafts');
   expect(res?.status()).toBe(404);
 });
+
+test('WhatsApp links go straight to Johannes with a prefilled message', async ({ page }) => {
+  const wa = /^https:\/\/wa\.me\/27609615091\?text=Hi%20Johannes/;
+  await page.goto('/contact');
+  await expect(page.getByRole('link', { name: 'Message Johannes on +27 60 961 5091' })).toHaveAttribute('href', wa);
+  await expect(page.locator('footer').getByRole('link', { name: 'WhatsApp +27 60 961 5091' })).toHaveAttribute('href', wa);
+  await page.goto('/beds/big-jos-bed');
+  await expect(page.getByRole('link', { name: 'WhatsApp Johannes' })).toHaveAttribute('href', wa);
+});

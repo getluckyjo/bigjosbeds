@@ -6,18 +6,35 @@
   "physicalAddress": null,
   "email": null,
   "phone": null,
+  "whatsapp": "+27 60 961 5091",
   "vatRegistered": false,
   "vatNumber": null,
   "delivery": {
     "areaName": "Cape Town",
     "feeCents": 0,
     "postalCodeRanges": [
-      [7100, 7199],
-      [7349, 7349],
-      [7400, 7599],
-      [7700, 8099]
+      [
+        7100,
+        7199
+      ],
+      [
+        7349,
+        7349
+      ],
+      [
+        7400,
+        7599
+      ],
+      [
+        7700,
+        8099
+      ]
     ],
     "postalCodeRangesStatus": "Default Cape Town metro ranges (Helderberg, Atlantis, northern suburbs, southern suburbs, CBD and peninsula). Excludes 7600–7699 (Stellenbosch, Paarl). Confirm against the PBS 55 km delivery zone."
   },
-  "requiredPolicies": ["terms-of-sale", "delivery-and-returns", "privacy"]
+  "requiredPolicies": [
+    "terms-of-sale",
+    "delivery-and-returns",
+    "privacy"
+  ]
 }

@@ -5,6 +5,9 @@ import Icon from '../components/Icon.astro';
 import Base from '../layouts/Base.astro';
 import Field from '../components/Field.astro';
 import copy from '../content/copy.json';
+import commerce from '../content/commerce.json';
+import { business, whatsappHref } from '../lib/business';
+import { fill } from '../lib/money';
 import { emailConfig } from '../lib/config';
 import { ownerEnquiryAlert, resendSender, trySend } from '../lib/email';
 import { getStore } from '../lib/orders';
@@ -60,6 +63,17 @@ const errorList = Object.entries(errors);
     <div class="bj-stack">
       <h1>{page.title}</h1>
       <p class="bj-lead">{page.intro}</p>
+      {
+        business.whatsapp && (
+          <p class="bj-icon-text bj-whatsapp-line">
+            <Icon name="chat" />
+            <span>
+              {commerce.whatsapp.contactPrompt}{' '}
+              <a href={whatsappHref(commerce.whatsapp.prefill)}>{fill(commerce.whatsapp.contactLink, { number: business.whatsapp })}</a>
+            </span>
+          </p>
+        )
+      }
     </div>
 
     <form class="bj-form" method="post" action="/contact" novalidate data-bj-busy>

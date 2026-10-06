@@ -5,7 +5,7 @@ import Icon from '../../components/Icon.astro';
 import type { IconName } from '../../lib/icons';
 import copy from '../../content/copy.json';
 import commerce from '../../content/commerce.json';
-import { business } from '../../lib/business';
+import { business, whatsappHref } from '../../lib/business';
 import { claims, defaultFinish, defaultItem, finishes, items, maxQuantity, productName } from '../../lib/catalogue';
 import { canBuy, commerceMode } from '../../lib/config';
 import { assurances, imageCaption, productionBody, warrantySpec } from '../../lib/content';
@@ -168,6 +168,7 @@ const jsonLd =
               <a data-bj-enquiry-link class="bj-button" href={`/contact?finish=${defaultFinish}`}>{page.cta}</a>
             )
           }
+          {business.whatsapp && <a class="bj-icon-text" href={whatsappHref(commerce.whatsapp.prefill)}><Icon name="chat" />{commerce.whatsapp.productLink}</a>}
           <a class="bj-icon-text" href="#dimensions"><Icon name="arrow-down" />{page.secondaryCta}</a>
         </div>
       </div>
