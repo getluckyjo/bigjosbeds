@@ -4,7 +4,7 @@
  */
 import copy from '../content/copy.json';
 import commerce from '../content/commerce.json';
-import { claims } from './catalogue';
+import { claims, items as catalogueItems } from './catalogue';
 import { canBuy } from './config';
 import type { IconName } from './icons';
 import { fill } from './money';
@@ -31,20 +31,28 @@ export interface Assurance {
   icon: IconName;
   text: string;
   short: string;
+  /** Item ids this doesn't apply to (the warranty covers the mattress, not the base). */
+  notFor: string[];
 }
 
-/** The owner-approved trial and warranty, for lists beside prices and buy buttons. */
-export function assurances(): Assurance[] {
+const warrantyItems: string[] = claims.warranty.appliesToItems;
+
+/**
+ * The owner-approved trial and warranty, for lists beside prices and buy buttons.
+ * Pass the chosen item to leave out anything that doesn't apply to it.
+ */
+export function assurances(itemId?: string): Assurance[] {
   const a = commerce.assurance;
   const list: Assurance[] = [];
   if (claims.trial.publish) {
-    list.push({ id: 'trial', icon: 'returns', text: fill(a.trial, claimValues), short: fill(a.trialShort, claimValues) });
+    list.push({ id: 'trial', icon: 'returns', text: fill(a.trial, claimValues), short: fill(a.trialShort, claimValues), notFor: [] });
   }
   if (claims.warranty.publish) {
     const warranty = fill(a.warranty, claimValues);
-    list.push({ id: 'warranty', icon: 'warranty', text: warranty, short: warranty });
+    const notFor = catalogueItems.map((i) => i.id).filter((id) => !warrantyItems.includes(id));
+    list.push({ id: 'warranty', icon: 'warranty', text: warranty, short: warranty, notFor });
   }
-  return list;
+  return itemId ? list.filter((x) => !x.notFor.includes(itemId)) : list;
 }
 
 /** Spec-table row for the warranty, or nothing while it's unpublished. */

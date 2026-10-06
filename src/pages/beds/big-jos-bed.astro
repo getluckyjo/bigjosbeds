@@ -147,7 +147,7 @@ const jsonLd =
                   <button class="bj-button" type="submit">{commerce.product.buyCta}</button>
                   <ul class="bj-assure">
                     <li><Icon name="delivery" />{commerce.product.delivery}</li>
-                    {assurances().map((a) => <li><Icon name={a.icon} />{a.text}</li>)}
+                    {assurances().map((a) => <li data-hide-item={a.notFor.join(' ') || undefined}><Icon name={a.icon} />{a.text}</li>)}
                     <li><Icon name="secure" />{commerce.product.payment}</li>
                   </ul>
                 </div>

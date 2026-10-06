@@ -225,9 +225,9 @@ const enquiryHref = `/contact?${new URLSearchParams({ finish: selection?.finish.
               <div><dt class="bj-icon-text"><Icon name="delivery" />{c.deliveryIncluded}</dt><dd>{deliveryFeeCents === 0 ? c.free : formatZar(deliveryFeeCents)}</dd></div>
               <div class="bj-totals__total"><dt>{c.total}</dt><dd>{formatZar(total)}</dd></div>
             </dl>
-            {assurances().length > 0 && (
+            {assurances(selection.item.id).length > 0 && (
               <ul class="bj-assure bj-assure--stacked">
-                {assurances().map((a) => <li><Icon name={a.icon} />{a.text}</li>)}
+                {assurances(selection.item.id).map((a) => <li><Icon name={a.icon} />{a.text}</li>)}
               </ul>
             )}
           </aside>

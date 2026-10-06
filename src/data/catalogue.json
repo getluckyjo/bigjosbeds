@@ -69,9 +69,13 @@
     "warranty": {
       "years": 20,
       "covers": "mattress",
+      "appliesToItems": [
+        "set",
+        "mattress"
+      ],
       "publish": true,
-      "source": "Owner instruction 6 Oct 2026 (\"20 year warranty\"). Backed by PBS quote QUO0010447, which lists \"20 year warranty\" and \"2 year guarantee\" on the mattress line only (nothing on the base).",
-      "openQuestions": "What the 20 years cover (defects, sagging, pro-rata?), how to claim, and whether the base is covered. Get PBS’s warranty terms in writing and publish them in a warranty policy."
+      "source": "Owner instructions 6 Oct 2026: \"20 year warranty\"; \"warranty covers the mattress only, not the base\". PBS quote QUO0010447 lists \"20 year warranty\" and \"2 year guarantee\" on the mattress line.",
+      "openQuestions": "What the 20 years cover (defects, sagging, pro-rata?) and how to claim. Get PBS’s warranty terms in writing."
     },
     "trial": {
       "days": 100,
