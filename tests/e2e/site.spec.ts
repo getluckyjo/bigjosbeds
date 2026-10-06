@@ -224,3 +224,30 @@ test('home leads with the vinyl-nook room photo, uncropped at the sides on deskt
   expect(box!.width / box!.height).toBeCloseTo(2.2, 1);
   await expect(page.getByRole('heading', { level: 1 })).toBeInViewport();
 });
+
+test('home pairs the practical questions with a fit check that shows the mattress footprint', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
+  const section = page.locator('.bj-home-help');
+  const faq = section.locator('.bj-home-help__faq');
+  // The heading sits directly above its own questions.
+  await expect(faq.locator('h2')).toHaveText('A few practical questions.');
+  await expect(faq.locator('details')).toHaveCount(3);
+  const fit = section.getByRole('group', { name: 'Will it fit your room?' });
+  await expect(fit.getByRole('img', { name: 'Width × length: 160 × 210 cm' })).toBeVisible();
+  await expect(fit.getByRole('link', { name: 'Ask about the bed' })).toHaveAttribute('href', '/contact');
+  // Side by side on desktop: questions left, fit check right.
+  const [a, b] = [await faq.boundingBox(), await fit.boundingBox()];
+  expect(b!.x).toBeGreaterThan(a!.x + a!.width);
+  // The plan is drawn to scale: 160 wide by 210 long.
+  const bed = await fit.locator('.bj-fit-plan__bed').boundingBox();
+  expect(bed!.height / bed!.width).toBeCloseTo(210 / 160, 1);
+});
+
+test('the footer is Ink and ends with the tagline', async ({ page }) => {
+  await page.goto('/');
+  const footer = page.getByRole('contentinfo');
+  await expect(footer).toHaveCSS('background-color', 'rgb(41, 44, 39)');
+  await expect(footer.getByText('Best sleep for big people.')).toBeVisible();
+  await expect(footer.getByText('Made to order in Cape Town.')).toHaveCount(0);
+});

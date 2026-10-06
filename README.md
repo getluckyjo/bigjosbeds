@@ -112,6 +112,7 @@ The design kit's palette is Bone, Paper, Clay, Ink, Flax and Charcoal (`brand/to
 - **Fern `#32412A`** (`--bj-fern`, class `.bj-green`) is a deep, earthy green sampled from the indoor plants in the product photography. Owner addition, 6 Oct 2026.
 - **Where:** the founder sections (the home page band with Johannes's portrait, and the story page's "Meet the bed" panel).
 - **Contrast:** Bone text on Fern is 9.6:1 (AAA). Clay stays the only action colour.
+- **Footer:** Ink (`--bj-ink`), a shade deeper than the kit's Charcoal, with Bone text (owner request, 6 Oct 2026).
 
 ## Logo
 

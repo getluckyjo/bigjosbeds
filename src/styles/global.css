@@ -179,6 +179,8 @@ fieldset.bj-fieldset legend.bj-h3 { font: 400 var(--bj-type-h3)/1.04 var(--bj-fo
 .bj-ref { font: 600 1rem/1.4 ui-monospace, monospace; letter-spacing: .04em; }
 
 /* Footer */
+/* Footer in Ink, a shade deeper than the kit's Charcoal (owner request, 6 Oct 2026). */
+.bj-footer { background: var(--bj-ink); }
 .bj-footer__grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 40px; }
 .bj-footer__links { display: grid; gap: 8px; align-content: start; }
 .bj-footer__links a { color: var(--bj-bone); text-decoration: none; }
@@ -316,16 +318,67 @@ fieldset.bj-fieldset legend.bj-h3 { font: 400 var(--bj-type-h3)/1.04 var(--bj-fo
   .bj-home-hero__figure img { aspect-ratio: 2.2; object-position: 50% 50%; }
 }
 
-/* Home FAQs and "Will it fit your room?", condensed into one section: the questions on the right,
-   and the room-fit card fills the space under the heading on the left. */
-.bj-home-faq { display: grid; gap: 32px; grid-template-areas: "title" "list" "fit"; }
-.bj-home-faq__title { grid-area: title; }
-.bj-home-faq__list { grid-area: list; }
-.bj-home-faq__fit { grid-area: fit; align-self: start; padding: clamp(24px, 3vw, 32px); background: var(--bj-paper); border: 1px solid var(--bj-line); border-radius: var(--bj-radius-card); }
-.bj-home-faq__fit h3 { font: 400 clamp(1.5rem, 2.4vw, 2rem)/1.15 var(--bj-font-display); }
-@media (min-width: 768px) {
-  .bj-home-faq { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "title list" "fit list"; column-gap: 48px; align-content: start; }
+/* Home "A few practical questions." and "Will it fit your room?": each heading sits with its own
+   content. Questions on the left; on the right a fit-check card with a plan of the mattress
+   (160 × 210 cm, drawn to scale) and the ways to ask. Stacked on small screens, card last. */
+.bj-h3 { font-size: var(--bj-type-h3); }
+.bj-home-help { display: grid; gap: 40px; align-items: start; }
+@media (min-width: 900px) {
+  .bj-home-help { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: clamp(48px, 6vw, 96px); }
 }
+.bj-fit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 28px 36px;
+  padding: clamp(24px, 3vw, 40px);
+  background: var(--bj-paper);
+  border: 1px solid var(--bj-line);
+  border-radius: var(--bj-radius-card);
+}
+.bj-fit__body { flex: 1 1 260px; }
+.bj-fit__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; }
+
+/* The plan: a top view of the mattress (pillows at the head end) with dimension lines. */
+.bj-fit-plan {
+  --bj-plan-w: 104px;
+  display: grid;
+  grid-template-columns: var(--bj-plan-w) auto;
+  grid-template-areas: "width ." "bed length";
+  gap: 10px 12px;
+  margin-inline: auto;
+  color: var(--bj-ink);
+  font-size: .8125rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.bj-fit-plan__bed {
+  grid-area: bed;
+  aspect-ratio: 160 / 210;
+  display: flex;
+  gap: 8%;
+  padding: 9% 10%;
+  background: var(--bj-bone);
+  border: 1.75px solid var(--bj-ink);
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 5px var(--bj-bone), inset 0 0 0 6.5px var(--bj-flax);
+}
+.bj-fit-plan__bed span { flex: 1; height: 15%; border: 1.5px solid var(--bj-muted); border-radius: 6px; }
+.bj-fit-plan__dim { position: relative; display: flex; align-items: center; justify-content: center; color: var(--bj-clay); }
+.bj-fit-plan__dim::before { content: ""; position: absolute; border: 0 solid currentColor; }
+.bj-fit-plan__dim span { position: relative; padding: 2px 6px; background: var(--bj-paper); color: var(--bj-ink); }
+.bj-fit-plan__dim--width { grid-area: width; height: 14px; border-inline: 1.75px solid currentColor; }
+.bj-fit-plan__dim--width::before { inset: 50% 0 auto; border-top-width: 1.75px; }
+.bj-fit-plan__dim--length {
+  grid-area: length;
+  padding-inline: 2px;
+  /* End ticks, short like the width line's. */
+  background:
+    linear-gradient(currentColor, currentColor) top center / 14px 1.75px no-repeat,
+    linear-gradient(currentColor, currentColor) bottom center / 14px 1.75px no-repeat;
+}
+.bj-fit-plan__dim--length::before { inset: 0 auto 0 50%; border-left-width: 1.75px; }
+@media (min-width: 1100px) { .bj-fit-plan { --bj-plan-w: 120px; } }
 
 /* Product page: the photos stay in view beside the (longer) buying column on wide screens, and
    the key specs sit in a compact two-column grid of tiles (label above value) instead of five

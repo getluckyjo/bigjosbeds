@@ -27,7 +27,9 @@ const home = copy.home;
 const homeHero = homeHeroFor(locale);
 const finishes = finishesFor(locale);
 const productPath = path(locale, 'product');
-const homeFaqs = copy.faqPage.items.filter((item) => ['size', 'who', 'feel'].includes(item.id));
+// The fit card answers "what size is it?" with the plan, so the questions beside it are the next ones people ask.
+const homeFaqs = ['who', 'feel', 'linen'].map((id) => copy.faqPage.items.find((item) => item.id === id)!);
+const sizeFact = home.facts[0];
 const setPrice = formatZar(getItem('set')!.priceCents);
 // Icons stand in for the deck's fact details (Width × length, Mattress feel, Made to order),
 // which stay available to screen readers.
@@ -139,18 +141,26 @@ const factIcons = ['size', 'layers', 'cape-town'] as const;
     </div>
   </section>
 
-  <section class="bj-container bj-section bj-home-faq">
-    <h2 class="bj-home-faq__title">{t.homeFaqTitle}</h2>
-    <div class="bj-home-faq__list bj-stack">
+  <section class="bj-container bj-section bj-home-help">
+    <div class="bj-home-help__faq bj-stack">
+      <h2>{t.homeFaqTitle}</h2>
       <FaqList items={homeFaqs} />
       <a class="bj-link-arrow" href={path(locale, 'faqs')}>{t.allFaqs}<Icon name="arrow-right" /></a>
     </div>
-    <div class="bj-home-faq__fit bj-stack" style="--bj-stack-gap:16px">
-      <h3>{home.closing.title}</h3>
-      <p>{home.closing.body}</p>
-      <div class="bj-row" style="gap:12px 24px">
-        <a class="bj-button" href={path(locale, 'contact')}>{home.closing.cta}</a>
-        {business.whatsapp && <a class="bj-icon-text" href={whatsappHref(commerce.whatsapp.prefill)}><Icon name="chat" />{commerce.whatsapp.productLink}</a>}
+
+    <div class="bj-fit" role="group" aria-labelledby="fit-title">
+      <div class="bj-fit-plan" role="img" aria-label={`${sizeFact.detail}: ${sizeFact.label}`}>
+        <span class="bj-fit-plan__dim bj-fit-plan__dim--width" aria-hidden="true"><span>160 cm</span></span>
+        <span class="bj-fit-plan__bed" aria-hidden="true"><span></span><span></span></span>
+        <span class="bj-fit-plan__dim bj-fit-plan__dim--length" aria-hidden="true"><span>210 cm</span></span>
+      </div>
+      <div class="bj-fit__body bj-stack" style="--bj-stack-gap:16px">
+        <h2 id="fit-title" class="bj-h3">{home.closing.title}</h2>
+        <p>{home.closing.body}</p>
+        <div class="bj-fit__actions">
+          <a class="bj-button" href={path(locale, 'contact')}>{home.closing.cta}</a>
+          {business.whatsapp && <a class="bj-icon-text" href={whatsappHref(commerce.whatsapp.prefill)}><Icon name="chat" />{commerce.whatsapp.productLink}</a>}
+        </div>
       </div>
     </div>
   </section>
