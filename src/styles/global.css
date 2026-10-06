@@ -42,11 +42,10 @@ main { display: block; }
 .bj-breadcrumb { font-size: .875rem; color: var(--bj-muted); }
 .bj-breadcrumb a { color: var(--bj-muted); }
 
-.bj-figure { margin: 0; }
+:where(.bj-figure) { margin: 0; } /* zero specificity so .bj-stack spacing still applies */
 .bj-figure picture, .bj-figure img { width: 100%; }
 .bj-figure img { aspect-ratio: 3 / 2; object-fit: cover; border-radius: var(--bj-radius-card); background: var(--bj-paper); }
 .bj-figure figcaption { margin-top: 12px; }
-.bj-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
 /* Finish- and item-dependent content. CSS :has() keeps image, price and names in sync
    without JavaScript; brand.js adds aria-live updates, alt text and URL syncing. */
@@ -73,6 +72,10 @@ main { display: block; }
 .bj-finish:has(input:focus-visible), .bj-option:has(input:focus-visible) { outline: 3px solid var(--bj-clay); outline-offset: 4px; }
 
 .bj-qty { width: 96px; }
+h2.bj-eyebrow, h3.bj-eyebrow { font-family: var(--bj-font-body); font-size: .75rem; letter-spacing: .15em; line-height: 1.4; }
+/* The kit's .bj-fieldset { margin: 0 } would otherwise cancel .bj-stack spacing. */
+.bj-stack > * + .bj-fieldset, .bj-stack > .bj-fieldset + * { margin-top: var(--bj-stack-gap, 24px); }
+form.bj-form > fieldset + fieldset { margin-top: 24px; }
 .bj-list { margin: 0; padding-left: 1.2em; }
 .bj-list li + li { margin-top: 4px; }
 .bj-buy { display: grid; gap: 16px; padding-top: 8px; }
@@ -122,5 +125,6 @@ fieldset.bj-fieldset legend.bj-h3 { font: 400 var(--bj-type-h3)/1.04 var(--bj-fo
 @media (max-width: 767px) {
   .bj-form-row, .bj-footer__grid { grid-template-columns: 1fr; }
   .bj-footer__grid { gap: 28px; }
-  .bj-detail-grid { gap: 8px; }
+  /* Keep buying controls near the top on phones: show the detail shot as a short strip. */
+  .bj-figure--detail img { aspect-ratio: 5 / 2; object-position: 50% 45%; }
 }

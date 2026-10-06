@@ -59,7 +59,7 @@ const jsonLd =
         }
         {
           finishes.map((finish) => (
-            <figure class="bj-figure" data-show-finish={finish.id}>
+            <figure class="bj-figure bj-figure--detail" data-show-finish={finish.id}>
               <ProductPicture name={finish.detailImage} alt={finish.detailAlt} sizes={imageSizes} />
             </figure>
           ))
@@ -154,14 +154,16 @@ const jsonLd =
           {specs.map((spec) => <div><dt>{spec.label}</dt><dd>{spec.value}</dd></div>)}
         </dl>
 
-        {
-          buying ? (
-            <a data-bj-enquiry-link href={`/contact?finish=${defaultFinish}`}>{commerce.product.askLink}</a>
-          ) : (
-            <div><a data-bj-enquiry-link class="bj-button" href={`/contact?finish=${defaultFinish}`}>{page.cta}</a></div>
-          )
-        }
-        <a href="#dimensions">{page.secondaryCta}</a>
+        <div class="bj-row" style="gap:12px 28px">
+          {
+            buying ? (
+              <a data-bj-enquiry-link href={`/contact?finish=${defaultFinish}`}>{commerce.product.askLink}</a>
+            ) : (
+              <a data-bj-enquiry-link class="bj-button" href={`/contact?finish=${defaultFinish}`}>{page.cta}</a>
+            )
+          }
+          <a href="#dimensions">{page.secondaryCta}</a>
+        </div>
       </div>
     </div>
   </section>

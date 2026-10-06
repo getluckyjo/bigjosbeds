@@ -4,7 +4,17 @@ import { isInDeliveryArea, normalisePostalCode } from './delivery';
 const text = (max: number) => z.string().trim().max(max);
 const required = (max: number, message: string) => text(max).min(1, message);
 
-export const checkoutSchema = z.object({
+/** Missing fields count as empty, so the friendly "Enter your …" messages always apply. */
+function form<T extends z.ZodRawShape>(shape: T) {
+  const keys = Object.keys(shape);
+  return z.preprocess((input) => {
+    const values: Record<string, unknown> = input && typeof input === 'object' ? { ...input } : {};
+    for (const key of keys) values[key] ??= '';
+    return values;
+  }, z.object(shape));
+}
+
+export const checkoutSchema = form({
   firstName: required(100, 'Enter your first name.'),
   lastName: required(100, 'Enter your last name.'),
   email: text(254).pipe(z.email('Enter an email address like name@example.com.')),
@@ -18,7 +28,7 @@ export const checkoutSchema = z.object({
 
 export type CheckoutInput = z.infer<typeof checkoutSchema>;
 
-export const enquirySchema = z.object({
+export const enquirySchema = form({
   name: required(100, 'Enter your name.'),
   email: text(254).pipe(z.email('Enter an email address like name@example.com.')),
   phone: text(30).optional().default(''),

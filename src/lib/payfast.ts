@@ -182,7 +182,12 @@ export async function isPayFastIp(ip: string, resolver: Resolver = resolve4, now
   const address = normaliseIp(ip);
   if (PAYFAST_ITN_RANGES.some((cidr) => ipInRange(address, cidr))) return true;
   if (!resolved || nowMs - resolved.at > 5 * 60_000) {
-    const lists = await Promise.all(PAYFAST_ITN_HOSTS.map((host) => resolver(host).catch(() => [] as string[])));
+    const lookup = (host: string) =>
+      Promise.race([
+        resolver(host),
+        new Promise<string[]>((resolve) => setTimeout(() => resolve([]), 3_000).unref?.()),
+      ]).catch(() => [] as string[]);
+    const lists = await Promise.all(PAYFAST_ITN_HOSTS.map(lookup));
     resolved = { at: nowMs, ips: new Set(lists.flat()) };
   }
   return resolved.ips.has(address);
