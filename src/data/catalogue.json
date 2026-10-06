@@ -75,9 +75,12 @@
     },
     "trial": {
       "days": 100,
+      "startsOn": "delivery",
+      "collection": "free",
+      "refund": "full",
       "publish": true,
-      "source": "Owner instruction 6 Oct 2026 (\"100 day trial returns no questions asked\").",
-      "openQuestions": "Full refund or less a collection fee? Who collects and at what cost? Does the 100 days start on delivery? How soon is the refund paid? Spell these out in src/content/policies/delivery-and-returns.md before going live."
+      "source": "Owner instruction 6 Oct 2026: \"100 day trial returns no questions asked\"; then \"full refund, we collect free, starts on delivery\".",
+      "openQuestions": "How soon refunds are paid, and whether an order can be cancelled before delivery."
     },
     "cottonCover": {
       "publish": false,

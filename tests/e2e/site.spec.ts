@@ -142,7 +142,8 @@ test('the trial and warranty show beside every buying decision', async ({ page }
 
   await page.goto('/faqs');
   await page.getByText('Can I try it at home first?').click();
-  await expect(page.getByText('Every bed comes with a 100-day trial.')).toBeVisible();
+  await expect(page.getByText('Every bed comes with a 100-day trial, starting on the day it’s delivered.')).toBeVisible();
+  await expect(page.getByText('We’ll collect it for free and give you a full refund')).toBeVisible();
   await page.getByText('Is there a warranty?').click();
   await expect(page.getByText('The mattress comes with a 20-year warranty.')).toBeVisible();
 });
@@ -162,4 +163,19 @@ test('our story tells the founder story with a readable length comparison', asyn
   const widths = await chart.locator('.bj-compare__bar').evaluateAll((bars) => bars.map((b) => b.getBoundingClientRect().width));
   expect(widths[2]).toBeGreaterThan(widths[1]);
   expect(widths[1]).toBeGreaterThan(widths[0]);
+});
+
+test('the approved delivery and returns policy is published and linked from the footer', async ({ page }) => {
+  const res = await page.goto('/policies/delivery-and-returns');
+  expect(res?.status()).toBe(200);
+  await expect(page.locator('h1')).toHaveText('Delivery and returns');
+  await expect(page.getByText('The trial starts on the day it’s delivered.')).toBeVisible();
+  await expect(page.getByText('We’ll refund the full amount you paid.')).toBeVisible();
+  await page.goto('/');
+  await expect(page.locator('footer a[href="/policies/delivery-and-returns"]')).toHaveText('Delivery and returns');
+});
+
+test('draft policies are never published', async ({ page }) => {
+  const res = await page.goto('/policies/drafts');
+  expect(res?.status()).toBe(404);
 });
