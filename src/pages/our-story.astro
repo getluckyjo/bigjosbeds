@@ -1,18 +1,38 @@
 ---
 import Base from '../layouts/Base.astro';
+import LengthComparison from '../components/LengthComparison.astro';
+import { Image } from 'astro:assets';
 import copy from '../content/copy.json';
 import { PRODUCT_PATH } from '../lib/site';
 
 const story = copy.ourStory;
+
+// Optional founder photo: drop a real photograph at src/assets/images/founder.(jpg|png|webp).
+// No generated portraits (brand/docs/08-authentic-content.md).
+const founderPhotos = import.meta.glob<{ default: ImageMetadata }>('../assets/images/founder.{jpg,jpeg,png,webp}', {
+  eager: true,
+});
+const founderPhoto = Object.values(founderPhotos)[0]?.default;
 ---
 
 <Base title={story.seo.title} description={story.seo.description}>
-  <section class="bj-container bj-section bj-stack bj-reading">
-    <span class="bj-eyebrow">About Big Jo’s</span>
+  <article class="bj-container bj-section bj-stack bj-reading">
+    <span class="bj-eyebrow">{story.eyebrow}</span>
     <h1>{story.title}</h1>
+    {
+      founderPhoto && (
+        <figure class="bj-founder-photo">
+          <Image src={founderPhoto} alt="Johannes le Roux, founder of Big Jo’s Beds" widths={[480, 800, 1200]} sizes="(min-width: 768px) 680px, 100vw" />
+        </figure>
+      )
+    }
+    <p class="bj-lead">{story.intro}</p>
     {story.paragraphs.map((p) => <p>{p}</p>)}
+    <LengthComparison {...story.comparison} />
+    {story.paragraphsAfter.map((p) => <p>{p}</p>)}
+    <p class="bj-signature"><strong>{story.signature}</strong><span>{story.signatureRole}</span></p>
     <hr class="bj-rule" />
     <p class="bj-lead">{story.closing}</p>
     <div><a class="bj-button" href={PRODUCT_PATH}>{story.cta}</a></div>
-  </section>
+  </article>
 </Base>
