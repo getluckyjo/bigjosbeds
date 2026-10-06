@@ -97,6 +97,7 @@ form.bj-form > fieldset + fieldset { margin-top: 24px; }
 .bj-assure { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: .875rem; color: var(--bj-muted); }
 .bj-assure li { display: flex; align-items: center; gap: 8px; }
 .bj-assure .bj-icon { width: 20px; height: 20px; color: var(--bj-ink); }
+.bj-assure--stacked { flex-direction: column; margin-top: 16px; }
 .bj-specs dt { display: flex; align-items: center; gap: 10px; }
 .bj-specs dt .bj-icon { width: 20px; height: 20px; color: var(--bj-clay); }
 .bj-mobile-menu summary { display: inline-flex; align-items: center; gap: 8px; }

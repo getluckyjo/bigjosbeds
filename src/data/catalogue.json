@@ -23,14 +23,18 @@
       "name": "Mattress only",
       "checkoutName": "Mattress only",
       "priceCents": 1999900,
-      "includes": ["The Big Jo’s 160 × 210 cm firm mattress"]
+      "includes": [
+        "The Big Jo’s 160 × 210 cm firm mattress"
+      ]
     },
     {
       "id": "base",
       "name": "Base only",
       "checkoutName": "Matching base only",
       "priceCents": 599900,
-      "includes": ["A heavy-duty 160 × 210 cm base"]
+      "includes": [
+        "A heavy-duty 160 × 210 cm base"
+      ]
     }
   ],
   "finishes": [
@@ -63,10 +67,17 @@
       "releaseWhen": "Owner approves wording and the supplier confirms the rating and its test basis in writing."
     },
     "warranty": {
-      "text": null,
-      "publish": false,
-      "source": "PBS quote QUO0010447 lists '20 year warranty' and '2 year guarantee' (supplier to Big Jo’s)",
-      "releaseWhen": "Owner sets Big Jo’s own customer warranty terms."
+      "years": 20,
+      "covers": "mattress",
+      "publish": true,
+      "source": "Owner instruction 6 Oct 2026 (\"20 year warranty\"). Backed by PBS quote QUO0010447, which lists \"20 year warranty\" and \"2 year guarantee\" on the mattress line only (nothing on the base).",
+      "openQuestions": "What the 20 years cover (defects, sagging, pro-rata?), how to claim, and whether the base is covered. Get PBS’s warranty terms in writing and publish them in a warranty policy."
+    },
+    "trial": {
+      "days": 100,
+      "publish": true,
+      "source": "Owner instruction 6 Oct 2026 (\"100 day trial returns no questions asked\").",
+      "openQuestions": "Full refund or less a collection fee? Who collects and at what cost? Does the 100 days start on delivery? How soon is the refund paid? Spell these out in src/content/policies/delivery-and-returns.md before going live."
     },
     "cottonCover": {
       "publish": false,

@@ -7,7 +7,7 @@ Read `README.md` for setup and the payment flow, and `brand/CLAUDE.md` for the d
 - Use the copy in `src/content/copy.json` verbatim (deck v1.1, plus v1.2 founder story from facts Johannes supplied: 2 m tall, 125 kg, a lifetime looking for a bed he fits on; "Big Jo" is his nickname and the brand is named after him). Don't add founder anecdotes beyond what he has supplied. New commerce wording goes in `src/content/commerce.json` and is a draft for owner review.
 - Never invent prices, reviews, warranty, trial or returns terms, delivery promises, certifications or contact details.
 - Prices live only in `src/data/catalogue.json`, in cents. Never trust a client-supplied amount.
-- Claims in `catalogue.json → claims` stay `publish: false` until the owner approves them: the 250 kg rating, warranty, cotton cover and 3–5 days.
+- Claims in `catalogue.json → claims` stay `publish: false` until the owner approves them: the 250 kg rating, cotton cover and 3–5 days. The owner approved the **20-year warranty** and the **100-day trial, returns no questions asked** on 6 Oct 2026. The supplier quote backs the warranty on the mattress only, so the copy says "mattress warranty". Their wording lives in `commerce.json → assurance` and the two FAQs in `faqExtra`. Don't add terms he hasn't given, such as refund amounts, collection, start date or what the warranty covers.
 - Never mark an order paid outside `processItn()` (`src/lib/itn.ts`). Every PayFast check must pass.
 - `/api/payfast/itn` is the only route exempt from the CSRF origin check in `src/middleware.ts`.
 - Images: `src/assets/images/` holds concept renders. The kit's own `bed-*.png` files and the renders in `reference/renders-not-used/` show a "BDDS" label typo; don't use them.

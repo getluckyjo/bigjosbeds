@@ -59,7 +59,7 @@ Set `COMMERCE_MODE` in the environment.
 
 | Path | What it is |
 |---|---|
-| `src/data/catalogue.json` | Items, **prices (in cents)**, finishes, image names, and unverified claims (all `publish: false`) |
+| `src/data/catalogue.json` | Items, **prices (in cents)**, finishes, image names, and claims with `publish` flags. The warranty and trial are on; the rest are off |
 | `src/config/business.json` | Business details for the footer and legal requirements; Cape Town postal-code ranges |
 | `src/content/copy.json` | Website copy v1.1, verbatim from the copy deck |
 | `src/content/commerce.json` | Checkout, order and email copy (draft for owner review) |
@@ -86,10 +86,10 @@ Set `COMMERCE_MODE` in the environment.
 
 ## Icons
 
-17 line icons drawn for this brand, following the kit's rule of one 1.5–2 px stroke family:
+19 line icons drawn for this brand, following the kit's rule of one 1.5–2 px stroke family:
 - **Style:** 24 × 24 grid, 1.75 stroke, round ends, no fills. They take the text colour, and Clay is used for accents.
 - **Product facts:** size, layers (firm), depth, cape-town (Table Mountain).
-- **Shopping:** price, delivery, secure, payment, check.
+- **Shopping:** price, delivery, secure, payment, check, returns (the 100-day trial), warranty.
 - **Status:** done, pending, alert, info.
 - **Navigation:** ask, menu, arrow-right, arrow-down.
 
@@ -108,12 +108,13 @@ They replace two-line "label + detail" copy: hero facts, specs, delivery and pay
 6. **Business details (ECTA section 43)** in `src/config/business.json`: legal name, registration number, physical address, email and phone.
 7. **Policies** as Markdown in `src/content/policies/`, each starting with `---\ntitle: …\n---`:
    - `terms-of-sale.md`
-   - `delivery-and-returns.md`, including your position on cancellations for made-to-order beds
+   - `delivery-and-returns.md`, including the 100-day trial: full or partial refund, who collects the bed and at what cost, when the 100 days start, and how soon refunds are paid
+   - `warranty.md`: what the 20-year mattress warranty covers and how to claim, based on PBS’s written terms. Say whether the base is covered (the PBS quote only lists the warranty on the mattress)
    - `privacy.md`, a POPIA notice
 8. **Decisions:**
    - Confirm the delivery postal-code ranges against PBS's 55 km zone.
    - Confirm the final product name.
-   - Decide whether to publish the 250 kg rating, warranty, cotton cover and production days. Each has a `publish` flag in `catalogue.json`.
+   - Decide whether to publish the 250 kg rating, cotton cover and production days. Each has a `publish` flag in `catalogue.json`. The 20-year mattress warranty and 100-day trial are published (owner approval, 6 Oct 2026).
    - Review the draft wording in `commerce.json`.
 9. **Founder photo:** done. Johannes's studio portrait is at `src/assets/images/founder.jpg`, cropped to 4:5 with the backdrop warmed toward the site's neutrals. The story page shows it beside the opening lines on wider screens and as a square under the heading on phones. To swap it, replace that file with another real photo (4:5 works best). A shot of him beside the actual bed would also work well on the home or product page later. Don't use a generated portrait.
 10. **Photos:** replace the concept renders in `src/assets/images/` with photos of the real bed, using the same file names, and update the alt text in `catalogue.json`.

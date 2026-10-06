@@ -7,7 +7,7 @@ import copy from '../content/copy.json';
 import commerce from '../content/commerce.json';
 import { finishes, getItem } from '../lib/catalogue';
 import { canBuy } from '../lib/config';
-import { imageCaption } from '../lib/content';
+import { assurances, imageCaption } from '../lib/content';
 import { fill, formatZar } from '../lib/money';
 import { PRODUCT_PATH } from '../lib/site';
 
@@ -42,9 +42,10 @@ const factIcons = ['size', 'layers', 'cape-town'] as const;
       </ul>
       {
         canBuy() && (
-          <ul class="bj-facts" aria-label="Price and delivery">
+          <ul class="bj-facts" aria-label="Buying details">
             <li><Icon name="price" />{fill(commerce.hero.priceFact, { price: setPrice })}</li>
             <li><Icon name="delivery" />{commerce.hero.deliveryFact}</li>
+            {assurances().map((a) => <li><Icon name={a.icon} />{a.short}</li>)}
           </ul>
         )
       }
