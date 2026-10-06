@@ -44,13 +44,13 @@ We deliver within our Cape Town delivery area. Checkout checks your postal code.
 
 ## Cancelling before delivery
 
-**[TO CONFIRM: can an order be cancelled after payment but before delivery? If so, by when, and is the refund full?]**
+You can cancel your order at any time before your bed is delivered. We’ll refund the full amount you paid within 30 days.
 
 ## 100-day trial and returns
 
 Every bed comes with a 100-day trial, starting on the day it’s delivered. If it’s not right for you, let us know within those 100 days. We’ll collect it free of charge and refund the full amount you paid, no questions asked.
 
-We’ll pay your refund within **[TO CONFIRM: number of days]** of collecting the bed, **[TO CONFIRM: how, for example back to your card through PayFast, or by EFT to your bank account]**.
+We’ll pay your refund within 30 days of collecting the bed, **[TO CONFIRM: how, for example back to your card through PayFast, or by EFT to your bank account]**.
 
 See our [delivery and returns policy](/policies/delivery-and-returns) for how to start a return.
 
