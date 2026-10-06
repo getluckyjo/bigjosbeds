@@ -12,7 +12,8 @@
     "check": "astro check",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "check:brand": "node brand/scripts/check.mjs"
+    "check:brand": "node brand/scripts/check.mjs",
+    "icons": "node scripts/export-icons.mjs"
   },
   "dependencies": {
     "@astrojs/vercel": "^11.0.11",

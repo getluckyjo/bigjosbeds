@@ -74,7 +74,8 @@ test('checkout explains errors and focuses the summary', async ({ page }) => {
   await page.getByRole('button', { name: /Pay R24,999/ }).click();
   const summary = page.getByRole('alert');
   await expect(summary).toBeFocused();
-  await expect(summary).toContainText('Enter your first name.');
+  await expect(summary.getByRole('link', { name: 'First name' })).toHaveAttribute('href', '#co-firstName');
+  await expect(page.locator('#co-firstName-error')).toHaveText('Enter your first name.');
   await expect(page.getByLabel('First name')).toHaveAttribute('aria-invalid', 'true');
   await expect(page.getByLabel('First name')).toHaveAttribute('aria-describedby', 'co-firstName-error');
 });
@@ -118,7 +119,8 @@ test.describe('contact form', () => {
     await page.goto('/contact?finish=charcoal');
     await expect(page.getByLabel('Which finish are you interested in?')).toHaveValue('charcoal');
     await page.getByRole('button', { name: 'Send enquiry' }).click();
-    await expect(page.getByRole('alert')).toContainText('Enter your name.');
+    await expect(page.getByRole('alert').getByRole('link', { name: 'Your name' })).toBeVisible();
+    await expect(page.locator('#en-name-error')).toHaveText('Enter your name.');
     await expect(page.getByLabel('Your name')).toHaveAttribute('aria-invalid', 'true');
 
     await page.getByLabel('Your name').fill('Sam');

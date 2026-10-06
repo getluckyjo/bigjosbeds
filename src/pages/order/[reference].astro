@@ -5,6 +5,7 @@
  */
 export const prerender = false;
 
+import Icon from '../../components/Icon.astro';
 import Base from '../../layouts/Base.astro';
 import commerce from '../../content/commerce.json';
 import { fill, formatZar } from '../../lib/money';
@@ -51,12 +52,14 @@ const state = !order
         <>
           {state === 'paid' && (
             <div class="bj-stack" role="status">
+              <Icon name="done" class="bj-status-icon bj-status-icon--done" />
               <h1>{o.paidTitle}</h1>
               <p class="bj-lead">{fill(o.paidBody, { email: order.email })}</p>
             </div>
           )}
           {state === 'pending' && (
             <div class="bj-stack" role="status">
+              <Icon name="pending" class="bj-status-icon" />
               <h1>{o.pendingTitle}</h1>
               <p class="bj-lead">{o.pendingBody}</p>
               <div><a class="bj-button bj-button--secondary" href={Astro.url.pathname + Astro.url.search}>{o.refresh}</a></div>
@@ -64,6 +67,7 @@ const state = !order
           )}
           {state === 'review' && (
             <div class="bj-stack" role="status">
+              <Icon name="alert" class="bj-status-icon" />
               <h1>{o.problemTitle}</h1>
               <p class="bj-lead">{o.problemBody}</p>
             </div>

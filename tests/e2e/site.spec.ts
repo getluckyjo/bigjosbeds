@@ -79,9 +79,9 @@ test.describe('product configurator', () => {
   test('query string preselects finish and item, and the price follows the item', async ({ page }) => {
     await page.goto('/beds/big-jos-bed?finish=charcoal&item=base');
     await expect(page.getByLabel('Charcoal')).toBeChecked();
-    await expect(page.locator('.bj-price span:visible')).toHaveText('R5,999');
+    await expect(page.locator('.bj-price > span:visible')).toContainText('R5,999');
     await page.getByLabel(/Mattress only/).check();
-    await expect(page.locator('.bj-price span:visible')).toHaveText('R19,999');
+    await expect(page.locator('.bj-price > span:visible')).toContainText('R19,999');
     await expect(page.locator('ul[data-show-item="mattress"]')).toBeVisible();
     await expect(page.locator('ul[data-show-item="set"]')).toBeHidden();
   });
@@ -111,4 +111,17 @@ test('reduced motion turns off smooth scrolling', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
   expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe('auto');
+});
+
+test('icons are decorative and every fact keeps readable text', async ({ page }) => {
+  await page.goto('/');
+  const icons = page.locator('svg.bj-icon');
+  expect(await icons.count()).toBeGreaterThan(5);
+  expect(await page.locator('svg.bj-icon:not([aria-hidden="true"])').count()).toBe(0);
+  const facts = page.getByRole('list', { name: 'Quick facts' });
+  await expect(facts).toContainText('160 × 210 cm');
+  await expect(facts).toContainText('Width × length'); // screen-reader detail from the copy deck
+  const commerce = page.getByRole('list', { name: 'Price and delivery' });
+  await expect(commerce).toContainText('R24,999 with base');
+  await expect(commerce).toContainText('Free Cape Town delivery');
 });

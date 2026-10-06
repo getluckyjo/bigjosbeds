@@ -66,6 +66,7 @@ Set `COMMERCE_MODE` in the environment.
 | `src/content/policies/*.md` | Policy pages. A file becomes a page and a footer link. No file, no page |
 | `src/lib/payfast.ts`, `src/lib/itn.ts` | PayFast signing and ITN verification |
 | `supabase/migrations/0001_init.sql` | `orders` and `enquiries` tables (RLS on) and an `orders_to_make` view |
+| `src/data/icons.json` | The Big Jo’s line icons (see "Icons" below) |
 | `brand/` | The design kit, unchanged. `src/styles/brand.css` is a copy with font and pattern paths adjusted |
 | `reference/` | Supplier quote, voice notes, competitor photo and rejected renders. Never built (see its README) |
 
@@ -82,6 +83,20 @@ Set `COMMERCE_MODE` in the environment.
 2. **Let PayFast reach the site.** Vercel → Project → Settings → Deployment Protection: set Vercel Authentication to "Only Preview Deployments" or turn it off while you test. PayFast's notification is a server call, so it can't log in to Vercel. A custom production domain is never protected.
 3. **Redeploy** from the Vercel dashboard (or push any commit).
 4. **Buy a bed** on the deployment URL using the PayFast sandbox test buyer. The order should turn **paid** in the `orders` table. Emails start once Resend is configured.
+
+## Icons
+
+17 line icons drawn for this brand, following the kit's rule of one 1.5–2 px stroke family:
+- **Style:** 24 × 24 grid, 1.75 stroke, round ends, no fills. They take the text colour, and Clay is used for accents.
+- **Product facts:** size, layers (firm), depth, cape-town (Table Mountain).
+- **Shopping:** price, delivery, secure, payment, check.
+- **Status:** done, pending, alert, info.
+- **Navigation:** ask, menu, arrow-right, arrow-down.
+
+They replace two-line "label + detail" copy: hero facts, specs, delivery and payment notes, error and status messages. The deck's detail text stays in the page for screen readers.
+
+- On the site: `<Icon name="delivery" />` (`src/components/Icon.astro`). Icons are hidden from screen readers, so always pair one with text.
+- Elsewhere (packaging, socials, Figma): standalone SVGs in `public/icons/`. Regenerate them with `npm run icons` after editing `src/data/icons.json`.
 
 ## Go live: what is still needed
 

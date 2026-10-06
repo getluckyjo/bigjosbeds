@@ -1,6 +1,7 @@
 ---
 export const prerender = false;
 
+import Icon from '../../components/Icon.astro';
 import Base from '../../layouts/Base.astro';
 import Field from '../../components/Field.astro';
 import ProductPicture from '../../components/ProductPicture.astro';
@@ -115,23 +116,30 @@ const enquiryHref = `/contact?${new URLSearchParams({ finish: selection?.finish.
           <form class="bj-form" method="post" action="/checkout" novalidate data-bj-busy>
             {errorList.length > 0 && (
               <div class="bj-alert" role="alert" tabindex="-1" data-bj-focus>
-                <h2>{c.errorSummary}</h2>
-                <ul class="bj-list">
-                  {errorList.map(([field, message]) => (
-                    <li><a href={`#co-${field}`}>{fieldLabels[field] ?? field}: {message}</a></li>
-                  ))}
-                </ul>
+                <Icon name="alert" />
+                <div class="bj-alert__body">
+                  <h2>{c.errorSummary}</h2>
+                  <ul class="bj-list">
+                    {errorList.map(([field]) => (
+                      <li><a href={`#co-${field}`}>{fieldLabels[field] ?? field}</a></li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             )}
             {outOfArea && (
               <div class="bj-alert" role="alert" tabindex="-1" data-bj-focus>
-                <h2>{c.outOfAreaTitle}</h2>
-                <p>{c.outOfAreaBody}</p>
-                <p><a href={enquiryHref}>{c.outOfAreaCta}</a></p>
+                <Icon name="delivery" />
+                <div class="bj-alert__body">
+                  <h2>{c.outOfAreaTitle}</h2>
+                  <p>{c.outOfAreaBody}</p>
+                  <p><a class="bj-link-arrow" href={enquiryHref}>{c.outOfAreaCta}<Icon name="arrow-right" /></a></p>
+                </div>
               </div>
             )}
             {startError && (
               <div class="bj-alert" role="alert" tabindex="-1" data-bj-focus>
+                <Icon name="alert" />
                 <p>{c.startError}</p>
               </div>
             )}
@@ -196,7 +204,7 @@ const enquiryHref = `/contact?${new URLSearchParams({ finish: selection?.finish.
               <button class="bj-button" type="submit" data-busy-label={c.paying} data-label={fill(c.payButton, { amount: formatZar(total) })}>
                 {fill(c.payButton, { amount: formatZar(total) })}
               </button>
-              <p class="bj-small bj-muted">{c.payNote}</p>
+              <p class="bj-note"><Icon name="secure" />{c.payNote}</p>
             </div>
           </form>
 
@@ -213,7 +221,7 @@ const enquiryHref = `/contact?${new URLSearchParams({ finish: selection?.finish.
             </div>
             <dl class="bj-totals">
               <div><dt>{selection.item.name}{selection.quantity > 1 ? ` × ${selection.quantity}` : ''}</dt><dd>{formatZar(selection.item.priceCents * selection.quantity)}</dd></div>
-              <div><dt>{c.deliveryIncluded}</dt><dd>{deliveryFeeCents === 0 ? c.free : formatZar(deliveryFeeCents)}</dd></div>
+              <div><dt class="bj-icon-text"><Icon name="delivery" />{c.deliveryIncluded}</dt><dd>{deliveryFeeCents === 0 ? c.free : formatZar(deliveryFeeCents)}</dd></div>
               <div class="bj-totals__total"><dt>{c.total}</dt><dd>{formatZar(total)}</dd></div>
             </dl>
           </aside>

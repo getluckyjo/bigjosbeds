@@ -1,6 +1,7 @@
 ---
 export const prerender = false;
 
+import Icon from '../../components/Icon.astro';
 import Base from '../../layouts/Base.astro';
 import commerce from '../../content/commerce.json';
 import { parseSelection, selectionQuery } from '../../lib/catalogue';
@@ -14,6 +15,7 @@ const askHref = `/contact?finish=${selection?.finish.id ?? 'unsure'}`;
 
 <Base title={c.seoTitle} noindex>
   <section class="bj-container bj-section bj-stack bj-reading">
+    <Icon name="info" class="bj-status-icon" />
     <h1>{c.title}</h1>
     <p class="bj-lead">{c.body}</p>
     {selection && <p>{selection.item.checkoutName}, {selection.finish.name}. Quantity {selection.quantity}.</p>}

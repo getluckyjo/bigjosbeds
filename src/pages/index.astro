@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import ProductPicture from '../components/ProductPicture.astro';
 import FaqList from '../components/FaqList.astro';
+import Icon from '../components/Icon.astro';
 import copy from '../content/copy.json';
 import commerce from '../content/commerce.json';
 import { finishes, getItem } from '../lib/catalogue';
@@ -14,6 +15,9 @@ const home = copy.home;
 const homeFaqs = copy.faqPage.items.filter((item) => ['size', 'who', 'feel'].includes(item.id));
 const setPrice = formatZar(getItem('set')!.priceCents);
 const flax = finishes.find((f) => f.id === 'flax')!;
+// Icons stand in for the deck's fact details (Width × length, Mattress feel, Made to order),
+// which stay available to screen readers.
+const factIcons = ['size', 'layers', 'cape-town'] as const;
 ---
 
 <Base title={home.seo.title} description={home.seo.description}>
@@ -27,9 +31,23 @@ const flax = finishes.find((f) => f.id === 'flax')!;
         <a class="bj-button bj-button--secondary" href={home.hero.secondaryCta.href}>{home.hero.secondaryCta.label}</a>
       </div>
       <ul class="bj-facts" aria-label="Quick facts">
-        {home.facts.map((fact) => <li><strong>{fact.label}</strong><span>{fact.detail}</span></li>)}
+        {
+          home.facts.map((fact, i) => (
+            <li>
+              <Icon name={factIcons[i]} />
+              <span><span class="bj-sr-only">{fact.detail}: </span>{fact.label}</span>
+            </li>
+          ))
+        }
       </ul>
-      {canBuy() && <p class="bj-hero__price">{fill(commerce.hero.priceLine, { price: setPrice })}</p>}
+      {
+        canBuy() && (
+          <ul class="bj-facts" aria-label="Price and delivery">
+            <li><Icon name="price" />{fill(commerce.hero.priceFact, { price: setPrice })}</li>
+            <li><Icon name="delivery" />{commerce.hero.deliveryFact}</li>
+          </ul>
+        )
+      }
     </div>
     <figure class="bj-figure bj-stack" style="--bj-stack-gap:12px">
       <ProductPicture name={flax.image} alt={flax.alt} sizes="(min-width: 768px) 56vw, 100vw" eager />
@@ -41,7 +59,6 @@ const flax = finishes.find((f) => f.id === 'flax')!;
     <h2>{home.introduction.title}</h2>
     <div class="bj-stack">
       {home.introduction.paragraphs.map((p) => <p>{p}</p>)}
-      <p><strong>{home.facts.map((f) => f.label).join(' · ')}</strong></p>
     </div>
   </section>
 
@@ -59,7 +76,7 @@ const flax = finishes.find((f) => f.id === 'flax')!;
               <ProductPicture name={finish.image} alt={finish.alt} sizes="(min-width: 768px) 45vw, 100vw" class="bj-product-image" />
               <h3>{item.name}</h3>
               <p>{item.body}</p>
-              <a href={`${PRODUCT_PATH}?finish=${item.id}`}>{item.cta}</a>
+              <a class="bj-link-arrow" href={`${PRODUCT_PATH}?finish=${item.id}`}>{item.cta}<Icon name="arrow-right" /></a>
             </article>
           );
         })
@@ -71,7 +88,7 @@ const flax = finishes.find((f) => f.id === 'flax')!;
     <h2>{home.construction.title}</h2>
     <div class="bj-stack">
       <p>{home.construction.body}</p>
-      <a href={`${PRODUCT_PATH}#construction`}>{home.construction.cta}</a>
+      <a class="bj-link-arrow" href={`${PRODUCT_PATH}#construction`}>{home.construction.cta}<Icon name="arrow-right" /></a>
     </div>
   </section>
 
@@ -80,7 +97,7 @@ const flax = finishes.find((f) => f.id === 'flax')!;
       <h2>{home.story.title}</h2>
       <div class="bj-stack">
         <p>{home.story.body}</p>
-        <a href="/our-story">{home.story.cta}</a>
+        <a class="bj-link-arrow" href="/our-story">{home.story.cta}<Icon name="arrow-right" /></a>
       </div>
     </div>
   </section>
@@ -89,7 +106,7 @@ const flax = finishes.find((f) => f.id === 'flax')!;
     <h2>A few practical questions.</h2>
     <div class="bj-stack">
       <FaqList items={homeFaqs} />
-      <a href="/faqs">All FAQs</a>
+      <a class="bj-link-arrow" href="/faqs">All FAQs<Icon name="arrow-right" /></a>
     </div>
   </section>
 

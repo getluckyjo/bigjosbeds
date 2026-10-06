@@ -1,6 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
 import ProductPicture from '../../components/ProductPicture.astro';
+import Icon from '../../components/Icon.astro';
+import type { IconName } from '../../lib/icons';
 import copy from '../../content/copy.json';
 import commerce from '../../content/commerce.json';
 import { business } from '../../lib/business';
@@ -14,12 +16,14 @@ const buying = canBuy();
 const initialFinish = finishes.find((f) => f.id === defaultFinish)!;
 const imageSizes = '(min-width: 1100px) 56vw, (min-width: 768px) 50vw, 100vw';
 
-const specs = [
-  { label: 'Width × length', value: '160 × 210 cm' },
-  { label: 'Approximate depth', value: '25 cm' },
-  { label: 'Feel', value: 'Firm' },
-  ...(claims.loadRating.publish ? [{ label: 'Rated for', value: `Up to ${claims.loadRating.kgPerPerson} kg per person` }] : []),
-  { label: 'Made in', value: 'Cape Town' },
+const specs: { icon: IconName; label: string; value: string }[] = [
+  { icon: 'size', label: 'Width × length', value: '160 × 210 cm' },
+  { icon: 'depth', label: 'Approximate depth', value: '25 cm' },
+  { icon: 'layers', label: 'Feel', value: 'Firm' },
+  ...(claims.loadRating.publish
+    ? [{ icon: 'layers' as IconName, label: 'Rated for', value: `Up to ${claims.loadRating.kgPerPerson} kg per person` }]
+    : []),
+  { icon: 'cape-town', label: 'Made in', value: 'Cape Town' },
 ];
 
 // Product structured data only once real prices are live (docs/04: no offer data before then).
@@ -76,16 +80,12 @@ const jsonLd =
             <div>
               <p class="bj-price">
                 {items.map((item) => (
-                  <span data-show-item={item.id}>{formatZar(item.priceCents)}</span>
+                  <span data-show-item={item.id}>
+                    {formatZar(item.priceCents)}<span class="bj-sr-only"> for {item.name.toLowerCase()}</span>
+                  </span>
                 ))}
               </p>
-              <p class="bj-price-note">
-                {items.map((item) => (
-                  <span data-show-item={item.id}>{item.name}. </span>
-                ))}
-                {business.vatRegistered && <>{commerce.product.vatIncluded} </>}
-                {commerce.product.delivery}
-              </p>
+              {business.vatRegistered && <p class="bj-small bj-muted">{commerce.product.vatIncluded}</p>}
             </div>
           )
         }
@@ -105,7 +105,7 @@ const jsonLd =
               }
             </div>
           </fieldset>
-          <p class="bj-small" aria-live="polite">Selected finish: <strong data-bj-finish-name>{initialFinish.name}</strong></p>
+          <p class="bj-sr-only" aria-live="polite">Selected finish: <span data-bj-finish-name>{initialFinish.name}</span></p>
 
           {
             buying && (
@@ -135,15 +135,19 @@ const jsonLd =
                 <div class="bj-stack" style="--bj-stack-gap:8px">
                   <h2 class="bj-eyebrow">{commerce.product.includedTitle}</h2>
                   {items.map((item) => (
-                    <ul class="bj-list" data-show-item={item.id}>
-                      {item.includes.map((line) => <li>{line}</li>)}
+                    <ul class="bj-checklist" data-show-item={item.id}>
+                      {item.includes.map((line) => <li><Icon name="check" />{line}</li>)}
                     </ul>
                   ))}
-                  <p class="bj-small bj-muted">{commerce.product.notIncluded}</p>
+                  <p class="bj-note"><Icon name="info" />{commerce.product.notIncluded}</p>
                 </div>
 
                 <div class="bj-buy">
                   <button class="bj-button" type="submit">{commerce.product.buyCta}</button>
+                  <ul class="bj-assure">
+                    <li><Icon name="delivery" />{commerce.product.delivery}</li>
+                    <li><Icon name="secure" />{commerce.product.payment}</li>
+                  </ul>
                 </div>
               </>
             )
@@ -151,18 +155,18 @@ const jsonLd =
         </form>
 
         <dl class="bj-specs">
-          {specs.map((spec) => <div><dt>{spec.label}</dt><dd>{spec.value}</dd></div>)}
+          {specs.map((spec) => <div><dt><Icon name={spec.icon} />{spec.label}</dt><dd>{spec.value}</dd></div>)}
         </dl>
 
         <div class="bj-row" style="gap:12px 28px">
           {
             buying ? (
-              <a data-bj-enquiry-link href={`/contact?finish=${defaultFinish}`}>{commerce.product.askLink}</a>
+              <a data-bj-enquiry-link class="bj-icon-text" href={`/contact?finish=${defaultFinish}`}><Icon name="ask" />{commerce.product.askLink}</a>
             ) : (
               <a data-bj-enquiry-link class="bj-button" href={`/contact?finish=${defaultFinish}`}>{page.cta}</a>
             )
           }
-          <a href="#dimensions">{page.secondaryCta}</a>
+          <a class="bj-icon-text" href="#dimensions"><Icon name="arrow-down" />{page.secondaryCta}</a>
         </div>
       </div>
     </div>

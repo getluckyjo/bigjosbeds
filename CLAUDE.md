@@ -12,6 +12,7 @@ Read `README.md` for setup and the payment flow, and `brand/CLAUDE.md` for the d
 - `/api/payfast/itn` is the only route exempt from the CSRF origin check in `src/middleware.ts`.
 - Images: `src/assets/images/` holds concept renders. The kit's own `bed-*.png` files and the renders in `reference/renders-not-used/` show a "BDDS" label typo; don't use them.
 - `reference/` is source material only. Never import or publish from it.
+- Icons: use `src/components/Icon.astro` with names from `src/data/icons.json`. They follow one stroke family: 24 grid, 1.75 stroke, round caps, no fills. Always pair an icon with visible or `bj-sr-only` text. No emoji and no third-party icon sets. Run `npm run icons` after changing the set.
 
 ## Commands
 `npm run dev` · `npm test` · `npm run test:e2e` · `npm run build` (runs the launch check and `astro check` first)

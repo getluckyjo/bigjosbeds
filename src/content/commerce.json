@@ -7,17 +7,20 @@
     "faqProductionAnswer": "We make each bed to order in Cape Town. After you pay, we’ll confirm the production time by email and arrange a delivery date with you."
   },
   "hero": {
-    "priceLine": "Mattress and base {price} · Free delivery in Cape Town"
+    "priceFact": "{price} with base",
+    "priceFactSr": "Mattress and matching base:",
+    "deliveryFact": "Free Cape Town delivery"
   },
   "product": {
     "itemLegend": "Choose what you need",
     "quantityLabel": "Quantity",
     "includedTitle": "What’s included",
-    "notIncluded": "The pillows, bedside table and other items in the photos are styling only and aren’t included.",
-    "delivery": "Free delivery in Cape Town. Outside Cape Town? Ask us first.",
+    "notIncluded": "Pillows, bedside table and room styling aren’t included.",
+    "delivery": "Free delivery in Cape Town",
     "buyCta": "Buy now",
     "askLink": "Ask about this bed",
-    "vatIncluded": "Price includes VAT."
+    "vatIncluded": "Price includes VAT.",
+    "payment": "Instant EFT, Capitec Pay or card"
   },
   "faqExtra": [
     {
@@ -60,7 +63,7 @@
     "termsLinkText": "terms of sale",
     "payButton": "Pay {amount} with PayFast",
     "paying": "Taking you to PayFast…",
-    "payNote": "You’ll pay securely on PayFast by Instant EFT, Capitec Pay or card. We never see your card or banking details.",
+    "payNote": "Pay securely on PayFast by Instant EFT, Capitec Pay or card. We never see your card or banking details.",
     "errorSummary": "Please check the highlighted details.",
     "outOfAreaTitle": "We deliver in Cape Town for now.",
     "outOfAreaBody": "That postal code looks like it’s outside our delivery area. Send us an enquiry with your town and we’ll let you know what’s possible.",
