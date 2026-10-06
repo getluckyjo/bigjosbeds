@@ -108,7 +108,7 @@ They replace two-line "label + detail" copy: hero facts, specs, delivery and pay
 6. **Business details (ECTA section 43)** in `src/config/business.json`: legal name, registration number, physical address, email and phone.
 7. **Policies** as Markdown in `src/content/policies/`, each starting with `---\ntitle: …\n---`:
    - `terms-of-sale.md`
-   - `delivery-and-returns.md`, including the 100-day trial: full or partial refund, who collects the bed and at what cost, when the 100 days start, and how soon refunds are paid
+   - `delivery-and-returns.md`: **drafted** in `src/content/policies/drafts/` (unpublished). It covers delivery and the 100-day trial: the trial starts on delivery, collection is free and the refund is full. Still to add: how soon refunds are paid, and whether an order can be cancelled before delivery. Approve it by moving the file up into `src/content/policies/`
    - `warranty.md`: what the 20-year mattress warranty covers and how to claim, based on PBS’s written terms. Say whether the base is covered (the PBS quote only lists the warranty on the mattress)
    - `privacy.md`, a POPIA notice
 8. **Decisions:**
