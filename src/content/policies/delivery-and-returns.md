@@ -25,6 +25,10 @@ To start a return, [contact us](/contact) with your order reference.
 
 You can cancel your order at any time before your bed is delivered. [Contact us](/contact) with your order reference, and we’ll refund the full amount you paid within 30 days.
 
+## How refunds are paid
+
+We refund through PayFast. If you paid by credit or cheque card, the money goes back to that card. If you paid another way, such as Instant EFT, Capitec Pay or a debit card, PayFast pays the refund into your bank account, so we’ll ask you for your bank details.
+
 ## Your rights
 
 This policy is in addition to your rights under the Consumer Protection Act.

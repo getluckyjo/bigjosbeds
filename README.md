@@ -84,6 +84,15 @@ Set `COMMERCE_MODE` in the environment.
 3. **Redeploy** from the Vercel dashboard (or push any commit).
 4. **Buy a bed** on the deployment URL using the PayFast sandbox test buyer. The order should turn **paid** in the `orders` table. Emails start once Resend is configured.
 
+## Logo
+
+`public/logos/big-jos-primary.svg` is the master logo: Johannes's refined vector version, supplied 6 Oct 2026, with a Clay wordmark and an Ink "BEDS". Use it for everything: the site, emails, packaging, socials and print.
+
+- **Variants:** `big-jos-bone.svg` (for dark backgrounds, used in the footer), `big-jos-clay.svg` and `big-jos-ink.svg` are generated from the master by `npm run logos`. Re-run it whenever the master changes.
+- **Favicon:** `public/favicon.svg` is the logo's own "J" in Bone on a Clay tile.
+- **On the site:** shown at 190 × 64 px (150 px wide on phones).
+- **Superseded:** the kit's logos in `brand/assets/logos/` are the older pixel-traced versions. Don't use them.
+
 ## Icons
 
 20 line icons drawn for this brand, following the kit's rule of one 1.5–2 px stroke family:
@@ -107,8 +116,8 @@ They replace two-line "label + detail" copy: hero facts, specs, delivery and pay
 5. **Domain:** connect it in Vercel and set `PUBLIC_SITE_URL`.
 6. **Business details (ECTA section 43)** in `src/config/business.json`: legal name, registration number, physical address and email. The phone is set: +27 60 961 5091, which is also the WhatsApp number.
 7. **Policies** as Markdown in `src/content/policies/`, each starting with `---\ntitle: …\n---`:
-   - `terms-of-sale.md`: **drafted** in `src/content/policies/drafts/`. Fill in its `[TO CONFIRM: …]` gaps (legal details, VAT, delivery-day needs, refund method, warranty cover), then move it up a folder
-   - `delivery-and-returns.md`: **published** (owner approved, 6 Oct 2026). It covers delivery and the 100-day trial: the trial starts on delivery, collection is free and the refund is full. It also covers refunds within 30 days and cancellation any time before delivery
+   - `terms-of-sale.md`: **drafted** in `src/content/policies/drafts/`. Fill in its `[TO CONFIRM: …]` gaps (legal details, VAT, delivery-day needs, warranty cover), then move it up a folder
+   - `delivery-and-returns.md`: **published** (owner approved, 6 Oct 2026). It covers delivery and the 100-day trial: the trial starts on delivery, collection is free and the refund is full. It also covers refunds within 30 days, cancellation any time before delivery, and how refunds are paid through PayFast
    - `warranty.md`: what the 20-year mattress warranty covers and how to claim, based on PBS’s written terms. Say whether the base is covered (the PBS quote only lists the warranty on the mattress)
    - `privacy.md`: **drafted** POPIA notice in `src/content/policies/drafts/`, written from the site's real data flows (checkout, enquiries, PayFast, Supabase, Vercel, Resend, WhatsApp). Gaps: legal details, Information Officer, the bed maker's name, provider data agreements, retention periods.
    - The build refuses any published policy that still contains `TO CONFIRM`
