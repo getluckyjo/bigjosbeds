@@ -45,11 +45,13 @@ export function payfastConfig(env: Env = process.env): PayFastConfig {
       passphrase: PAYFAST_PASSPHRASE,
     };
   }
+  // Sandbox never uses the live PAYFAST_MERCHANT_* values, so live credentials can sit in the
+  // environment ahead of launch. A private sandbox merchant can be set with PAYFAST_SANDBOX_*.
   return {
     host: 'sandbox.payfast.co.za',
-    merchantId: env.PAYFAST_MERCHANT_ID || PAYFAST_SANDBOX.merchantId,
-    merchantKey: env.PAYFAST_MERCHANT_KEY || PAYFAST_SANDBOX.merchantKey,
-    passphrase: env.PAYFAST_PASSPHRASE || PAYFAST_SANDBOX.passphrase,
+    merchantId: env.PAYFAST_SANDBOX_MERCHANT_ID || PAYFAST_SANDBOX.merchantId,
+    merchantKey: env.PAYFAST_SANDBOX_MERCHANT_KEY || PAYFAST_SANDBOX.merchantKey,
+    passphrase: env.PAYFAST_SANDBOX_PASSPHRASE || PAYFAST_SANDBOX.passphrase,
   };
 }
 

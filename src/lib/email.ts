@@ -64,10 +64,12 @@ function address(order: Order): string {
   return [order.street, order.suburb, `${order.city} ${order.postalCode}`].join('\n');
 }
 
-export function customerConfirmation(order: Order): Message {
+export function customerConfirmation(order: Order, env: NodeJS.ProcessEnv = process.env): Message {
   const e = commerce.email;
   return {
     to: order.email,
+    // Customer replies go to the owner, not the no-reply sending address.
+    replyTo: emailConfig(env).ownerEmail ?? undefined,
     subject: fill(e.customerSubject, { reference: order.reference }),
     text: [
       `Hi ${order.firstName},`,

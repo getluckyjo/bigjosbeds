@@ -69,6 +69,15 @@ describe('config', () => {
     expect(live.host).toBe('www.payfast.co.za');
   });
 
+  it('never sends live credentials to the sandbox', () => {
+    const live = { PAYFAST_MERCHANT_ID: '123', PAYFAST_MERCHANT_KEY: 'k', PAYFAST_PASSPHRASE: 'p' };
+    const sandbox = payfastConfig({ COMMERCE_MODE: 'sandbox', ...live });
+    expect(sandbox.host).toBe('sandbox.payfast.co.za');
+    expect(sandbox.merchantId).toBe('10000100');
+    expect(sandbox.passphrase).not.toBe('p');
+    expect(payfastConfig({ ...live, PAYFAST_SANDBOX_MERCHANT_ID: '999' }).merchantId).toBe('999');
+  });
+
   it('rejects an unknown mode and prefers the configured site URL', () => {
     expect(() => commerceMode({ COMMERCE_MODE: 'yes' })).toThrow();
     expect(siteOrigin(new URL('http://localhost:4321/x'), { PUBLIC_SITE_URL: 'https://bigjos.example/' })).toBe('https://bigjos.example');
@@ -127,6 +136,8 @@ describe('orders and emails', () => {
     expect(confirmation.subject).toBe(`Your Big Jo’s order ${order.reference}`);
     expect(confirmation.text).toContain('R24,999');
     expect(confirmation.text).toContain('40 Strubens Road');
+    expect(confirmation.replyTo).toBeUndefined();
+    expect(customerConfirmation(order, { OWNER_EMAIL: 'owner@example.com' }).replyTo).toBe('owner@example.com');
     expect(ownerPaidAlert(order, 'owner@example.com').text).toContain('SANDBOX TEST');
   });
 });

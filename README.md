@@ -110,9 +110,12 @@ They replace two-line "label + detail" copy: hero facts, specs, delivery and pay
 ## Go live: what is still needed
 
 1. **Make this GitHub repository private.** It is public, and `reference/` includes supplier pricing and bank details.
-2. **PayFast** merchant account with Instant EFT and Capitec Pay enabled. Set a passphrase in PayFast → Settings → Security. Add `PAYFAST_MERCHANT_ID`, `PAYFAST_MERCHANT_KEY` and `PAYFAST_PASSPHRASE` to Vercel.
+2. **PayFast:** the shop uses the **Get Lucky Golf** PayFast merchant account (owner instruction, 6 Oct 2026). In Vercel, copy `PAYFAST_MERCHANT_ID`, `PAYFAST_MERCHANT_KEY` and `PAYFAST_PASSPHRASE` from the `get-lucky-golf` project into `bigjosbeds`. Set them for **Production only**, as Sensitive. Test mode never uses these: it always uses PayFast's public sandbox, or `PAYFAST_SANDBOX_*` if set. So they are safe to add before launch. Each payment sends its own `notify_url`, so Big Jo’s payment notifications never reach the Get Lucky app. Check that Instant EFT and Capitec Pay are enabled on that account.
 3. **Supabase:** create a project and run `supabase/migrations/0001_init.sql` in the SQL editor. Add `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` to Vercel. Paid orders appear in the `orders_to_make` view.
-4. **Resend:** verify the sending domain. Add `RESEND_API_KEY`, `EMAIL_FROM` and `OWNER_EMAIL`.
+4. **Resend:** `bigjosbeds.co.za` is added in Resend and waiting on three DNS records at the domain's DNS host: TXT `resend._domainkey`, CNAME `rsend` and CNAME `send`. The values are in Resend → Domains. Then add these to Vercel:
+   - `RESEND_API_KEY`: a sending-only key restricted to `bigjosbeds.co.za`
+   - `EMAIL_FROM`, e.g. `Big Jo’s Beds <orders@bigjosbeds.co.za>`
+   - `OWNER_EMAIL`: where order alerts go. Customer replies go there too.
 5. **Domain:** connect it in Vercel and set `PUBLIC_SITE_URL`.
 6. **Business details (ECTA section 43)** in `src/config/business.json`: legal name, registration number, physical address and email. The phone is set: +27 60 961 5091, which is also the WhatsApp number.
 7. **Policies** as Markdown in `src/content/policies/`, each starting with `---\ntitle: …\n---`:
