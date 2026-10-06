@@ -84,6 +84,14 @@ Set `COMMERCE_MODE` in the environment.
 3. **Redeploy** from the Vercel dashboard (or push any commit).
 4. **Buy a bed** on the deployment URL using the PayFast sandbox test buyer. The order should turn **paid** in the `orders` table. Emails start once Resend is configured.
 
+## Colours
+
+The design kit's palette is Bone, Paper, Clay, Ink, Flax and Charcoal (`brand/tokens/tokens.css`). The site adds one colour:
+
+- **Fern `#32412A`** (`--bj-fern`, class `.bj-green`) is a deep, earthy green sampled from the indoor plants in the product photography. Owner addition, 6 Oct 2026.
+- **Where:** the founder sections (the home page band with Johannes's portrait, and the story page's "Meet the bed" panel).
+- **Contrast:** Bone text on Fern is 9.6:1 (AAA). Clay stays the only action colour.
+
 ## Logo
 
 `public/logos/big-jos-primary.svg` is the master logo: Johannes's refined vector version, supplied 6 Oct 2026, with a Clay wordmark and an Ink "BEDS". Use it for everything: the site, emails, packaging, socials and print.

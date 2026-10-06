@@ -2,6 +2,12 @@
 @import '../../brand/tokens/tokens.css';
 @import './brand.css';
 
+/* Brand addition (owner, 6 Oct 2026): Fern, a deep earthy green sampled from the indoor plants in
+   the product photography. Used for the founder sections. Bone text on Fern is 9.6:1 (AAA). */
+:root { --bj-fern: #32412A; }
+.bj-green { background: var(--bj-fern); color: var(--bj-bone); }
+.bj-green .bj-muted, .bj-green a:not(.bj-button) { color: var(--bj-bone); }
+
 @font-face {
   font-family: 'DM Serif Display';
   src: url('/fonts/DMSerifDisplay-Regular.latin.woff2') format('woff2');
