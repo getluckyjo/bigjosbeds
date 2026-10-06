@@ -181,6 +181,8 @@ test('the approved delivery and returns policy is published and linked from the 
   await expect(page.getByText('We’ll refund the full amount you paid within 30 days of collecting it.')).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Cancelling before delivery' })).toBeVisible();
   await expect(page.getByText('You can cancel your order at any time before your bed is delivered.')).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'How refunds are paid' })).toBeVisible();
+  await expect(page.getByText('If you paid by credit or cheque card, the money goes back to that card.')).toBeVisible();
   await page.goto('/');
   await expect(page.locator('footer a[href="/policies/delivery-and-returns"]')).toHaveText('Delivery and returns');
 });

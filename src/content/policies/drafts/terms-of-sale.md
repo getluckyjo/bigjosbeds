@@ -50,7 +50,7 @@ You can cancel your order at any time before your bed is delivered. We’ll refu
 
 Every bed comes with a 100-day trial, starting on the day it’s delivered. If it’s not right for you, let us know within those 100 days. We’ll collect it free of charge and refund the full amount you paid, no questions asked.
 
-We’ll pay your refund within 30 days of collecting the bed, **[TO CONFIRM: how, for example back to your card through PayFast, or by EFT to your bank account]**.
+We’ll pay your refund within 30 days of collecting the bed. Refunds go through PayFast: back to your card if you paid by credit or cheque card, or into your bank account if you paid another way.
 
 See our [delivery and returns policy](/policies/delivery-and-returns) for how to start a return.
 

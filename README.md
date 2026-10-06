@@ -107,8 +107,8 @@ They replace two-line "label + detail" copy: hero facts, specs, delivery and pay
 5. **Domain:** connect it in Vercel and set `PUBLIC_SITE_URL`.
 6. **Business details (ECTA section 43)** in `src/config/business.json`: legal name, registration number, physical address and email. The phone is set: +27 60 961 5091, which is also the WhatsApp number.
 7. **Policies** as Markdown in `src/content/policies/`, each starting with `---\ntitle: …\n---`:
-   - `terms-of-sale.md`: **drafted** in `src/content/policies/drafts/`. Fill in its `[TO CONFIRM: …]` gaps (legal details, VAT, delivery-day needs, refund method, warranty cover), then move it up a folder
-   - `delivery-and-returns.md`: **published** (owner approved, 6 Oct 2026). It covers delivery and the 100-day trial: the trial starts on delivery, collection is free and the refund is full. It also covers refunds within 30 days and cancellation any time before delivery
+   - `terms-of-sale.md`: **drafted** in `src/content/policies/drafts/`. Fill in its `[TO CONFIRM: …]` gaps (legal details, VAT, delivery-day needs, warranty cover), then move it up a folder
+   - `delivery-and-returns.md`: **published** (owner approved, 6 Oct 2026). It covers delivery and the 100-day trial: the trial starts on delivery, collection is free and the refund is full. It also covers refunds within 30 days, cancellation any time before delivery, and how refunds are paid through PayFast
    - `warranty.md`: what the 20-year mattress warranty covers and how to claim, based on PBS’s written terms. Say whether the base is covered (the PBS quote only lists the warranty on the mattress)
    - `privacy.md`: **drafted** POPIA notice in `src/content/policies/drafts/`, written from the site's real data flows (checkout, enquiries, PayFast, Supabase, Vercel, Resend, WhatsApp). Gaps: legal details, Information Officer, the bed maker's name, provider data agreements, retention periods.
    - The build refuses any published policy that still contains `TO CONFIRM`
