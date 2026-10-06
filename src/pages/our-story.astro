@@ -30,7 +30,7 @@ const founderPhoto = Object.values(founderPhotos)[0]?.default;
     {story.paragraphs.map((p) => <p>{p}</p>)}
     <LengthComparison {...story.comparison} />
     {story.paragraphsAfter.map((p) => <p>{p}</p>)}
-    <p class="bj-signature"><strong>Johannes le Roux</strong><span>Founder, Big Jo’s Beds</span></p>
+    <p class="bj-signature"><strong>{story.signature}</strong><span>{story.signatureRole}</span></p>
     <hr class="bj-rule" />
     <p class="bj-lead">{story.closing}</p>
     <div><a class="bj-button" href={PRODUCT_PATH}>{story.cta}</a></div>

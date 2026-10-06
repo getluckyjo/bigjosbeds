@@ -1,7 +1,7 @@
 {
   "version": "1.2.0",
   "source": "content/source/design-brief-background.md",
-  "editorialStatus": "v1.2: founder story rewritten from facts Johannes le Roux supplied on 6 Oct 2026 (2 m tall, 125 kg, has looked for a bed he fits on all his life). Wording is a draft for his review. No other invented personal experiences, quotes or testimonials.",
+  "editorialStatus": "v1.2: founder story rewritten from facts Johannes le Roux supplied on 6 Oct 2026 (2 m tall, 125 kg, has looked for a bed he fits on all his life; Big Jo is his nickname). Wording is a draft for his review. No other invented personal experiences, quotes or testimonials.",
   "home": {
     "route": "/",
     "seo": {
@@ -68,7 +68,7 @@
     "story": {
       "title": "Started in Cape Town. Built for big.",
       "quote": "I’m 2 metres tall and 125 kg. I’ve been looking for a bed I properly fit on my whole life.",
-      "quoteBy": "Johannes le Roux, founder",
+      "quoteBy": "Johannes “Big Jo” le Roux, founder",
       "body": "So he built one: 210 cm long, firm, on a matching heavy-duty base and made to order in Cape Town. Johannes co-founded The Duchess. This time, the brief was personal.",
       "cta": "Read Johannes’s story"
     },
@@ -139,7 +139,7 @@
     "route": "/our-story",
     "seo": {
       "title": "Our story | Big Jo’s Beds",
-      "description": "Big Jo’s Beds founder Johannes le Roux is 2 m tall and 125 kg. He built the firm 160 × 210 cm bed he’d been looking for his whole life, made to order in Cape Town."
+      "description": "Big Jo’s Beds is named after founder Johannes “Big Jo” le Roux: 2 m tall, 125 kg, and he built the firm 160 × 210 cm bed he’d been looking for his whole life. Made to order in Cape Town."
     },
     "eyebrow": "About Big Jo’s",
     "title": "Some of us need a bigger bed.",
@@ -174,11 +174,12 @@
     "paragraphsAfter": [
       "Big Jo’s starts with the things big and tall people actually check: the length, the support and whether the base is up to the job. The mattress is 210 cm long and 160 cm wide, with a reinforced high-density core, an ultra-high-density foam layer and a latex comfort layer. It sits on a matching heavy-duty base.",
       "It’s firm, it’s made to order in Cape Town, and it comes in Flax or Charcoal: woven fabric, simple stripes and a small sewn-on label. A bed you fit in should still look good in your room.",
-      "I’ve built a brand before as co-founder of The Duchess. This one is personal. If you’ve ever slept diagonally to fit, or let your feet hang off the end, it’s for you too."
+      "Big Jo is my nickname, so the name was easy. I’ve built a brand before as co-founder of The Duchess, but this one is personal. If you’ve ever slept diagonally to fit, or let your feet hang off the end, it’s for you too."
     ],
-    "signature": "Johannes le Roux, founder",
+    "signature": "Johannes “Big Jo” le Roux",
     "closing": "Best sleep for big people.",
-    "cta": "Meet the bed"
+    "cta": "Meet the bed",
+    "signatureRole": "Founder, Big Jo’s Beds"
   },
   "faqPage": {
     "route": "/faqs",

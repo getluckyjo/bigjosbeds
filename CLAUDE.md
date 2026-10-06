@@ -4,7 +4,7 @@ Read `README.md` for setup and the payment flow, and `brand/CLAUDE.md` for the d
 
 ## Rules that matter here
 - Name: **Big Jo’s Beds** (curly apostrophe; never "Joe’s"). Tagline: **Best sleep for big people.**
-- Use the copy in `src/content/copy.json` verbatim (deck v1.1, plus v1.2 founder story from facts Johannes supplied: 2 m tall, 125 kg, a lifetime looking for a bed he fits on). Don't add founder anecdotes beyond what he has supplied. New commerce wording goes in `src/content/commerce.json` and is a draft for owner review.
+- Use the copy in `src/content/copy.json` verbatim (deck v1.1, plus v1.2 founder story from facts Johannes supplied: 2 m tall, 125 kg, a lifetime looking for a bed he fits on; "Big Jo" is his nickname and the brand is named after him). Don't add founder anecdotes beyond what he has supplied. New commerce wording goes in `src/content/commerce.json` and is a draft for owner review.
 - Never invent prices, reviews, warranty, trial or returns terms, delivery promises, certifications or contact details.
 - Prices live only in `src/data/catalogue.json`, in cents. Never trust a client-supplied amount.
 - Claims in `catalogue.json → claims` stay `publish: false` until the owner approves them: the 250 kg rating, warranty, cotton cover and 3–5 days.
