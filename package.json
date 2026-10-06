@@ -13,7 +13,8 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "check:brand": "node brand/scripts/check.mjs",
-    "icons": "node scripts/export-icons.mjs"
+    "icons": "node scripts/export-icons.mjs",
+    "logos": "node scripts/export-logos.mjs"
   },
   "dependencies": {
     "@astrojs/vercel": "^11.0.11",

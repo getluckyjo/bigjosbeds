@@ -84,6 +84,15 @@ Set `COMMERCE_MODE` in the environment.
 3. **Redeploy** from the Vercel dashboard (or push any commit).
 4. **Buy a bed** on the deployment URL using the PayFast sandbox test buyer. The order should turn **paid** in the `orders` table. Emails start once Resend is configured.
 
+## Logo
+
+`public/logos/big-jos-primary.svg` is the master logo: Johannes's refined vector version, supplied 6 Oct 2026, with a Clay wordmark and an Ink "BEDS". Use it for everything: the site, emails, packaging, socials and print.
+
+- **Variants:** `big-jos-bone.svg` (for dark backgrounds, used in the footer), `big-jos-clay.svg` and `big-jos-ink.svg` are generated from the master by `npm run logos`. Re-run it whenever the master changes.
+- **Favicon:** `public/favicon.svg` is the logo's own "J" in Bone on a Clay tile.
+- **On the site:** shown at 190 × 64 px (150 px wide on phones).
+- **Superseded:** the kit's logos in `brand/assets/logos/` are the older pixel-traced versions. Don't use them.
+
 ## Icons
 
 20 line icons drawn for this brand, following the kit's rule of one 1.5–2 px stroke family:

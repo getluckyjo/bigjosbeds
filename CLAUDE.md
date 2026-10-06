@@ -14,6 +14,7 @@ Read `README.md` for setup and the payment flow, and `brand/CLAUDE.md` for the d
 - Images: `src/assets/images/` holds concept renders. The kit's own `bed-*.png` files and the renders in `reference/renders-not-used/` show a "BDDS" label typo; don't use them.
 - Draft policies live in `src/content/policies/drafts/` and are never published. Drafts mark gaps with **[TO CONFIRM: …]**. Move a file up into `src/content/policies/` only when the owner approves it and every gap is filled; the build fails if a published policy still contains `TO CONFIRM`.
 - `reference/` is source material only. Never import or publish from it.
+- Logo: `public/logos/big-jos-primary.svg` is the master: Johannes's refined vector logo, supplied 6 Oct 2026, with a Clay wordmark and an Ink "BEDS". Use it, its Bone, Clay and Ink variants, and the matching favicon for the site and everything else (emails, packaging, socials, print). Regenerate the variants with `npm run logos` after replacing the master. The kit's logos in `brand/assets/logos/` are the old pixel-traced versions and are superseded; don't use them.
 - Icons: use `src/components/Icon.astro` with names from `src/data/icons.json`. They follow one stroke family: 24 grid, 1.75 stroke, round caps, no fills. Always pair an icon with visible or `bj-sr-only` text. No emoji and no third-party icon sets. Run `npm run icons` after changing the set.
 
 ## Commands
