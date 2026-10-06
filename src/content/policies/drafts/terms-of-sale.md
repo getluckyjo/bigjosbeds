@@ -56,9 +56,9 @@ See our [delivery and returns policy](/policies/delivery-and-returns) for how to
 
 ## Warranty
 
-The mattress comes with a 20-year warranty.
+The mattress comes with a 20-year warranty. It covers the mattress only, not the base.
 
-**[TO CONFIRM: what the warranty covers (for example manufacturing defects, or sagging beyond a set depth), whether cover reduces over time, whether the base is covered, and how to claim. Base this on PBS’s written warranty terms.]**
+**[TO CONFIRM: what the warranty covers (for example manufacturing defects, or sagging beyond a set depth), whether cover reduces over time, and how to claim. Base this on PBS’s written warranty terms.]**
 
 ## Your rights
 

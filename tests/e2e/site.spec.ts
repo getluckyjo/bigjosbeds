@@ -133,12 +133,22 @@ test('the trial and warranty show beside every buying decision', async ({ page }
   const assure = page.locator('.bj-buy .bj-assure');
   await expect(assure).toContainText('100-day trial, no questions asked');
   await expect(assure).toContainText('20-year mattress warranty');
-  await expect(page.locator('.bj-specs')).toContainText('20 years on the mattress');
+  await expect(page.locator('.bj-specs')).toContainText('20 years, mattress only');
+  // The warranty covers the mattress only, so it disappears when "Base only" is chosen.
+  const warrantyLine = assure.getByText('20-year mattress warranty');
+  await page.getByLabel(/Base only/).check();
+  await expect(warrantyLine).toBeHidden();
+  await expect(assure.getByText('100-day trial, no questions asked')).toBeVisible();
+  await page.getByLabel(/Mattress only/).check();
+  await expect(warrantyLine).toBeVisible();
 
   await page.goto('/checkout?item=set&finish=flax&qty=1');
   const summary = page.locator('.bj-summary');
   await expect(summary).toContainText('100-day trial, no questions asked');
   await expect(summary).toContainText('20-year mattress warranty');
+  await page.goto('/checkout?item=base&finish=flax&qty=1');
+  await expect(page.locator('.bj-summary')).toContainText('100-day trial, no questions asked');
+  await expect(page.locator('.bj-summary')).not.toContainText('warranty');
 
   await page.goto('/faqs');
   await page.getByText('Can I try it at home first?').click();
@@ -147,7 +157,7 @@ test('the trial and warranty show beside every buying decision', async ({ page }
   await page.getByText('Can I cancel before delivery?').click();
   await expect(page.getByText('You can cancel at any time before your bed is delivered')).toBeVisible();
   await page.getByText('Is there a warranty?').click();
-  await expect(page.getByText('The mattress comes with a 20-year warranty.')).toBeVisible();
+  await expect(page.getByText('The mattress comes with a 20-year warranty. It covers the mattress only, not the base.')).toBeVisible();
 });
 
 test('our story tells the founder story with a readable length comparison', async ({ page }) => {

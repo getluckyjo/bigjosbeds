@@ -64,6 +64,10 @@ main { display: block; }
 .bj-config:has(input[name='finish'][value='charcoal']:checked) [data-show-finish='charcoal'],
 .bj-config:has(input[name='item'][value='mattress']:checked) [data-show-item='mattress'],
 .bj-config:has(input[name='item'][value='base']:checked) [data-show-item='base'] { display: revert; }
+/* Lines that don't apply to an item, e.g. the mattress warranty when "Base only" is chosen. */
+.bj-config:has(input[name='item'][value='set']:checked) [data-hide-item~='set'],
+.bj-config:has(input[name='item'][value='mattress']:checked) [data-hide-item~='mattress'],
+.bj-config:has(input[name='item'][value='base']:checked) [data-hide-item~='base'] { display: none; }
 
 .bj-price { font: 400 clamp(2rem, 3vw, 2.5rem)/1.1 var(--bj-font-display); letter-spacing: -.02em; }
 

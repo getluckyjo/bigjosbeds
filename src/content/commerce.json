@@ -7,12 +7,12 @@
     "faqProductionAnswer": "We make each bed to order in Cape Town. After you pay, we’ll confirm the production time by email and arrange a delivery date with you."
   },
   "assurance": {
-    "$comment": "Wording for the owner-approved trial and warranty (catalogue.json claims). {days} and {years} come from the catalogue. The warranty names the mattress because the supplier quote only covers the mattress; drop \"mattress\" here if the base is covered too.",
+    "$comment": "Wording for the owner-approved trial and warranty (catalogue.json claims). {days} and {years} come from the catalogue. The warranty covers the mattress only, not the base (owner, 6 Oct 2026), so it is hidden for base-only purchases.",
     "trial": "{days}-day trial, no questions asked",
     "trialShort": "{days}-day trial",
     "warranty": "{years}-year mattress warranty",
     "warrantySpecLabel": "Warranty",
-    "warrantySpecValue": "{years} years on the mattress"
+    "warrantySpecValue": "{years} years, mattress only"
   },
   "whatsapp": {
     "$comment": "Direct WhatsApp to Johannes (owner request, 6 Oct 2026). Number lives in business.json → whatsapp.",
@@ -63,7 +63,7 @@
     {
       "id": "warranty",
       "question": "Is there a warranty?",
-      "answer": "Yes. The mattress comes with a {years}-year warranty."
+      "answer": "Yes. The mattress comes with a {years}-year warranty. It covers the mattress only, not the base."
     }
   ],
   "checkout": {
