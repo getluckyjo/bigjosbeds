@@ -24,3 +24,5 @@ Read `README.md` for setup and the payment flow, and `brand/CLAUDE.md` for the d
 `npm run dev` · `npm test` · `npm run test:e2e` · `npm run build` (runs the launch check and `astro check` first)
 
 The Playwright version is pinned to 1.56.1 to match the Chromium pre-installed in Claude Code cloud sessions, with an npm override for `playwright-core`.
+
+Astro is pinned to 7.3.5 and `@astrojs/vercel` to 11.0.11. On 11 Oct 2026, astro 7.3.8 with adapter 11.0.13 added `import "rolldown"` to the built server entry on the sibling Big Jo’s Paints site, and every on-demand page (checkout, order status) crashed on Vercel with "Cannot find native binding". Static pages kept working, so the failure is easy to miss. Before upgrading either package, build and check that `.vercel/output/functions/_render.func/.vercel/output/server/entry.mjs` doesn't import `rolldown`, then load `/checkout` on a preview deployment.
